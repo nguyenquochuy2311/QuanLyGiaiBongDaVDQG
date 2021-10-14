@@ -4,7 +4,7 @@
 - Clone:
 git clone https://github.com/nguyenquochuy2311/QuanLyGiaiBongDaVDQG
 
-cd server
+- cd server
 
 - *Lấy key để chạy*
 php artisan key:generate
