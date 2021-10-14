@@ -1,12 +1,12 @@
 # QuanLyGiaiBongDaVDQG
 
-Server Configuration: Laravel 8.x + PHP 7.4
+*Server Configuration: Laravel 8.x + PHP 7.4*
 - Clone:
 git clone https://github.com/nguyenquochuy2311/QuanLyGiaiBongDaVDQG
 
 cd server
 
-- Lấy key để chạy
+- *Lấy key để chạy*
 php artisan key:generate
 
 cp .env.example .env (nếu ko có .env)
