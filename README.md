@@ -6,10 +6,10 @@ git clone https://github.com/nguyenquochuy2311/QuanLyGiaiBongDaVDQG
 
 - cd server
 
-- *Lấy key để chạy*
-php artisan key:generate
+- Lấy key để chạy:
+  php artisan key:generate
 
-cp .env.example .env (nếu ko có .env)
+- cp .env.example .env (nếu ko có .env)
 
 - Tạo database
 
@@ -23,10 +23,10 @@ DB_USERNAME=.....
 DB_PASSWORD=....
 
 - Migrate model sang db:
-php artisan migrate (kiểm tra column chưa)
+  php artisan migrate (kiểm tra column chưa)
 
-php artisan db:seed {nếu có data sẵn thì chạy}
+  php artisan db:seed {nếu có data sẵn thì chạy}
 
 - Run server:
-php artisan serve
-http://127.0.0.1:8000 => http://localhost:8000/
+  php artisan serve
+  http://127.0.0.1:8000 => http://localhost:8000/
