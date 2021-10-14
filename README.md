@@ -13,7 +13,7 @@ cp .env.example .env (nếu ko có .env)
 
 - Tạo database
 
-- Cấu hình .env
+- Cấu hình .env:
 VD:
 DB_CONNECTION=mysql          
 DB_HOST=127.0.0.1            
@@ -27,5 +27,5 @@ php artisan migrate (kiểm tra column chưa)
 
 php artisan db:seed {nếu có data sẵn thì chạy}
 
-- Run server
+- Run server:
 php artisan serve
