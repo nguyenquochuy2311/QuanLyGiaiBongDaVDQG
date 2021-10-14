@@ -14,7 +14,7 @@ cp .env.example .env (nếu ko có .env)
 - Tạo database
 
 - Cấu hình .env:
-VD:
+------------------------
 DB_CONNECTION=mysql          
 DB_HOST=127.0.0.1            
 DB_PORT=3306                 
