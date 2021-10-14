@@ -6,6 +6,9 @@ git clone https://github.com/nguyenquochuy2311/QuanLyGiaiBongDaVDQG
 
 cd server
 
+- Lấy key để chạy
+php artisan key:generate
+
 cp .env.example .env (nếu ko có .env)
 
 - Tạo database
