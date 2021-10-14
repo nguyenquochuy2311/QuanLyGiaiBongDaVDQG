@@ -18,9 +18,9 @@ cp .env.example .env (nếu ko có .env)
 DB_CONNECTION=mysql          
 DB_HOST=127.0.0.1            
 DB_PORT=3306                 
-DB_DATABASE=
-DB_USERNAME=root        
-DB_PASSWORD=
+DB_DATABASE=.....
+DB_USERNAME=.....        
+DB_PASSWORD=....
 
 - Migrate model sang db:
 php artisan migrate (kiểm tra column chưa)
