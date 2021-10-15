@@ -2,15 +2,21 @@
 
 *Server Configuration: Laravel 8.x + PHP 7.4*
 - Clone:
-# git clone https://github.com/nguyenquochuy2311/QuanLyGiaiBongDaVDQG
-
-# cd server
-
+```sh
+git clone https://github.com/nguyenquochuy2311/QuanLyGiaiBongDaVDQG
+```
+```sh
+cd server
+```
 - Lấy key để chạy:
-# php artisan key:generate
+```sh
+php artisan key:generate
+```
 
 - Nếu ko có .env
-# cp .env.example .env 
+```sh
+cp .env.example .env 
+```
 
 - Tạo database
 
@@ -25,11 +31,17 @@ DB_PASSWORD=....
 ```
 
 - Migrate model sang db:(kiểm tra column chưa)
-# php artisan migrate 
+```sh
+php artisan migrate 
+```
 
 - Nếu có data sẵn thì chạy:
-# php artisan db:seed 
+```sh
+php artisan db:seed 
+```
 
 - Run server:
-# php artisan serve
+```sh
+php artisan serve
+```
 => http://127.0.0.1:8000 => http://localhost:8000/
