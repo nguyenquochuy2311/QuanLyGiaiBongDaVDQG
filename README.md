@@ -2,31 +2,32 @@
 
 *Server Configuration: Laravel 8.x + PHP 7.4*
 - Clone:
-#git clone https://github.com/nguyenquochuy2311/QuanLyGiaiBongDaVDQG
+# git clone https://github.com/nguyenquochuy2311/QuanLyGiaiBongDaVDQG
 
-#cd server
+# cd server
 
 - Lấy key để chạy:
-#php artisan key:generate
+# php artisan key:generate
 
 - Nếu ko có .env
-#cp .env.example .env 
+# cp .env.example .env 
 
 - Tạo database
 
 - Cấu hình .env:
-#DB_CONNECTION=mysql          
-#DB_HOST=127.0.0.1            
-#DB_PORT=3306                 
-#DB_DATABASE=.....
-#DB_USERNAME=.....        
-#DB_PASSWORD=....
+# DB_CONNECTION=mysql          
+# DB_HOST=127.0.0.1            
+# DB_PORT=3306                 
+# DB_DATABASE=.....
+# DB_USERNAME=.....        
+# DB_PASSWORD=....
 
 - Migrate model sang db:(kiểm tra column chưa)
-#php artisan migrate 
+# php artisan migrate 
 
-#php artisan db:seed {nếu có data sẵn thì chạy}
+- Nếu có data sẵn thì chạy:
+# php artisan db:seed 
 
 - Run server:
-#php artisan serve
-http://127.0.0.1:8000 => http://localhost:8000/
+# php artisan serve
+=> http://127.0.0.1:8000 => http://localhost:8000/
