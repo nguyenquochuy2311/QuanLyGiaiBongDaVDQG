@@ -8,6 +8,17 @@ git clone https://github.com/nguyenquochuy2311/QuanLyGiaiBongDaVDQG
 ```sh
 cd server
 ```
+
+- Cài vendor:
+```sh
+composer install
+```
+
+- Nếu lỗi:
+```sh
+composer update
+```
+
 - Lấy key để chạy:
 ```sh
 php artisan key:generate
