@@ -15,12 +15,14 @@
 - Tạo database
 
 - Cấu hình .env:
-# DB_CONNECTION=mysql          
-# DB_HOST=127.0.0.1            
-# DB_PORT=3306                 
-# DB_DATABASE=.....
-# DB_USERNAME=.....        
-# DB_PASSWORD=....
+```sh
+DB_CONNECTION=mysql          
+DB_HOST=127.0.0.1            
+DB_PORT=3306                 
+DB_DATABASE=.....
+DB_USERNAME=.....        
+DB_PASSWORD=....
+```
 
 - Migrate model sang db:(kiểm tra column chưa)
 # php artisan migrate 
