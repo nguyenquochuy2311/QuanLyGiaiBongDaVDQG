@@ -1,6 +1,9 @@
 # QuanLyGiaiBongDaVDQG
 
 *Server Configuration: Laravel 8.x + PHP 7.4*
+- Required:
+* Download XAMPP + Install Composer(https://getcomposer.org/download/) *
+
 - Clone:
 ```sh
 git clone https://github.com/nguyenquochuy2311/QuanLyGiaiBongDaVDQG
