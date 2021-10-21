@@ -2,7 +2,7 @@
 
 *Server Configuration: Laravel 8.x + PHP 7.4*
 - Required:
-* Download XAMPP + Install Composer(https://getcomposer.org/download/) *
+*Download XAMPP + Install Composer(https://getcomposer.org/download/)*
 
 - Clone:
 ```sh
