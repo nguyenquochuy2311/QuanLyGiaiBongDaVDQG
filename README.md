@@ -18,17 +18,15 @@ composer install
 ```sh
 composer update
 ```
-
-- Lấy key để chạy:
-```sh
-php artisan key:generate
-```
-
 - Nếu ko có .env
 ```sh
 cp .env.example .env 
 ```
 
+- Lấy key để chạy:
+```sh
+php artisan key:generate
+```
 - Tạo database
 
 - Cấu hình .env:
