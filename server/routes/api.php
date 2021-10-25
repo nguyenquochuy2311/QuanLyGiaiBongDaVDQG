@@ -26,5 +26,7 @@ Route::get('doi_bong', [DoiBongController::class, 'index']);
 Route::get('doi_bong/{id}', [DoiBongController::class, 'show']);
 
 // Admin
-Route::get('doi_bong/create', [DoiBongController::class, 'create']);
-Route::post('doi_bong/store',[DoiBongController::class, 'store']);
+Route::get('ad/doi_bong/create', [DoiBongController::class, 'create']);
+Route::post('ad/doi_bong/store',[DoiBongController::class, 'store']);
+Route::get('ad/doi_bong/edit/{id}', [DoiBongController::class, 'edit']);
+// Route::post('ad/doi_bong/update', [DoiBongController::class, 'update']);

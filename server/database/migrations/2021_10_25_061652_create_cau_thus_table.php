@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDoiBongsTable extends Migration
+class CreateCauThusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateDoiBongsTable extends Migration
      */
     public function up()
     {
-        Schema::create('doi_bongs', function (Blueprint $table) {
-            $table->bigIncrements("id");
-            $table->string("ten_doi_bong");
-            $table->text("mo_ta");
+        Schema::create('cau_thus', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('ten_cau_thu');
+            $table->string('vi_tri');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateDoiBongsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('doi_bongs');
+        Schema::dropIfExists('cau_thus');
     }
 }

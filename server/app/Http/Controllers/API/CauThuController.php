@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\DoiBong;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreDoiBongRequest;
 
-class DoiBongController extends Controller
+class CauThuController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +14,7 @@ class DoiBongController extends Controller
      */
     public function index()
     {
-        $data = DoiBong::all();
-        return $data;
+        //
     }
 
     /**
@@ -27,10 +24,7 @@ class DoiBongController extends Controller
      */
     public function create()
     {
-        return response([
-            'status' => 200,
-            'message' => 'OK'
-        ]);
+        //
     }
 
     /**
@@ -39,10 +33,9 @@ class DoiBongController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreDoiBongRequest $request)
-    {    
-        DoiBong::create($request->all());  
-        return response()->json(200);
+    public function store(Request $request)
+    {
+        //
     }
 
     /**
@@ -53,15 +46,9 @@ class DoiBongController extends Controller
      */
     public function show($id)
     {
-        $data = DoiBong::find($id);
-        if(empty($data)){
-            return response([
-                'status' => 404,
-                'message' => 'Không tìm thấy'
-            ]);
-        }
-        return $this->jsonResponse($data);  
+        //
     }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -70,14 +57,7 @@ class DoiBongController extends Controller
      */
     public function edit($id)
     {
-        $data = DoiBong::find($id);
-        if(empty($data)){
-            return response([
-                'status' => 404,
-                'message' => 'Không tìm thấy'
-            ]);
-        }
-        return $this->jsonResponse($data);
+        //
     }
 
     /**
