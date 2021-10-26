@@ -15,27 +15,7 @@ Cách đặt tên: {Phương thức}{Tên Model}{Request}
 - hàm message() -> trỏ custom lỗi
 
 Migrate Rollback
-php artisan migrate:rollback
+	php artisan migrate:rollback
 
-protected $fillable = [
-        "ten_cau_thu",
-        "so_ao",
-        "vi_tri",
-        "doi_bong"
-    ];
-
-    public function doi_bong()
-    {
-        return $this->hasOne(DoiBong::class, 'foreign_key');
-    }
-
-
-protected $fillable = [
-        "ten_doi_bong",
-        "mo_ta"
-    ];
-
-    public function cau_thu()
-    {
-        return $this->hasMany(CauThu::class);
-    }
+Seeder từng class
+	php artisan db:seed --class={name}Seeder

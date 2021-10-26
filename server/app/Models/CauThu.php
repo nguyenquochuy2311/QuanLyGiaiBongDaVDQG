@@ -21,8 +21,4 @@ class CauThu extends Model
         return $this->hasOne(DoiBong::class, 'foreign_key');
     }
 
-    public function getTenCauThu()
-    {
-        return "{$this->ten_cau_thu}";
-    }
 }
