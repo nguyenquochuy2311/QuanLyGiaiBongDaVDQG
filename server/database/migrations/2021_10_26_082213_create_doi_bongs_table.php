@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCauThusTable extends Migration
+class CreateDoiBongsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateCauThusTable extends Migration
      */
     public function up()
     {
-        Schema::create('cau_thus', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('ten_cau_thu');
-            $table->string('vi_tri');
+        Schema::create('doi_bongs', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('ten_doi_bong')->unique();
+            $table->string('mo_ta');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateCauThusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cau_thus');
+        Schema::dropIfExists('doi_bongs');
     }
 }

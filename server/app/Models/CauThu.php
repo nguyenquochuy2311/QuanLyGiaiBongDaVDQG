@@ -11,6 +11,18 @@ class CauThu extends Model
 
     protected $fillable = [
         "ten_cau_thu",
-        "vi_tri"
+        "so_ao",
+        "vi_tri",
+        "doi_bong_id"
     ];
+
+    public function doi_bong()
+    {
+        return $this->hasOne(DoiBong::class, 'foreign_key');
+    }
+
+    public function getTenCauThu()
+    {
+        return "{$this->ten_cau_thu}";
+    }
 }

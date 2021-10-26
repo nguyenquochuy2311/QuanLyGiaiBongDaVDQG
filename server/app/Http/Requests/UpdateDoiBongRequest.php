@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
 
-class StoreDoiBongRequest extends FormRequest
+class UpdateDoiBongRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +26,8 @@ class StoreDoiBongRequest extends FormRequest
     public function rules()
     {
         return [
-            'ten_doi_bong' => 'required|unique:doi_bongs|max:50',
-            'mo_ta' => 'required',
+            'ten_doi_bong' => 'required|max:50|unique:doi_bongs,ten_doi_bong,'.\Request::get('id'),
+            'mo_ta' => 'required'
         ];
     }
 
@@ -35,7 +35,7 @@ class StoreDoiBongRequest extends FormRequest
     {
         throw new HttpResponseException(response()->json([
             'status' => false,
-            'message' => 'Lỗi thêm dữ liệu',
+            'message' => 'Lỗi cập nhật dữ liệu',
             'detail' => $validator->errors()
         ]));
     }
@@ -44,7 +44,7 @@ class StoreDoiBongRequest extends FormRequest
     {
         return [
             'ten_doi_bong.required' => 'Tên đội bóng không được bỏ trống!',
-            'ten_doi_bong.unique' => 'Trùng tên đội bóng!',
+            'ten_doi_bong.unique' => 'Trùng tên đội bóng khác!',
             'ten_doi_bong.max' => 'Tên đội bóng không vượt quá 50 ký tự!',
             'mo_ta.required' => 'Mô tả không được bỏ trống!'
         ];

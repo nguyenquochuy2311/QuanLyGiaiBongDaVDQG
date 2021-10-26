@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\CauThu;
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\DB;
 
 class CauThuController extends Controller
 {
@@ -14,7 +17,11 @@ class CauThuController extends Controller
      */
     public function index()
     {
-        //
+        $cau_thu = DB::table('cau_thus')
+            ->leftJoin('doi_bongs', 'cau_thus.id', '=', 'doi_bongs.id')
+            ->select('cau_thus.*', 'doi_bongs.ten_doi_bong')
+            ->get();
+        return response($cau_thu);
     }
 
     /**
@@ -35,7 +42,11 @@ class CauThuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        CauThu::create($request->all());  
+        return response()->json([
+            'status' => 200,
+            'message' => "Thêm thành công"
+        ]);
     }
 
     /**

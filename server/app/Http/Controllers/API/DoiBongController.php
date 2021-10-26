@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\DoiBong;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreDoiBongRequest;
+use App\Http\Requests\UpdateDoiBongRequest;
 
 class DoiBongController extends Controller
 {
@@ -17,7 +18,9 @@ class DoiBongController extends Controller
     public function index()
     {
         $data = DoiBong::all();
-        return $data;
+        return response([
+            $data->getTenDoiBong() => $data
+        ]);
     }
 
     /**
@@ -42,7 +45,10 @@ class DoiBongController extends Controller
     public function store(StoreDoiBongRequest $request)
     {    
         DoiBong::create($request->all());  
-        return response()->json(200);
+        return response()->json([
+            'status' => 200,
+            'message' => "Thêm thành công"
+        ]);
     }
 
     /**
@@ -60,7 +66,7 @@ class DoiBongController extends Controller
                 'message' => 'Không tìm thấy'
             ]);
         }
-        return $this->jsonResponse($data);  
+        return response($data);
     }
     /**
      * Show the form for editing the specified resource.
@@ -77,7 +83,7 @@ class DoiBongController extends Controller
                 'message' => 'Không tìm thấy'
             ]);
         }
-        return $this->jsonResponse($data);
+        return response($data);
     }
 
     /**
@@ -87,9 +93,21 @@ class DoiBongController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateDoiBongRequest $request, $id)
     {
-        //
+        $doi_bong = DoiBong::find($id);
+        if(empty($doi_bong)){
+            return response([
+                'status' => 404,
+                'message' => 'Không tìm thấy'
+            ]);
+        }
+        $doi_bong->update($request->all());
+        return response()->json([
+            'status' => 200,
+            'message' => 'Cập nhật thành công',
+            "new_data" => $doi_bong
+        ]);
     }
 
     /**
@@ -100,6 +118,17 @@ class DoiBongController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $doi_bong = DoiBong::findOrFail($id);
+        if(empty($doi_bong || !is_numeric($id) )){
+            return response([
+                'status' => 404,
+                'message' => 'Không tìm thấy'
+            ]);
+        }
+        $doi_bong->delete();
+        return response()->json([
+            'status' => 200,
+            'message' => 'Xóa thành công'
+        ]);
     }
 }
