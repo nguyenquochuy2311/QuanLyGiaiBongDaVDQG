@@ -131,4 +131,9 @@ class DoiBongController extends Controller
             'message' => 'Xóa thành công'
         ]);
     }
+
+    public function search($keyword)
+    {
+        return DoiBong::where('ten_doi_bong', 'like', '%'.$keyword.'%')->get();
+    }
 }

@@ -18,7 +18,7 @@ class CauThuController extends Controller
     public function index()
     {
         $cau_thu = DB::table('cau_thus')
-            ->leftJoin('doi_bongs', 'cau_thus.id', '=', 'doi_bongs.id')
+            ->join('doi_bongs', 'cau_thus.doi_bong_id', '=', 'doi_bongs.id')
             ->select('cau_thus.*', 'doi_bongs.ten_doi_bong')
             ->get();
         return response($cau_thu);
@@ -57,7 +57,19 @@ class CauThuController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = CauThu::find($id);
+        if(empty($data)){
+            return response([
+                'status' => 404,
+                'message' => 'Không tìm thấy'
+            ]);
+        }
+        $cau_thu = DB::table('cau_thus')
+            ->join('doi_bongs', 'cau_thus.doi_bong_id', '=', 'doi_bongs.id')
+            ->where('cau_thus.id', '=', $id)
+            ->select('cau_thus.*', 'doi_bongs.ten_doi_bong')
+            ->get();
+        return response($cau_thu);
     }
 
     /**

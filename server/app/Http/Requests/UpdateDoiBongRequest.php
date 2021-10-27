@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class UpdateDoiBongRequest extends FormRequest
 {
@@ -27,7 +28,7 @@ class UpdateDoiBongRequest extends FormRequest
     public function rules()
     {
         return [
-            'ten_doi_bong' => 'required|max:50|unique:doi_bongs,ten_doi_bong,'.\Request::get('id'),
+            'ten_doi_bong' => ['required', 'max:50', Rule::unique('doi_bongs')->ignore($this->id)],
             'mo_ta' => 'required'
         ];
     }

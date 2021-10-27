@@ -25,20 +25,22 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Doi bong
 Route::get('doi_bong', [DoiBongController::class, 'index']);
 Route::get('doi_bong/{id}', [DoiBongController::class, 'show']);
+Route::get('doi_bong/search/{keyword}', [DoiBongController::class, 'search']);
 
 // Cau thu
 Route::get('cau_thu', [CauThuController::class, 'index']);
-// Route::get('cau_thu/{id}', [CauThuController::class, 'show']);
+Route::get('cau_thu/{id}', [CauThuController::class, 'show']);
+Route::get('cau_thu/search/{keyword}', [DoiBongController::class, 'search']);
 
 // Admin
 Route::get('ad/doi_bong/create', [DoiBongController::class, 'create']);
 Route::post('ad/doi_bong/store',[DoiBongController::class, 'store']);
-Route::get('ad/doi_bong/edit/{id}', [DoiBongController::class, 'edit']);
+Route::get('ad/doi_bong/edit/{id}', [DoiBongController::class, '    ']);
 Route::put('ad/doi_bong/update/{id}', [DoiBongController::class, 'update']);
 Route::delete('ad/doi_bong/delete/{id}', [DoiBongController::class, 'destroy']);
 
-// Route::get('ad/cau_thu/create', [CauThuController::class, 'create']);
+Route::get('ad/cau_thu/create', [CauThuController::class, 'create']);
 Route::post('ad/cau_thu/store',[CauThuController::class, 'store']);
-// Route::get('ad/cau_thu/edit/{id}', [CauThuController::class, 'edit']);
-// Route::put('ad/cau_thu/update/{id}', [CauThuController::class, 'update']);
-// Route::delete('ad/cau_thu/delete/{id}', [CauThuController::class, 'destroy']);
+Route::get('ad/cau_thu/edit/{id}', [CauThuController::class, 'edit']);
+Route::put('ad/cau_thu/update/{id}', [CauThuController::class, 'update']);
+Route::delete('ad/cau_thu/delete/{id}', [CauThuController::class, 'destroy']);
