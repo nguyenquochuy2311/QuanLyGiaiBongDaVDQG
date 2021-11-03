@@ -17,7 +17,7 @@ class DoiBongController extends Controller
      */
     public function index()
     {
-        $data = DoiBong::all();
+        $data = DoiBong::with('cau_thu')->get();
         return response($data);
     }
 

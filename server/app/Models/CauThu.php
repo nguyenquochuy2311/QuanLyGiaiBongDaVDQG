@@ -18,7 +18,7 @@ class CauThu extends Model
 
     public function doi_bong()
     {
-        return $this->hasOne(DoiBong::class, 'foreign_key');
+        return $this->belongsTo(DoiBong::class);
     }
 
 }

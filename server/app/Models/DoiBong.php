@@ -14,13 +14,11 @@ class DoiBong extends Model
         "mo_ta"
     ];
 
+    protected $table = 'doi_bongs';
+    protected $primaryKey = 'id';
+
     public function cau_thu()
     {
         return $this->hasMany(CauThu::class);
-    }
-
-    public function getTenDoiBong()
-    {
-        return $this->ten_doi_bong;
     }
 }
