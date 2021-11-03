@@ -43,7 +43,7 @@ class CauThuController extends Controller
     public function store(Request $request)
     {
         CauThu::create($request->all());  
-        return response()->json([
+        return response([
             'status' => 200,
             'message' => "Thêm thành công"
         ]);
