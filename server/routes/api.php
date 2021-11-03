@@ -35,7 +35,7 @@ Route::get('cau_thu/search/{keyword}', [DoiBongController::class, 'search']);
 // Admin
 Route::get('ad/doi_bong/create', [DoiBongController::class, 'create']);
 Route::post('ad/doi_bong/store',[DoiBongController::class, 'store']);
-Route::get('ad/doi_bong/edit/{id}', [DoiBongController::class, '    ']);
+Route::get('ad/doi_bong/edit/{id}', [DoiBongController::class, 'edit']);
 Route::put('ad/doi_bong/update/{id}', [DoiBongController::class, 'update']);
 Route::delete('ad/doi_bong/delete/{id}', [DoiBongController::class, 'destroy']);
 
