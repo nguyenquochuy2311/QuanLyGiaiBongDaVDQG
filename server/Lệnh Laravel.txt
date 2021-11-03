@@ -20,6 +20,7 @@ Migrate Rollback
 Seeder từng class
 	php artisan db:seed --class={name}Seeder
 
+
 Status code
 200 OK – Trả về thành công cho những phương thức GET, PUT, PATCH hoặc DELETE.
 201 Created – Trả về khi một Resouce vừa được tạo thành công.

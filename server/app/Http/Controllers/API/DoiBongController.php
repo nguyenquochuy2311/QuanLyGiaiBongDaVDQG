@@ -18,9 +18,7 @@ class DoiBongController extends Controller
     public function index()
     {
         $data = DoiBong::all();
-        return response([
-            $data->getTenDoiBong() => $data
-        ]);
+        return response($data);
     }
 
     /**
@@ -45,7 +43,7 @@ class DoiBongController extends Controller
     public function store(StoreDoiBongRequest $request)
     {    
         DoiBong::create($request->all());  
-        return response()->json([
+        return response([
             'status' => 200,
             'message' => "Thêm thành công"
         ]);
@@ -103,7 +101,7 @@ class DoiBongController extends Controller
             ]);
         }
         $doi_bong->update($request->all());
-        return response()->json([
+        return response([
             'status' => 200,
             'message' => 'Cập nhật thành công',
             "new_data" => $doi_bong
@@ -126,7 +124,7 @@ class DoiBongController extends Controller
             ]);
         }
         $doi_bong->delete();
-        return response()->json([
+        return response([
             'status' => 200,
             'message' => 'Xóa thành công'
         ]);
