@@ -9,16 +9,11 @@ class CauThu extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        "ten_cau_thu",
-        "so_ao",
-        "vi_tri",
-        "doi_bong_id"
-    ];
-
-    public function doi_bong()
+    protected $table = 'cauthu';
+    protected $primaryKey = 'idCT';
+    
+    public function clb()
     {
-        return $this->belongsTo(DoiBong::class);
+        return $this->belongsTo(Clb::class, 'idCT');
     }
-
 }

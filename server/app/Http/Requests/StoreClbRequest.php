@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
 
-class StoreDoiBongRequest extends FormRequest
+class StoreClbRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +26,11 @@ class StoreDoiBongRequest extends FormRequest
     public function rules()
     {
         return [
-            'ten_doi_bong' => 'required|unique:doi_bongs|max:50',
-            'mo_ta' => 'required',
+            'VietTat' => 'required|unique:clb|max:10',
+            'TenCLB' => 'required|unique:clb|max:45',
+            'SanNha' => 'required|max:45',
+            'TruSo' => 'required|max:45',
+            'Logo' => 'required|max:45',
         ];
     }
 
@@ -43,10 +46,9 @@ class StoreDoiBongRequest extends FormRequest
     public function messages()
     {
         return [
-            'ten_doi_bong.required' => 'Tên đội bóng không được bỏ trống!',
-            'ten_doi_bong.unique' => 'Trùng tên đội bóng!',
-            'ten_doi_bong.max' => 'Tên đội bóng không vượt quá 50 ký tự!',
-            'mo_ta.required' => 'Mô tả không được bỏ trống!'
+            'VietTat.required' => 'Tên đội bóng viết tắt không được bỏ trống!',
+            'VietTat.unique' => 'Trùng tên viết tắt đội bóng!',
+            'TenCLB.max' => 'Tên đội bóng không vượt quá 45 ký tự!',
         ];
     }
 }

@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\DoiBong;
-use App\Http\Requests\StoreDoiBongRequest;
-use App\Http\Requests\UpdateDoiBongRequest;
+use Illuminate\Http\Request;
+use App\Http\Requests\StoreClbRequest;
+use App\Http\Requests\UpdateClbRequest;
+use App\Models\Clb;
 
-class DoiBongController extends Controller
+class ClbController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +17,10 @@ class DoiBongController extends Controller
      */
     public function index()
     {
-        $data = DoiBong::with('cau_thu')->get();
+        // $data = Clb::all();
+        //$data = Clb::with('ds_cau_thu')->get(['idCLB', 'VietTat']);
+        //$data = Clb::all(['idCLB', 'VietTat']);
+        $data = Clb::with('ds_cau_thu')->get();
         return response($data);
     }
 
@@ -27,6 +31,7 @@ class DoiBongController extends Controller
      */
     public function create()
     {
+        // form get
         return response([
             'status' => 200,
             'message' => 'OK'
@@ -39,9 +44,10 @@ class DoiBongController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreDoiBongRequest $request)
-    {    
-        DoiBong::create($request->all());  
+    public function store(StoreClbRequest $request)
+    {
+        // post
+        Clb::create($request->all());
         return response([
             'status' => 200,
             'message' => "Thêm thành công"
@@ -56,7 +62,7 @@ class DoiBongController extends Controller
      */
     public function show($id)
     {
-        $data = DoiBong::find($id);
+        $data = Clb::find($id);
         if(empty($data)){
             return response([
                 'status' => 404,
@@ -65,6 +71,7 @@ class DoiBongController extends Controller
         }
         return response($data);
     }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -73,7 +80,7 @@ class DoiBongController extends Controller
      */
     public function edit($id)
     {
-        $data = DoiBong::find($id);
+        $data = Clb::find($id);
         if(empty($data)){
             return response([
                 'status' => 404,
@@ -90,9 +97,9 @@ class DoiBongController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateDoiBongRequest $request, $id)
+    public function update(UpdateClbRequest $request, $id)
     {
-        $doi_bong = DoiBong::find($id);
+        $doi_bong = Clb::find($id);
         if(empty($doi_bong)){
             return response([
                 'status' => 404,
@@ -115,7 +122,7 @@ class DoiBongController extends Controller
      */
     public function destroy($id)
     {
-        $doi_bong = DoiBong::findOrFail($id);
+        $doi_bong = Clb::findOrFail($id);
         if(empty($doi_bong || !is_numeric($id) )){
             return response([
                 'status' => 404,
@@ -131,6 +138,6 @@ class DoiBongController extends Controller
 
     public function search($keyword)
     {
-        return DoiBong::where('ten_doi_bong', 'like', '%'.$keyword.'%')->get();
+        return Clb::where('TenCLB', 'like', '%'.$keyword.'%')->get();
     }
 }

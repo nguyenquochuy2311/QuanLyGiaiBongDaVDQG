@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\DoiBongController;
+use App\Http\Controllers\API\ClbController;
 use App\Http\Controllers\API\CauThuController;
 
 use Whoops\Run;
@@ -22,25 +22,39 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Doi bong
-Route::get('doi_bong', [DoiBongController::class, 'index']);
-Route::get('doi_bong/{id}', [DoiBongController::class, 'show']);
-Route::get('doi_bong/search/{keyword}', [DoiBongController::class, 'search']);
+// Clb
+Route::get('clb', [ClbController::class, 'index']);
+Route::get('clb/{idCLB}', [ClbController::class, 'show']);
+Route::get('clb/search/{keyword}', [ClbController::class, 'search']);
 
-// Cau thu
-Route::get('cau_thu', [CauThuController::class, 'index']);
-Route::get('cau_thu/{id}', [CauThuController::class, 'show']);
-Route::get('cau_thu/search/{keyword}', [DoiBongController::class, 'search']);
+// // Cau thu
+Route::get('cauthu', [CauThuController::class, 'index']);
+Route::get('cauthu/{id}', [CauThuController::class, 'show']);
+// Route::get('cau_thu/search/{keyword}', [DoiBongController::class, 'search']);
 
-// Admin
-Route::get('ad/doi_bong/create', [DoiBongController::class, 'create']);
-Route::post('ad/doi_bong/store',[DoiBongController::class, 'store']);
-Route::get('ad/doi_bong/edit/{id}', [DoiBongController::class, 'edit']);
-Route::put('ad/doi_bong/update/{id}', [DoiBongController::class, 'update']);
-Route::delete('ad/doi_bong/delete/{id}', [DoiBongController::class, 'destroy']);
+// // Admin
+Route::get('ad/clb/create', [ClbController::class, 'create']);
+Route::post('ad/clb/store',[ClbController::class, 'store']);
+Route::get('ad/clb/edit/{idCLB}', [ClbController::class, 'edit']);
+Route::put('ad/clb/update/{idCLB}', [ClbController::class, 'update']);
+Route::delete('ad/clb/delete/{id}', [ClbController::class, 'destroy']);
 
-Route::get('ad/cau_thu/create', [CauThuController::class, 'create']);
-Route::post('ad/cau_thu/store',[CauThuController::class, 'store']);
-Route::get('ad/cau_thu/edit/{id}', [CauThuController::class, 'edit']);
-Route::put('ad/cau_thu/update/{id}', [CauThuController::class, 'update']);
-Route::delete('ad/cau_thu/delete/{id}', [CauThuController::class, 'destroy']);
+/* Dat
+Hlv
+CauThu
+BxhClb
+BxhCt
+TrongTai
+ToTrongTai
+
+Luong
+TranDau -> edit
+GhiBan
+KetQua
+Xuphat
+
+Huy
+User
+PheDuyet
+3 QuyDinh
+*/

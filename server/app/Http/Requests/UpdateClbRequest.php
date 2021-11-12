@@ -5,10 +5,9 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
-class UpdateDoiBongRequest extends FormRequest
+class UpdateClbRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,8 +27,9 @@ class UpdateDoiBongRequest extends FormRequest
     public function rules()
     {
         return [
-            'ten_doi_bong' => ['required', 'max:50', Rule::unique('doi_bongs')->ignore($this->id)],
-            'mo_ta' => 'required'
+            'VietTat' => 'required|max:10',
+            Rule::unique('clb', 'VietTat')->ignore($this->id),
+            Rule::unique('clb', 'TenCLB')->ignore($this->id) 
         ];
     }
 
@@ -45,10 +45,9 @@ class UpdateDoiBongRequest extends FormRequest
     public function messages()
     {
         return [
-            'ten_doi_bong.required' => 'Tên đội bóng không được bỏ trống!',
-            'ten_doi_bong.unique' => 'Trùng tên đội bóng khác!',
-            'ten_doi_bong.max' => 'Tên đội bóng không vượt quá 50 ký tự!',
-            'mo_ta.required' => 'Mô tả không được bỏ trống!'
+            'VietTat.required' => 'Tên đội bóng viết tắt không được bỏ trống!',
+            'VietTat.unique' => 'Trùng tên đội bóng viết tắt khác!',
+            'VietTat.max' => 'Tên đội bóng viết tắt không vượt quá 10 ký tự!',
         ];
     }
 }

@@ -5,10 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use Illuminate\Support\Facades\DB;
-use App\Models\CauThu;
-
-class CauThuController extends Controller
+class HlvController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,12 +14,7 @@ class CauThuController extends Controller
      */
     public function index()
     {
-        // $cau_thu = DB::table('cauthu')
-        //     ->join('clb', 'cauthu.idCLB', '=', 'clb.idCLB')
-        //     ->select('cauthu.*', 'clb.TenCLB')
-        //     ->get();
-        $cau_thu = CauThu::with('clb')->get();
-        return response($cau_thu);
+        //
     }
 
     /**
@@ -43,11 +35,7 @@ class CauThuController extends Controller
      */
     public function store(Request $request)
     {
-        // CauThu::create($request->all());  
-        return response([
-            'status' => 200,
-            'message' => "Thêm thành công"
-        ]);
+        //
     }
 
     /**
@@ -58,19 +46,7 @@ class CauThuController extends Controller
      */
     public function show($id)
     {
-        // $data = CauThu::find($id);
-        // if(empty($data)){
-        //     return response([
-        //         'status' => 404,
-        //         'message' => 'Không tìm thấy'
-        //     ]);
-        // }
-        // $cau_thu = DB::table('cau_thus')
-        //     ->join('doi_bongs', 'cau_thus.doi_bong_id', '=', 'doi_bongs.id')
-        //     ->where('cau_thus.id', '=', $id)
-        //     ->select('cau_thus.*', 'doi_bongs.ten_doi_bong')
-        //     ->get();
-        // return response($cau_thu);
+        //
     }
 
     /**
