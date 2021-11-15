@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class TranDau extends Model
 {
     use HasFactory;
+
+  
 }

@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\ClbController;
 use App\Http\Controllers\API\CauThuController;
+use App\Http\Controllers\API\HlvController;
+use App\Http\Controllers\API\TrongTaiController;
 
 use Whoops\Run;
 
@@ -38,6 +40,14 @@ Route::post('ad/clb/store',[ClbController::class, 'store']);
 Route::get('ad/clb/edit/{idCLB}', [ClbController::class, 'edit']);
 Route::put('ad/clb/update/{idCLB}', [ClbController::class, 'update']);
 Route::delete('ad/clb/delete/{id}', [ClbController::class, 'destroy']);
+
+// hlv
+Route::get('hlv', [HlvController::class, 'index']);
+// Route::get('hlv/{idHLV}', [HlvController::class, 'show']);
+// Route::get('hlv/search/{keyword}', [HlvController::class, 'search']);
+
+// hlv
+Route::get('trongtai', [TrongTaiController::class, 'index']);
 
 /* Dat
 Hlv

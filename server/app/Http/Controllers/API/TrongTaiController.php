@@ -4,9 +4,9 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Hlv;
+use App\Models\TrongTai;
 
-class HlvController extends Controller
+class TrongTaiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +15,8 @@ class HlvController extends Controller
      */
     public function index()
     {
-        $data = Hlv::with('danh_sach_HLV')->get();
-        // $data = Hlv::all();
-
+        $data = TrongTai::with('ds_trong_tai')->get();
         return response($data);
-        
     }
 
     /**
@@ -43,7 +40,7 @@ class HlvController extends Controller
      */
     public function store(Request $request)
     {
-        Hlv::create($request->all());
+        TrongTai::create($request->all());
         return response([
             'status' => 200,
             'message' => "Thêm thành công"
@@ -58,7 +55,7 @@ class HlvController extends Controller
      */
     public function show($id)
     {
-        $data = Hlv::find($id);
+        $data = TrongTai::find($id);
         if(empty($data)){
             return response([
                 'status' => 404,
@@ -76,7 +73,7 @@ class HlvController extends Controller
      */
     public function edit($id)
     {
-        $data = Hlv::find($id);
+        $data = TrongTai::find($id);
         if(empty($data)){
             return response([
                 'status' => 404,
@@ -95,20 +92,21 @@ class HlvController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $HLV = Hlv::find($id);
-        if(empty($HLV)){
+        $data = TrongTai::find($id);
+        if(empty($data)){
             return response([
                 'status' => 404,
                 'message' => 'Không tìm thấy'
             ]);
         }
-        $HLV->update($request->all());
+        $data->update($request->all());
         return response([
             'status' => 200,
             'message' => 'Cập nhật thành công',
-            "new_data" => $HLV
+            "new_data" => $data
         ]);
     }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -118,14 +116,14 @@ class HlvController extends Controller
      */
     public function destroy($id)
     {
-        $HLV = Hlv::findOrFail($id);
-        if(empty($HLV || !is_numeric($id) )){
+        $data = TrongTai::findOrFail($id);
+        if(empty($data || !is_numeric($id) )){
             return response([
                 'status' => 404,
                 'message' => 'Không tìm thấy'
             ]);
         }
-        $HLV->delete();
+        $data->delete();
         return response([
             'status' => 200,
             'message' => 'Xóa thành công'
