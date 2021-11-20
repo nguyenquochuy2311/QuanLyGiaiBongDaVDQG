@@ -71,6 +71,9 @@
     bottom: -10px;
     background: $primary-color;
   }
+  &:hover .slideDescription {
+    transform: translateY(0);
+  }
 }
 
 .slideContentInner {
@@ -81,9 +84,7 @@
   transform: translateZ(2rem);
   transition: opacity 0.3s linear;
   opacity: 0;
-  &:hover .slideDescription {
-    transform: translateY(0);
-  }
+  
   .slideSubtitle,
   .slideTitle {
     font-size: 2rem;
@@ -128,6 +129,7 @@
   left: -115%;
   width: 100vw;
   height: 100vh;
+  // position: fixed;
   // top: 0;
   // left: 0;
   // bottom: 0;

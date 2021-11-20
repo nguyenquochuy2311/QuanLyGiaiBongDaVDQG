@@ -1,6 +1,6 @@
 import "./footer.scss";
 import { logo } from "../../assets/img";
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -22,7 +22,9 @@ const Footer = () => {
                 <h5 className="card-title">Theo dõi mới nhất tại</h5>
                 <ul className="footer__social-list">
                   <li className="footer__social-item">
-                    <a href="https://www.facebook.com/" target="_blank">
+                    <a 
+                    rel="noreferrer"
+                    href="https://www.facebook.com/" target="_blank">
                       <i class="bx bxl-facebook-square "></i>
                     </a>
                   </li>
