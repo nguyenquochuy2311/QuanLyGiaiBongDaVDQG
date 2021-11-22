@@ -22,6 +22,7 @@ class TrongTai extends Model
     ];
 
     public function ds_trong_tai(){
-        return $this->belongsTo(TrongTai::class);
+        return $this->hasMany(ToTrongTai::class, 'idTT');
+        
     }
 }

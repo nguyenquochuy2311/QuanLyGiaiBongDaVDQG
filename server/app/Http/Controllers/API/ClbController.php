@@ -119,11 +119,11 @@ class ClbController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */
+     */ 
     public function destroy($id)
     {
         $doi_bong = Clb::findOrFail($id);
-        if(empty($doi_bong || !is_numeric($id) )){
+        if(empty($doi_bong) || !is_numeric() ){
             return response([
                 'status' => 404,
                 'message' => 'Không tìm thấy'
@@ -136,8 +136,16 @@ class ClbController extends Controller
         ]);
     }
 
-    public function search($keyword)
+    public function search($tenCLB)
     {
-        return Clb::where('TenCLB', 'like', '%'.$keyword.'%')->get();
+       
+        $result = Clb::where('TenCLB', 'like', '%'.$tenCLB.'%')->get();
+        if(count($result)){
+            return $result;
+        }
+        return response([
+            'status' => 404,
+            'message' => 'Không tìm thấy'
+        ]);
     }
 }

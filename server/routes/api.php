@@ -6,7 +6,7 @@ use App\Http\Controllers\API\ClbController;
 use App\Http\Controllers\API\CauThuController;
 use App\Http\Controllers\API\HlvController;
 use App\Http\Controllers\API\TrongTaiController;
-
+use App\Http\Controllers\API\ToTrongTaiController;
 use Whoops\Run;
 
 /*
@@ -27,7 +27,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Clb
 Route::get('clb', [ClbController::class, 'index']);
 Route::get('clb/{idCLB}', [ClbController::class, 'show']);
-Route::get('clb/search/{keyword}', [ClbController::class, 'search']);
+Route::get('clb/search/{tenCLB}', [ClbController::class, 'search']);
 
 // // Cau thu
 Route::get('cauthu', [CauThuController::class, 'index']);
@@ -39,15 +39,24 @@ Route::get('ad/clb/create', [ClbController::class, 'create']);
 Route::post('ad/clb/store',[ClbController::class, 'store']);
 Route::get('ad/clb/edit/{idCLB}', [ClbController::class, 'edit']);
 Route::put('ad/clb/update/{idCLB}', [ClbController::class, 'update']);
-Route::delete('ad/clb/delete/{id}', [ClbController::class, 'destroy']);
+Route::delete('ad/clb/delete/{idCLB}', [ClbController::class, 'destroy']);
+
+
+Route::post('ad/hlv/store',[HlvController::class, 'store']);
+Route::delete('ad/hlv/delete/{id}', [HlvController::class, 'destroy']);
 
 // hlv
 Route::get('hlv', [HlvController::class, 'index']);
 // Route::get('hlv/{idHLV}', [HlvController::class, 'show']);
 // Route::get('hlv/search/{keyword}', [HlvController::class, 'search']);
 
-// hlv
+
+
+// trong tài
 Route::get('trongtai', [TrongTaiController::class, 'index']);
+
+// tổ trọng tài
+Route::get('totrongtai', [ToTrongTaiController::class, 'index']);
 
 /* Dat
 Hlv

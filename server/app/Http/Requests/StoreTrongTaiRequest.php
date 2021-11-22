@@ -5,8 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
-
-class StoreHLVRequest extends FormRequest
+class StoreTrongTaiRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,16 +25,12 @@ class StoreHLVRequest extends FormRequest
     public function rules()
     {
         return [
-            'idCLB' => 'required|max:10',
-            'TenHLV' => 'required|max:45',
+            'TenTT' => 'required|max:45',
             'NgaySinh' => 'required|max:45',
-            'ChucVu' => 'required|max:45',
+            'ViTri' => 'required|max:45',
             'AnhDaiDien' => 'required|max:45',
-            // 'created_at' => 'required|max:45',
-            // 'updated_at' => 'required|max:45',
         ];
     }
-
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
@@ -48,8 +43,8 @@ class StoreHLVRequest extends FormRequest
     public function messages()
     {
         return [
-            'TenHLV.required' => 'Chưa nhập tên HLV',
-            'ChucVu.required' => 'Chưa nhập chức vụ',
+            'TenTT.required' => 'Chưa nhập tên Trọng Tài',
+            'ViTri.required' => 'Chưa nhập Vị Trí',
             'NgaySinh.required' => 'Chưa nhập ngày sinh ',
             'AnhDaiDien.required' => 'Chưa cập nhập ảnh đại diện',
             // 'TenHLV.unique' => 'sđsad',

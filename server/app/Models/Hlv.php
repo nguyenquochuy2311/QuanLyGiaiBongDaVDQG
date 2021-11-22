@@ -23,7 +23,7 @@ class Hlv extends Model
         'updated_at'
     ];
 
-    public function danh_sach_HLV(){
+    public function CLB(){
         return $this->belongsTo(Clb::class, 'idHLV');
     }
 }
