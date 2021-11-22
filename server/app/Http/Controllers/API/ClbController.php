@@ -138,7 +138,6 @@ class ClbController extends Controller
 
     public function search($tenCLB)
     {
-       
         $result = Clb::where('TenCLB', 'like', '%'.$tenCLB.'%')->get();
         if(count($result)){
             return $result;
