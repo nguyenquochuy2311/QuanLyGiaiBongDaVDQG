@@ -4,11 +4,13 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreClbRequest;
-use App\Http\Requests\UpdateClbRequest;
+use App\Http\Requests\UpdateTranDauRequest;
+use Illuminate\Support\Facades\DB;
+use App\Models\TranDau;
 use App\Models\Clb;
 
-class ClbController extends Controller
+
+class TranDauController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,12 +19,26 @@ class ClbController extends Controller
      */
     public function index()
     {
-        // $data = Clb::all();
-        //$data = Clb::with('ds_cau_thu')->get(['idCLB', 'VietTat']);
-        //$data = Clb::all(['idCLB', 'VietTat']);
-        $data = Clb::with('ds_cau_thu')->get();
-        return response($data);
+        $trandaus = TranDau::all();
+        //Eloquent ORM
+        
+        
+        //Query Builder
+        
+        foreach ($trandaus as $trandau) {
+            $doi1 = Clb::where('idclb', $trandau['Doi1'])->value('TenCLB');
+            $doi2 = Clb::where('idclb', $trandau['Doi2'])->value('TenCLB');
+            $muaGiai = DB::table('muagiai')->where('idMG', $trandau['idMG'])->value('tenMG');
+
+            $trandau['TenDoi1'] = $doi1;
+            $trandau['TenDoi2'] = $doi2;
+            $trandau['MuaGiai'] = $muaGiai;
+
+        };
+
+        return response($trandaus);
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -31,11 +47,7 @@ class ClbController extends Controller
      */
     public function create()
     {
-        // form get
-        return response([
-            'status' => 200,
-            'message' => 'OK'
-        ]);
+        //
     }
 
     /**
@@ -44,14 +56,9 @@ class ClbController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreClbRequest $request)
+    public function store(Request $request)
     {
-        // post
-        Clb::create($request->all());
-        return response([
-            'status' => 200,
-            'message' => "Thêm thành công"
-        ]);
+        //
     }
 
     /**
@@ -62,14 +69,37 @@ class ClbController extends Controller
      */
     public function show($id)
     {
-        $data = Clb::find($id);
+        $data = TranDau::find($id);
         if(empty($data)){
             return response([
                 'status' => 404,
                 'message' => 'Không tìm thấy'
             ]);
         }
-        return response($data);
+
+        //Eloquent ORM
+        $doi1 = Clb::where('idclb', $data['Doi1'])->value('TenCLB');
+        $doi2 = Clb::where('idclb', $data['Doi2'])->value('TenCLB');
+        
+        //Query Builder
+        $muaGiai = DB::table('muagiai')->where('idMG', $data['idMG'])->value('tenMG');
+
+        $detail = [
+            'idKQ' => $data['idTD'],
+            'Doi1' => $data['Doi1'],
+            'TenDoi1' => $doi1,
+            'Doi2' => $data['Doi2'],
+            'TenDoi2' => $doi2,
+            'VongDau' => $data['VongDau'],
+            'SanDau' => $data['SanDau'],
+            'ThoiGian' => $data['ThoiGian'],
+            'idToTT' => $data['idToTT'],
+            'MuaGiai' => $muaGiai,
+            'updated_at' => \Carbon\Carbon::now()
+            
+        ];
+
+        return response($detail);
     }
 
     /**
@@ -80,7 +110,7 @@ class ClbController extends Controller
      */
     public function edit($id)
     {
-        $data = Clb::find($id);
+        $data = TranDau::find($id);
         if(empty($data)){
             return response([
                 'status' => 404,
@@ -97,20 +127,20 @@ class ClbController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateClbRequest $request, $id)
+    public function update(UpdateTranDauRequest $request, $id)
     {
-        $doi_bong = Clb::find($id);
-        if(empty($doi_bong)){
+        $tran_dau= TranDau::find($id);
+        if(empty($tran_dau)){
             return response([
                 'status' => 404,
                 'message' => 'Không tìm thấy'
             ]);
         }
-        $doi_bong->update($request->all());
+        $tran_dau->update($request->all());
         return response([
             'status' => 200,
             'message' => 'Cập nhật thành công',
-            "new_data" => $doi_bong
+            "new_data" => $tran_dau
         ]);
     }
 
@@ -122,22 +152,9 @@ class ClbController extends Controller
      */
     public function destroy($id)
     {
-        $doi_bong = Clb::findOrFail($id);
-        if(empty($doi_bong || !is_numeric($id) )){
-            return response([
-                'status' => 404,
-                'message' => 'Không tìm thấy'
-            ]);
-        }
-        $doi_bong->delete();
-        return response([
-            'status' => 200,
-            'message' => 'Xóa thành công'
-        ]);
+        //
     }
 
-    public function search($keyword)
-    {
-        return Clb::where('TenCLB', 'like', '%'.$keyword.'%')->get();
-    }
+
+
 }

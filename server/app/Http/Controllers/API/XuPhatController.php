@@ -4,11 +4,12 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreClbRequest;
-use App\Http\Requests\UpdateClbRequest;
-use App\Models\Clb;
+use App\Http\Requests\StoreXuPhatRequest;
+use App\Http\Requests\UpdateXuPhatRequest;
+use App\Models\XuPhat;
+use Illuminate\Support\Facades\DB;
 
-class ClbController extends Controller
+class XuPhatController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +18,15 @@ class ClbController extends Controller
      */
     public function index()
     {
-        // $data = Clb::all();
-        //$data = Clb::with('ds_cau_thu')->get(['idCLB', 'VietTat']);
-        //$data = Clb::all(['idCLB', 'VietTat']);
-        $data = Clb::with('ds_cau_thu')->get();
-        return response($data);
+        $tickets = Xuphat::all();
+
+        foreach ($tickets as $ticket) {
+            $cauthu = $ticket->cauthu();
+            $ticket['TenCT'] = $cauthu->value('TenCT');
+            $ticket['SoAo'] = $cauthu->value('SoAo');
+            $ticket['ViTri'] = $cauthu->value('ViTri');
+        }
+        return response($tickets);
     }
 
     /**
@@ -31,9 +36,8 @@ class ClbController extends Controller
      */
     public function create()
     {
-        // form get
         return response([
-            'status' => 200,
+            'status' => 201,
             'message' => 'OK'
         ]);
     }
@@ -44,12 +48,11 @@ class ClbController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreClbRequest $request)
+    public function store(StoreXuPhatRequest $request)
     {
-        // post
-        Clb::create($request->all());
+        XuPhat::create($request->all());
         return response([
-            'status' => 200,
+            'status' => 201,
             'message' => "Thêm thành công"
         ]);
     }
@@ -62,14 +65,19 @@ class ClbController extends Controller
      */
     public function show($id)
     {
-        $data = Clb::find($id);
-        if(empty($data)){
+        $ticket = XuPhat::find($id);
+        if(empty($ticket)){
             return response([
                 'status' => 404,
                 'message' => 'Không tìm thấy'
             ]);
         }
-        return response($data);
+
+        $cauthu = $ticket->cauthu();
+        $ticket['TenCT'] = $cauthu->value('TenCT');
+        $ticket['SoAo'] = $cauthu->value('SoAo');
+        $ticket['ViTri'] = $cauthu->value('ViTri');
+        return response($ticket);
     }
 
     /**
@@ -80,7 +88,7 @@ class ClbController extends Controller
      */
     public function edit($id)
     {
-        $data = Clb::find($id);
+        $data = XuPhat::find($id);
         if(empty($data)){
             return response([
                 'status' => 404,
@@ -97,20 +105,20 @@ class ClbController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateClbRequest $request, $id)
+    public function update(UpdateXuPhatRequest $request, $id)
     {
-        $doi_bong = Clb::find($id);
-        if(empty($doi_bong)){
+        $xu_phat = XuPhat::find($id);
+        if(empty($xu_phat )){
             return response([
                 'status' => 404,
                 'message' => 'Không tìm thấy'
             ]);
         }
-        $doi_bong->update($request->all());
+        $xu_phat ->update($request->all());
         return response([
             'status' => 200,
             'message' => 'Cập nhật thành công',
-            "new_data" => $doi_bong
+            "new_data" => $xu_phat 
         ]);
     }
 
@@ -122,22 +130,18 @@ class ClbController extends Controller
      */
     public function destroy($id)
     {
-        $doi_bong = Clb::findOrFail($id);
-        if(empty($doi_bong || !is_numeric($id) )){
+        $xu_phat = XuPhat::findOrFail($id);
+        if(empty($xu_phat || !is_numeric($id) )){
             return response([
                 'status' => 404,
                 'message' => 'Không tìm thấy'
             ]);
         }
-        $doi_bong->delete();
+        $xu_phat->delete();
         return response([
             'status' => 200,
             'message' => 'Xóa thành công'
         ]);
     }
 
-    public function search($keyword)
-    {
-        return Clb::where('TenCLB', 'like', '%'.$keyword.'%')->get();
-    }
 }
