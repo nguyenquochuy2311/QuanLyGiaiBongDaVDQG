@@ -26,6 +26,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// Clb
+Route::get('clb', [ClbController::class, 'index']);
+Route::get('clb/{idCLB}', [ClbController::class, 'show']);
+Route::get('clb/search/{tenCLB}', [ClbController::class, 'search']);
 // Tran Dau
 Route::get('trandau', [TranDauController::class, 'index']);
 Route::get('trandau/{idTD}', [TranDauController::class, 'show']);
@@ -74,6 +78,7 @@ Route::get('ad/clb/create', [ClbController::class, 'create']);
 Route::post('ad/clb/store',[ClbController::class, 'store']);
 Route::get('ad/clb/edit/{idCLB}', [ClbController::class, 'edit']);
 Route::put('ad/clb/update/{idCLB}', [ClbController::class, 'update']);
+Route::delete('ad/clb/delete/{idCLB}', [ClbController::class, 'destroy']);
 Route::delete('ad/clb/delete/{id}', [ClbController::class, 'destroy']);
 
 /* Dat
