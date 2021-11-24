@@ -42,7 +42,7 @@ Route::get('ghiban', [GhiBanController::class, 'index']);
 Route::get('ghiban/{idGB}', [GhiBanController::class, 'show']);
 Route::get('ghiban/detail/{idGB}', [GhiBanController::class, 'showDetail']);
 // Admin Ghi Ban
-Route::put('ad/ghiban/create', [GhiBanController::class, 'create']);
+Route::get('ad/ghiban/create', [GhiBanController::class, 'create']);
 Route::post('ad/ghiban/store', [GhiBanController::class, 'store']);
 Route::put('ad/ghiban/edit/{idGB}', [GhiBanController::class, 'edit']);
 Route::put('ad/ghiban/update/{idGB}', [GhiBanController::class, 'update']);
@@ -61,7 +61,11 @@ Route::put('ad/ketqua/update/{idKQ}', [KetQuaController::class, 'update']);
 Route::get('xuphat', [XuPhatController::class, 'index']);
 Route::get('xuphat/{idXP}', [XuPhatController::class, 'show']);
 // Admin Xu Phat
-
+Route::get('ad/xuphat/create', [XuPhatController::class, 'create']);
+Route::post('ad/xuphat/store', [XuPhatController::class, 'store']);
+Route::put('ad/xuphat/edit/{idXP}', [XuPhatController::class, 'edit']);
+Route::put('ad/xuphat/update/{idXP}', [XuPhatController::class, 'update']);
+Route::delete('ad/xuphat/delete/{idXP}', [XuPhatController::class, 'destroy']);
 
 // Clb
 Route::get('clb', [ClbController::class, 'index']);
