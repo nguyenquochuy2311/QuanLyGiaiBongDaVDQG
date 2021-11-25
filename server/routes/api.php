@@ -34,27 +34,29 @@ Route::get('clb/search/{tenCLB}', [ClbController::class, 'search']);
 Route::get('trandau', [TranDauController::class, 'index']);
 Route::get('trandau/{idTD}', [TranDauController::class, 'show']);
 // Admin Tran Dau
-Route::put('ad/trandau/edit/{idTD}', [TranDauController::class, 'edit']);
+Route::get('ad/trandau/edit/{idTD}', [TranDauController::class, 'edit']);
 Route::put('ad/trandau/update/{idTD}', [TranDauController::class, 'update']);
 
 // Ghi Ban
 Route::get('ghiban', [GhiBanController::class, 'index']);
 Route::get('ghiban/{idGB}', [GhiBanController::class, 'show']);
-Route::get('ghiban/detail/{idGB}', [GhiBanController::class, 'showDetail']);
+
+
 // Admin Ghi Ban
 Route::get('ad/ghiban/create', [GhiBanController::class, 'create']);
 Route::post('ad/ghiban/store', [GhiBanController::class, 'store']);
-Route::put('ad/ghiban/edit/{idGB}', [GhiBanController::class, 'edit']);
+Route::get('ad/ghiban/edit/{idGB}', [GhiBanController::class, 'edit']);
 Route::put('ad/ghiban/update/{idGB}', [GhiBanController::class, 'update']);
 Route::delete('ad/ghiban/delete/{idGB}', [GhiBanController::class, 'destroy']);
 
 // Ket Qua
 Route::get('ketqua', [KetQuaController::class, 'index']);
 Route::get('ketqua/{idKQ}', [KetQuaController::class, 'show']);
-
+Route::post('ad/ketqua/store', [KetQuaController::class, 'store']);
+Route::delete('ad/ketqua/delete/{idGB}', [KetQuaController::class, 'destroy']);
 
 // Admin Ket Qua 
-Route::put('ad/ketqua/edit/{idKQ}', [KetQuaController::class, 'edit']);
+Route::get('ad/ketqua/edit/{idKQ}', [KetQuaController::class, 'edit']);
 Route::put('ad/ketqua/update/{idKQ}', [KetQuaController::class, 'update']);
 
 // Xu phat
@@ -63,7 +65,7 @@ Route::get('xuphat/{idXP}', [XuPhatController::class, 'show']);
 // Admin Xu Phat
 Route::get('ad/xuphat/create', [XuPhatController::class, 'create']);
 Route::post('ad/xuphat/store', [XuPhatController::class, 'store']);
-Route::put('ad/xuphat/edit/{idXP}', [XuPhatController::class, 'edit']);
+Route::get('ad/xuphat/edit/{idXP}', [XuPhatController::class, 'edit']);
 Route::put('ad/xuphat/update/{idXP}', [XuPhatController::class, 'update']);
 Route::delete('ad/xuphat/delete/{idXP}', [XuPhatController::class, 'destroy']);
 

@@ -18,9 +18,14 @@ class GhiBanController extends Controller
      */
     public function index()
     {
-        $banthang = DB::table('ghiban')
-                    ->get();
-                    return response($banthang);
+        $banthangs = GhiBan::all();
+        
+        foreach ($banthangs as $banthang) {
+            $banthang['TenCauThu'] = $banthang['cauthu']['TenCT'];
+            $banthang['SoAo'] = $banthang['cauthu']['SoAo'];
+            $banthang['ViTri'] = $banthang['cauthu']['ViTri'];
+        }
+        return response($banthangs);
     }
 
     /**
@@ -66,7 +71,19 @@ class GhiBanController extends Controller
                 'message' => 'Không tìm thấy'
             ]);
         }
-        return response($data);
+
+        $detail = [
+            'idGB' => $data['idGB'],
+            'idKQ' => $data['idKQ'],
+            'idCT' => $data['idCT'],
+            'TenCauThu' => $data->cauthu['TenCT'],
+            'SoAo' => $data->cauthu['SoAo'],
+            'ViTri' => $data->cauthu['ViTri'],
+            'LoaiBT' => $data['LoaiBT'],
+            'ThoiDiem' => $data['ThoiDiem']
+        ];
+
+        return response($detail);
     }
 
     /**
@@ -134,25 +151,5 @@ class GhiBanController extends Controller
         ]);
     }
 
-    public function showDetail($id)
-    {
-        $data = GhiBan::find($id);
-        if(empty($data)){
-            return response([
-                'status' => 404,
-                'message' => 'Không tìm thấy'
-            ]);
-        }
-
-        $detail = [
-            'idGB' => $data['idGB'],
-            'idKQ' => $data['idKQ'],
-            'idCT' => $data['idCT'],
-            'TenCauThu' => $data->cauthu['TenCT'],
-            'LoaiBT' => $data['LoaiBT'],
-            'ThoiDiem' => $data['ThoiDiem']
-        ];
-
-        return response($detail);
-    }
+ 
 }

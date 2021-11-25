@@ -64,7 +64,11 @@ class KetQuaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        KetQua::create($request->all());
+        return response([
+            'status' => 201,
+            'message' => "Thêm thành công"
+        ]);
     }
 
     /**
@@ -168,7 +172,18 @@ class KetQuaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $ket_qua = KetQua::findOrFail($id);
+        if(empty($ket_qua || !is_numeric($id) )){
+            return response([
+                'status' => 404,
+                'message' => 'Không tìm thấy'
+            ]);
+        }
+        $ket_qua->delete();
+        return response([
+            'status' => 200,
+            'message' => 'Xóa thành công'
+        ]);
     }
 
 
