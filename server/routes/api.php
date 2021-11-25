@@ -33,6 +33,7 @@ Route::get('clb/search/{tenCLB}', [ClbController::class, 'search']);
 // Tran Dau
 Route::get('trandau', [TranDauController::class, 'index']);
 Route::get('trandau/{idTD}', [TranDauController::class, 'show']);
+Route::get('trandau/filterlsd/{day}-{month}', [TranDauController::class, 'getLichSuDau']);
 // Admin Tran Dau
 Route::get('ad/trandau/edit/{idTD}', [TranDauController::class, 'edit']);
 Route::put('ad/trandau/update/{idTD}', [TranDauController::class, 'update']);

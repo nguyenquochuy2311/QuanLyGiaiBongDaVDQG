@@ -155,4 +155,16 @@ class TranDauController extends Controller
         //
     }
 
+    public function getLichSuDau($day, $month) {
+        $result = TranDau::whereDay('ThoiGian', $day)
+                            ->whereMonth('ThoiGian', $month)
+                            ->get();
+        if(count($result)){
+            return $result;
+        }
+        return response([
+            'status' => 404,
+            'message' => 'Không tìm thấy'
+        ]);
+    }
 }
