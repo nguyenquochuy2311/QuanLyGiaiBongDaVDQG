@@ -13,7 +13,6 @@ const RankTeam = () => {
   return (
     <div className="table">
       {card_team_data.getSortCards(8).map((item, index) => (
-          <NewStyleCard>
               <CardTeam
                 img={item.img}
                 title={item.title}
@@ -21,7 +20,6 @@ const RankTeam = () => {
                 stadium={item.stadium}
                 description={item.description}
               />
-          </NewStyleCard>
       ))}
     </div>
   );
