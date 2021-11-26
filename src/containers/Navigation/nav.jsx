@@ -73,6 +73,10 @@ export default class Nav extends Component {
               id="navbarSupportedContent"
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+
+                <div className="col col-xl-7 col-lg-9 col-md-9">
+                <div className="row">
+                
                 <div className="col">
                   <li className="nav-item">
                     <NavLink
@@ -130,7 +134,9 @@ export default class Nav extends Component {
                     </NavLink>
                   </li>
                 </div>
-                <div className="col col-lg-5 col-md-3 ">
+                </div>
+                </div>
+                <div className="col col-xl-5 col-lg-3 col-md-3 ">
                   <form className="d-flex">
                     <input
                       className="form-control me-2"
@@ -145,6 +151,8 @@ export default class Nav extends Component {
                     ></box-icon>
                   </form>
                 </div>
+
+               
               </ul>
             </div>
             <div className="category">

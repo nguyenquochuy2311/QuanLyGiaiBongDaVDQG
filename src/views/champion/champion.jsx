@@ -4,7 +4,7 @@ const Champion = () => {
   document.title = "Giải đấu";
 });
   return (
-    <div className="container">
+    <div className="component">
       <h1>Champion</h1>
     </div>
   );

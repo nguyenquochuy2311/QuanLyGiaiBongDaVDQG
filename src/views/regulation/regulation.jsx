@@ -4,7 +4,7 @@ const Regulation = () => {
     document.title = "Quy định";
   });
   return (
-    <div className="container">
+    <div className="component">
       <h1>Regulation</h1>
     </div>
   );

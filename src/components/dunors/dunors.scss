@@ -1,0 +1,30 @@
+@import "../../styles/variables";
+@import "../../styles/global";
+
+.dunors {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  margin: 40px 0;
+  padding-top: 20px;
+  border-top: 2px solid $primary-color;
+  &__item {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  &__img {
+    width: 100px;
+    background-size: cover;
+  }
+  &__title {
+    margin-top: 20px;
+    flex: 1;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 1.2rem;
+  }
+}

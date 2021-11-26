@@ -29,17 +29,17 @@ const Footer = () => {
                     </a>
                   </li>
                   <li className="footer__social-item">
-                    <a href="https://twitter.com/" target="_blank">
+                    <a rel="noreferrer"  href="https://twitter.com/" target="_blank">
                       <i class="bx bxl-twitter "></i>
                     </a>
                   </li>
                   <li className="footer__social-item">
-                    <a href="https://www.instagram.com/" target="_blank">
+                    <a rel="noreferrer" href="https://www.instagram.com/" target="_blank">
                       <i class="bx bxl-instagram"></i>
                     </a>
                   </li>
                   <li className="footer__social-item">
-                    <a href="https://www.linkedin.com/in/" target="_blank">
+                    <a rel="noreferrer" href="https://www.linkedin.com/in/" target="_blank">
                       <i class="bx bxl-linkedin-square"></i>
                     </a>
                   </li>

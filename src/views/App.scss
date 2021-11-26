@@ -11,7 +11,7 @@
   user-select: none;
   overflow: hidden;
   min-height:100vh;
-    background: rgba($secondary-color,0.4);
+  background-image: linear-gradient(to top, #fff1eba8 0%, #ace1f9a9 100%);
   clear: none;
 
 }
@@ -30,8 +30,8 @@
   border-radius: 4px;
 }
 
-.container{
+.component{
   margin-top: 100px;
-  min-height: 100vh;
+  min-height: 100vh !important;
 }
 

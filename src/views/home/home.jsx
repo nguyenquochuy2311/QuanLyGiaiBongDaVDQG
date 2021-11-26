@@ -1,15 +1,15 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { NavLink, Link } from "react-router-dom";
-import {useState,useEffect} from 'react';
+import { Link } from "react-router-dom";
 import "./home.scss";
+
+
 import "../../styles/global.scss";
 import "../../styles/_variables.scss";
-
 import { Thuviendohoa } from "../../assets/img";
 
 //import components
+import Helmet from "../../components/Helmet/Helmet";
 import Ban from "../../components/banner/banner";
-// import CardPlayer from "../../components/cards/cardPlayer/card";
 import Card3D from "../../components/cards/card3D/card";
 
 const matchs = [
@@ -95,12 +95,9 @@ const matchs = [
   },
 ];
 const Home = () => {
-  // const [state,setState] = useState('');
-  useEffect(() => {
-    document.title = "Trang chủ";
-  })
+ 
   return (
-    <div className="home">
+    <Helmet title="Trang Chủ" className="home component">
       <Ban />
       <div className="home-matchSchedule">
         <div className="home-matchSchedule-bg">
@@ -145,93 +142,9 @@ const Home = () => {
             <Card3D />
           </div>
 
-          {/* ==================Style 2==================== */}
-          {/* <div
-            id="home__player-cards"
-            className="carousel slide"
-            data-ride="carousel"
-          >
-            <ol className="carousel-indicators carousel-index">
-              <li
-                data-target="#home__player-cards"
-                data-slide-to="0"
-                className="active"
-              ></li>
-              <li data-target="#home__player-cards" data-slide-to="1"></li>
-              <li data-target="#home__player-cards" data-slide-to="2"></li>
-            </ol>
-
-            <div className="carousel-inner">
-              <div className="row">
-                <div className="carousel-item active">
-                  <div className="row">
-                    <div className="col col-lg-3 col-md-4 col-c-12"></div>
-
-                    <div className="col col-lg-3 col-md-4 col-c-12">
-                      <CardPlayer></CardPlayer>
-                    </div>
-                    <div className="col col-lg-3 col-md-4 col-c-12">
-                      <CardPlayer />
-                    </div>
-                    <div className="col col-lg-3 col-md-4 col-c-12">
-                      <CardPlayer />
-                    </div>
-                  </div>
-                </div>
-                <div className="carousel-item">
-                  <div className="row">
-                    <div className="col col-lg-3 col-md-4 col-c-12">
-                      <CardPlayer />
-                    </div>
-                    <div className="col col-lg-3 col-md-4 col-c-12">
-                      <CardPlayer />
-                    </div>
-                    <div className="col col-lg-3 col-md-4 col-c-12">
-                      <CardPlayer />
-                    </div>
-                    <div className="col col-lg-3 col-md-4 col-c-12">
-                      <CardPlayer />
-                    </div>
-                  </div>
-                </div>
-                <div className="carousel-item">
-                  <div className="row">
-                    <div className="col col-lg-3 col-md-4 col-c-12">
-                      <CardPlayer />
-                    </div>
-                    <div className="col col-lg-3 col-md-4 col-c-12">
-                      <CardPlayer />
-                    </div>
-                    <div className="col col-lg-3 col-md-4 col-c-12">
-                      <CardPlayer />
-                    </div>
-                    <div className="col col-lg-3 col-md-4 col-c-12">
-                      <CardPlayer />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <a
-              className="carousel-control-prev btn-pre"
-              href="#home__player-cards"
-              role="button"
-              data-slide="prev"
-            >
-              <i class="bx bxs-chevrons-left bx-fade-left"></i>
-            </a>
-            <a
-              className="carousel-control-next btn-next"
-              href="#home__player-cards"
-              role="button"
-              data-slide="next"
-            >
-              <i class="bx bxs-chevrons-right bx-fade-right"></i>
-            </a>
-          </div> */}
         </ul>
       </div>
-    </div>
+    </Helmet>
   );
 };
 

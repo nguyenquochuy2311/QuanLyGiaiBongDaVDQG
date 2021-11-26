@@ -1,0 +1,26 @@
+@import "../../styles/variables";
+@import "../../styles/global";
+
+.header {
+  position: relative;
+  background-size: 100% 100%;
+  background-repeat: no-repeat !important;
+  overflow: hidden;
+  width: 100vw;
+  height: 200px;
+  background-color: #37003c;
+  img{
+    width: 100%;
+  }
+  .title {
+    i{
+      margin-right: 10px;
+      color: $primary-color;
+    }
+    font-size: 1.3rem;
+    position: absolute;
+      bottom: 30px;
+       left: 50px;
+       color: $white-color;
+  }
+}

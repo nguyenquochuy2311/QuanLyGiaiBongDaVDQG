@@ -4,7 +4,7 @@ const Contact =()=>{
       document.title = "Liên hệ";
     });
  return(
-     <div className="container">
+     <div className="component">
          <h1>Contact</h1>
      </div>
  );
