@@ -4,7 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\ClbController;
 use App\Http\Controllers\API\CauThuController;
-
+use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\AuthController;
 use Whoops\Run;
 
 /*
@@ -38,6 +39,31 @@ Route::post('ad/clb/store',[ClbController::class, 'store']);
 Route::get('ad/clb/edit/{idCLB}', [ClbController::class, 'edit']);
 Route::put('ad/clb/update/{idCLB}', [ClbController::class, 'update']);
 Route::delete('ad/clb/delete/{idCLB}', [ClbController::class, 'destroy']);
+
+
+// User
+Route::get('ad/user', [UserController::class, 'index']);
+Route::get('ad/user/{UID}', [UserController::class, 'show']);
+Route::get('ad/user/create', [UserController::class, 'create']);
+Route::post('ad/user/store', [UserController::class, 'store']);
+Route::get('ad/user/edit/{UID}', [UserController::class, 'edit']);
+Route::put('ad/user/update/{UID}', [UserController::class, 'update']);
+Route::delete('ad/user/delete/{UID}', [UserController::class, 'destroy']);
+Route::get('ad/user/login/{Email}/{Password}/{Role}', [UserController::class, 'login']);
+
+Route::group([
+    'prefix' => 'auth'
+], function () {
+    Route::post('login', [AuthController::class, 'login']);
+    Route::post('signup', [AuthController::class, 'signup']);
+    Route::group([
+      'middleware' => 'auth:api'
+    ], function() {
+        Route::delete('logout', [AuthController::class, 'logout']);
+        Route::get('me', [AuthController::class, 'user']);
+    });
+});
+
 
 /* Dat
 Hlv

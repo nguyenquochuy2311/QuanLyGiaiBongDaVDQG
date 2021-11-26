@@ -3,7 +3,13 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+use Illuminate\Auth\Events\Login;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -14,7 +20,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return response(User::all());
     }
 
     /**
@@ -33,9 +39,17 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        //
+        $password = Hash::make($request->get('Password'));
+        $request->merge([
+            'Password' => $password,
+        ]);
+        User::create($request->all());
+        return response([
+           'status' => 200,
+           'message' => "Thêm thành công" 
+        ]);
     }
 
     /**
@@ -46,7 +60,14 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = User::find($id);
+        if(empty($data)){
+            return response([
+                'status' => 404,
+                'message' => 'Không tìm thấy'
+            ]);
+        }
+        return response($data);
     }
 
     /**
@@ -67,9 +88,26 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
-        //
+        $user = User::find($id);
+        if(empty($user)){
+            return response([
+                'status' => 404,
+                'message' => 'Không tìm thấy'
+            ]);
+        }
+        
+        $password = Hash::make($request->get('password'));
+        $request->merge([
+            'Password' => $password,
+        ]);
+        $user->update($request->all());
+        return response([
+            'status' => 200,
+            'message' => 'Cập nhật thành công',
+            "new_data" => $user
+        ]);
     }
 
     /**
@@ -80,6 +118,27 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+        if(empty($user)){
+            return response([
+                'status' => 404,
+                'message' => 'Không tìm thấy'
+            ]);
+        }
+        $user->delete();
+        return response([
+            'status' => 200,
+            'message' => 'Xóa thành công'
+        ]);
+    }
+
+    public function login($email, $password, $role)
+    {
+        $user = DB::table('user')
+            ->where('Email', '=', $email)
+            ->where('Password', '=', $password)
+            ->where('Rold', '=', $role)
+            ->select('*')
+            ->get();      
     }
 }
