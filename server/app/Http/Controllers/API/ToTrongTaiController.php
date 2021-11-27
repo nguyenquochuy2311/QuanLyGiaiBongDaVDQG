@@ -139,20 +139,25 @@ class ToTrongTaiController extends Controller
      */
     public function update(Request $request, $idToTT,$idTT)
     {
-        // $TrongTai = ToTrongTai::find($idToTT);
-        // return response ($TrongTai);
-        // if(empty($TrongTai)){
-        //     return response([
-        //         'status' => 404,
-        //         'message' => 'Không tìm thấy'
-        //     ]);
-        // }
-        // $HLV->update($request->all());
-        // return response([
-        //     'status' => 200,
-        //     'message' => 'Cập nhật thành công',
-        //     "new_data" => $HLV
-        // ]);
+        $data =  ToTrongTai::where('idToTT',$idToTT)->where('idTT',$idTT)->get();
+        // return response(count($data));
+        if(count($data) == 0){
+            return response([
+                'status' => 404,
+                'message' => 'Không tìm thấy'
+            ]);
+        }
+        else{
+            $UpdateToTrongTai = new ToTrongTai;
+            $UpdateToTrongTai = ToTrongTai::where('idToTT',$idToTT)->where('idTT',$idTT)->update(['idTT' => $request->idTT]);
+            
+            return response([
+                'status' => 200,
+                'message' => 'Cập nhật thành công',
+            ]);
+        }
+
+        
     }
 
     /**
