@@ -1,0 +1,103 @@
+@import "../../styles/variables";
+@import "../../styles/global";
+
+.rankteam {
+  margin-top: 100px;
+  background: $white-color;
+  border: 2px 2px 5px rgba(0,0,0,0.3);
+  &__title {
+    margin: 30px 0;
+    background: $third-color;
+    padding: 10px 0;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+  }
+  &__table {
+    position: relative;
+    text-align: left;
+    font-size: 1.3rem;
+    font-weight: 500;
+    // border: 1px solid $secondary-color;
+    padding: 0;
+    &:after {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: 0;
+      right: 0;
+      height: 10px;
+      background: $bg-btn;
+    }
+    &:before {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      right: 0;
+      height: 10px;
+      background: $bg-btn;
+    }
+    tr {
+        position: relative;
+      overflow: hidden;
+      border-collapse: collapse;
+      height: 100%;
+      &::after{
+          content: "";
+           position: absolute;
+             bottom: 0;
+             left: 0;
+             right: 0;
+             height: 4px;
+             bg
+      }
+    }
+    th {
+      padding: 5px 0  5px 20px ;
+      background: $secondary-color;
+      &:last-child{
+          text-align: center;
+      }
+    }
+    .team__item {
+      td {
+        height: 100%;
+        padding: 10px 0;
+      }
+      td:first-child {
+        display: flex;
+        align-items: center;
+      }
+    }
+    .team__logo {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin: 0 20px 0 0;
+      border: 1px solid $primary-color;
+      background: $white-color;
+      margin-left: 20px;
+    }
+    .team__title {
+    }
+
+    .team__stadium {
+      position: relative;
+
+      &:after {
+        @extend .strong;
+        left: -10px;
+      }
+    }
+
+    .team__description {
+        text-align:center;
+      > p {
+        display: none;
+      }
+      i{
+          display: inline-block;
+          text-align: center;
+      }
+    }
+  }
+}

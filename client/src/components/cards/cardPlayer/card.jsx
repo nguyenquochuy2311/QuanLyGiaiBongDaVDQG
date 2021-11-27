@@ -24,8 +24,8 @@ const CardPLayer = () => {
         <img className="card-img-top" src={QuangHai} alt="Card image cap" />
       </div>
       <div className="card-body">
-        <h5 className="card-title">Quang Hải</h5>
-        <p className="card-text">{setState.description}</p>
+        <h5 className="card-title">{setState(state.title)}</h5>
+        <p className="card-text">{setState(state.description)}</p>
         <Link to="#" className="btn card-icon" title="Xem thêm thông tin">
           <i class="bx bxs-quote-right bx-tada"></i>
         </Link>

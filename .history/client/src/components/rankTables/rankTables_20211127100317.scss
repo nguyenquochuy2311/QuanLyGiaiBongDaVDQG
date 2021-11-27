@@ -1,0 +1,27 @@
+@import "../../styles/variables";
+@import "../../styles/global";
+
+.table {
+  overflow: hidden;
+  .team__item{
+    //    display: flex;
+    //     align-items: center;
+    //     justify-content: center;
+  }
+  .team__logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+  .team__title {
+  }
+
+  .team__stadium {
+  }
+
+  .team__description {
+      >p{ 
+          display: none;
+      }
+  }
+}

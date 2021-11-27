@@ -94,13 +94,13 @@ const initialState = {
 };
 
 const slidesReducer = (state, event) => {
-  if (event.type === "NEXT") {
+  if (event.type === "PREV") {
     return {
       ...state,
       slideIndex: (state.slideIndex + 1) % slides.length,
     };
   }
-  if (event.type === "PREV") {
+  if (event.type === "NEXT") {
     return {
       ...state,
       slideIndex:

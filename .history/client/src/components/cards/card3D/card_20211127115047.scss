@@ -1,0 +1,199 @@
+@import "../../../styles/global.scss";
+@import "../../../styles/variables.scss";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  position: relative;
+}
+
+.slides {
+  display: grid;
+  cursor: pointer;
+
+  > .slide {
+    grid-area: 1 / -1;
+  }
+
+  > button {
+    appearance: none;
+    background: transparent;
+    border: none;
+    color: white;
+    position: absolute;
+    font-size: 5rem;
+    width: 5rem;
+    height: 5rem;
+    top: 30%;
+    transition: opacity 0.3s;
+    opacity: 0.5;
+    z-index: 5;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 1;
+      color: $primary-color;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:first-child {
+      left: -50%;
+    }
+    &:last-child {
+      right: -50%;
+    }
+  }
+}
+
+.slideContent {
+  position: relative;
+  width: 30vw;
+  height: 40vw;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  transition: transform 0.5s ease-in-out;
+  opacity: 0.7;
+  display: grid;
+  align-content: center;
+  transform-style: preserve-3d;
+  transform: perspective(1000px) translateX(calc(100% * var(--offset)))
+    rotateY(calc(-45deg * var(--dir)));
+  .bgBorder {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: $primary-color;
+  }
+  &:after{
+    content: "";
+    position: absolute;
+    height:20%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba($black-color,0.3);
+    transition: all 0.3s;
+    opacity: 0;
+  }
+  &:hover .slideDescription {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slideContentInner {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  transform-style: preserve-3d;
+  transform: translateZ(2rem);
+  transition: opacity 0.3s linear;
+  opacity: 0;
+  
+  .slideSubtitle,
+  .slideTitle {
+    font-size: 2rem;
+    font-weight: normal;
+    letter-spacing: 0.2ch;
+    text-transform: uppercase;
+    color: $bg-btn;
+  }
+  .slideTitle {
+    margin-top: 10rem;
+    font-weight: 700;
+    background: ($gradient-color);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0.1rem 20px $primary-color;
+  }
+  .slideDescription {
+    margin: 0 20px;
+    font-size: 0.8rem;
+    letter-spacing: 0.2ch;
+    color: $white-color;
+    font-weight: bold;
+    transform: translateY(250%);
+    opacity: 0;
+    transition: all 0.3s linear;
+    display: -webkit-box;
+    -webkit-box-oriant: vertical;
+    -webkit-line-clamp: 5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.slideBackground {
+  position: absolute;
+  top: calc(-20% - 45px);
+  // top: -120px;
+  left: -115%;
+  width: 100vw;
+  height: 100vh;
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  // bottom: 0;
+  // right: 0;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s linear, transform 0.3s ease-in-out;
+  pointer-events: none;
+  filter: blur(1px);
+  transform: translateX(calc(10% * var(--dir)));
+  &:after,
+  &:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    height: 20px;
+    width: 100%;
+    background: $white-color;
+    filter: blur(10px);
+  }
+  &:before {
+    top: -10px;
+  }
+  &:after {
+    bottom: 10px;
+  }
+}
+
+.slide[data-active] {
+  z-index: 2;
+  pointer-events: auto;
+
+  .slideBackground {
+    opacity: 0.2;
+    transform: none;
+  }
+
+  .slideContentInner {
+    opacity: 1;
+    overflow: hidden;
+  }
+
+  .slideContent {
+    --x: calc(var(--px) - 0.5);
+    --y: calc(var(--py) - 0.5);
+    opacity: 1;
+
+    transform: perspective(1000px);
+
+    &:hover {
+      transition: none;
+      transform: perspective(1000px) rotateY(calc(var(--x) * 45deg))
+        rotateX(calc(var(--y) * -45deg));
+    }
+  }
+}

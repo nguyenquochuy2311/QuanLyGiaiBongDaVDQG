@@ -3,9 +3,8 @@ import "./App.scss";
 import "../styles/_variables.scss";
 import "boxicons";
 //import components
-import Nav from "../components/Navigation/nav";
-import Ban from "../components/banner/banner";
-import Footer from '../components/footer/footer';
+import Nav from "../containers/Navigation/nav";
+import Footer from '../containers/footer/footer';
 import ScrollToTop from "../components/btnBackTop/btn";
 //import views
 import Home from "../views/home/home";

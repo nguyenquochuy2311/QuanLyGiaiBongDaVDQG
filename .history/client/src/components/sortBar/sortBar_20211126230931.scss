@@ -1,0 +1,63 @@
+@import "../../styles/variables";
+@import "../../styles/global";
+
+.sortbar {
+  position: relative;
+  width: 100%;
+  background: $white-color;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  margin-bottom: 30px;
+  box-shadow: 1px 1px 5px rgba($black-color,0.3);
+  border-radius: 4px;
+  .col {
+    padding: 0;
+  }
+  &__category {
+    height: 100%;
+    font-size: 1.2rem;
+    i{
+    font-size: 1.4rem;
+
+    }
+    &:hover {
+      cursor: pointer;
+      color: $primary-color;
+    }
+  }
+  &__category-season {
+    text-align: left;
+    margin-left: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    &:hover {
+      cursor: context-menu;
+    }
+    p {
+      padding: 5px;
+      color: $primary-color;
+      line-height: 100%;
+    }
+  }
+  .season__option {
+    padding: 10px;
+    max-width: 200px;
+  }
+  &__category-reset {
+    &:àter
+    position: relative;
+    text-align: right;
+    margin-right: 50px;
+     p,i{
+        position: relative;
+           top: 50%;
+           transform: translate(0 , -50%);
+     }
+    i {
+      margin: 0 5px;
+    }
+  }
+}
