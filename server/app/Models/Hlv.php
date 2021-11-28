@@ -4,8 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Sofa\Eloquence\Eloquence; //base trait 
-use Sofa\Eloquence\Mappable;  
+
 class Hlv extends Model
 {
     use HasFactory;
