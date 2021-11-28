@@ -10,7 +10,7 @@ class ToTrongTai extends Model
     use HasFactory;
 
     protected $table = 'totrongtai';
-    protected $primaryKey = 'idToTT';
+    protected $primaryKey = 'idToTT';   
 
     protected $fillable =[
         'idTT',
