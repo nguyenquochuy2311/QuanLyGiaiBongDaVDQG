@@ -4,13 +4,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\ClbController;
 use App\Http\Controllers\API\CauThuController;
-<<<<<<< Updated upstream
-=======
 use App\Http\Controllers\API\TranDauController;
 use App\Http\Controllers\API\GhiBanController;
 use App\Http\Controllers\API\KetQuaController;
 use App\Http\Controllers\API\XuPhatController;
->>>>>>> Stashed changes
 
 use Whoops\Run;
 
@@ -29,12 +26,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-<<<<<<< Updated upstream
+
 // Clb
 Route::get('clb', [ClbController::class, 'index']);
 Route::get('clb/{idCLB}', [ClbController::class, 'show']);
 Route::get('clb/search/{tenCLB}', [ClbController::class, 'search']);
-=======
+
 // Tran Dau
 Route::get('trandau', [TranDauController::class, 'index']);
 Route::get('trandau/{idTD}', [TranDauController::class, 'show']);
@@ -72,7 +69,7 @@ Route::get('xuphat/{idXP}', [XuPhatController::class, 'show']);
 Route::get('clb', [ClbController::class, 'index']);
 Route::get('clb/{idCLB}', [ClbController::class, 'show']);
 Route::get('clb/search/{keyword}', [ClbController::class, 'search']);
->>>>>>> Stashed changes
+
 
 // // Cau thu
 Route::get('cauthu', [CauThuController::class, 'index']);
@@ -84,11 +81,7 @@ Route::get('ad/clb/create', [ClbController::class, 'create']);
 Route::post('ad/clb/store',[ClbController::class, 'store']);
 Route::get('ad/clb/edit/{idCLB}', [ClbController::class, 'edit']);
 Route::put('ad/clb/update/{idCLB}', [ClbController::class, 'update']);
-<<<<<<< Updated upstream
 Route::delete('ad/clb/delete/{idCLB}', [ClbController::class, 'destroy']);
-=======
-Route::delete('ad/clb/delete/{id}', [ClbController::class, 'destroy']);
->>>>>>> Stashed changes
 
 /* Dat
 Hlv
