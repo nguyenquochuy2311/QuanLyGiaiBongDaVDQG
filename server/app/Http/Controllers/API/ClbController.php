@@ -31,10 +31,10 @@ class ClbController extends Controller
      */
     public function create()
     {
-        return response([
-            'status' => 200,
-            'message' => 'OK'
-        ]);
+        // return response([
+        //     'status' => 200,
+        //     'message' => 'OK'
+        // ]);
     }
 
     /**
