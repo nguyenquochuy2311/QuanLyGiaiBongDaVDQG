@@ -169,7 +169,6 @@ class ToTrongTaiController extends Controller
     public function destroy($id)
     {
         $data = ToTrongTai::findOrFail($id);
-        // if(empty($doi_bong) || !is_numeric() ){
          if(empty($data)  ){
             return response([
                 'status' => 404,

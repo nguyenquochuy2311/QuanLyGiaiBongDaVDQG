@@ -7,6 +7,9 @@ use App\Http\Controllers\API\CauThuController;
 use App\Http\Controllers\API\HlvController;
 use App\Http\Controllers\API\TrongTaiController;
 use App\Http\Controllers\API\ToTrongTaiController;
+use App\Http\Controllers\API\BxhCLBController;
+use App\Http\Controllers\API\BxhCTController;
+
 use Whoops\Run;
 
 /*
@@ -70,6 +73,14 @@ Route::get('trongtai/search/{tenTT}', [TrongTaiController::class, 'search']);
 
 // tổ trọng tài
 Route::get('totrongtai', [ToTrongTaiController::class, 'index']);
+
+//bxh CLB
+Route::get('bxh_clb', [BxhCLBController::class, 'index']);
+
+//bxh CT
+Route::get('bxh_ct', [BxhCTController::class, 'index']);
+
+
 /* Dat
 Hlv
 CauThu
