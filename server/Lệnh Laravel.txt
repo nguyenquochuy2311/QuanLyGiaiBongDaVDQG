@@ -1,0 +1,180 @@
+Lệnh laravel:
+
+Vừa tạo model vừa migrate qua db
+	php artisan make:model {ModelName} --migration
+
+Tạo Controller
+	php artisan make:controller {NameController hoặc API/NameController} --resource
+
+Make Validate Form
+	php artisan make:request StorePostRequest
+Cách đặt tên: {Phương thức}{Tên Model}{Request}
+/Requests
+- Chuyển authorize() => true
+- hàm failedValidation(Validator $validator) -> trỏ lỗi mặc định
+- hàm message() -> trỏ custom lỗi
+
+Migrate Rollback
+	php artisan migrate:rollback
+
+Seeder từng class
+	php artisan db:seed --class={name}Seeder
+
+
+Status code
+200 OK – Trả về thành công cho những phương thức GET, PUT, PATCH hoặc DELETE.
+201 Created – Trả về khi một Resouce vừa được tạo thành công.
+204 No Content – Trả về khi Resource xoá thành công.
+304 Not Modified – Client có thể sử dụng dữ liệu cache.
+400 Bad Request – Request không hợp lệ
+401 Unauthorized – Request cần có auth.
+403 Forbidden – bị từ chối không cho phép.
+404 Not Found – Không tìm thấy resource từ URI
+405 Method Not Allowed – Phương thức không cho phép với user hiện tại.
+410 Gone – Resource không còn tồn tại, Version cũ đã không còn hỗ trợ.
+415 Unsupported Media Type – Không hỗ trợ kiểu Resource này.
+422 Unprocessable Entity – Dữ liệu không được xác thực
+429 Too Many Requests – Request bị từ chối do bị giới hạn
+
+Refresh migrate
+	php artisan migrate:fresh
+
+
+---------------------------
+
+<?php
+
+namespace App\Http\Controllers\API;
+
+use App\Http\Controllers\Controller;
+
+class DoiBongController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        // $data = DoiBong::with('cau_thu')->get();
+        // return response($data);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return response([
+            'status' => 200,
+            'message' => 'OK'
+        ]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(StoreDoiBongRequest $request)
+    {    
+        // DoiBong::create($request->all());  
+        return response([
+            'status' => 200,
+            'message' => "Thêm thành công"
+        ]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        // $data = DoiBong::find($id);
+        // if(empty($data)){
+        //     return response([
+        //         'status' => 404,
+        //         'message' => 'Không tìm thấy'
+        //     ]);
+        // }
+        // return response($data);
+    }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        // $data = DoiBong::find($id);
+        // if(empty($data)){
+        //     return response([
+        //         'status' => 404,
+        //         'message' => 'Không tìm thấy'
+        //     ]);
+        // }
+        // return response($data);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(UpdateDoiBongRequest $request, $id)
+    {
+        // $doi_bong = DoiBong::find($id);
+        // if(empty($doi_bong)){
+        //     return response([
+        //         'status' => 404,
+        //         'message' => 'Không tìm thấy'
+        //     ]);
+        // }
+        // $doi_bong->update($request->all());
+        // return response([
+        //     'status' => 200,
+        //     'message' => 'Cập nhật thành công',
+        //     "new_data" => $doi_bong
+        // ]);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        // $doi_bong = DoiBong::findOrFail($id);
+        // if(empty($doi_bong || !is_numeric($id) )){
+        //     return response([
+        //         'status' => 404,
+        //         'message' => 'Không tìm thấy'
+        //     ]);
+        // }
+        // $doi_bong->delete();
+        // return response([
+        //     'status' => 200,
+        //     'message' => 'Xóa thành công'
+        // ]);
+    }
+
+    public function search($keyword)
+    {
+        // return DoiBong::where('ten_doi_bong', 'like', '%'.$keyword.'%')->get();
+    }
+}
+
+
+

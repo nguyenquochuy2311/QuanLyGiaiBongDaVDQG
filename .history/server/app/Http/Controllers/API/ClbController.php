@@ -4,9 +4,15 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+<<<<<<< HEAD:.history/server/app/Http/Controllers/API/DoiBongController_20211128225556.php
+use App\Models\DoiBong;
+use App\Http\Requests\DoiBongStore;
+use App\Http\Requests\DoiBongUpdate;
+=======
 use App\Http\Requests\StoreClbRequest;
 use App\Http\Requests\UpdateClbRequest;
 use App\Models\Clb;
+>>>>>>> huy:.history/server/app/Http/Controllers/API/ClbController.php
 
 class ClbController extends Controller
 {
