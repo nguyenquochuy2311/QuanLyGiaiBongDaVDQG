@@ -1,7 +1,7 @@
 @import "../../styles/variables";
 @import "../../styles/global";
 
-.rankteam {
+.hlTeam {
   margin-top: 100px;
   background: $white-color;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
@@ -9,6 +9,7 @@
     margin-top: 30px ;
     background: $third-color;
     padding: 10px 0;
+    color: $white-color;
   }
   &__table {
     position: relative;

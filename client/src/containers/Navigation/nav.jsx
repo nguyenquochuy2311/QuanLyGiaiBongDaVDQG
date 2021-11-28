@@ -1,17 +1,16 @@
 import { NavLink, Link } from "react-router-dom";
-import React,{Component}  from "react";
+import React, { Component } from "react";
 import classnames from "classnames";
 import "./nav.scss";
 import "../../assets/img/logo.png";
 
-
 export default class Nav extends Component {
-   constructor(props) {
+  constructor(props) {
     super(props);
 
     this.state = {
       prevScrollpos: window.pageYOffset,
-      visible: true
+      visible: true,
     };
   }
 
@@ -34,7 +33,7 @@ export default class Nav extends Component {
 
     this.setState({
       prevScrollpos: currentScrollPos,
-      visible
+      visible,
     });
   };
 
@@ -73,68 +72,103 @@ export default class Nav extends Component {
               id="navbarSupportedContent"
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-
                 <div className="col col-xl-7 col-lg-9 col-md-9">
-                <div className="row">
-                
-                <div className="col">
-                  <li className="nav-item">
-                    <NavLink
-                      to="/"
-                      addClassName="active"
-                      className="nav-link"
-                      aria-current="page"
-                      exact={true}
-                    >
-                      Trang chủ
-                    </NavLink>
-                  </li>
-                </div>
-                <div className="col">
-                  <li className="nav-item">
-                    <NavLink
-                      to="/giai-dau"
-                      addClassName="active"
-                      className="nav-link"
-                    >
-                      Giải đấu
-                    </NavLink>
-                  </li>
-                </div>
-                <div className="col">
-                  <li className="nav-item">
-                    <NavLink
-                      to="/doi-bong"
-                      addClassName="active"
-                      className="nav-link "
-                    >
-                      Đội bóng
-                    </NavLink>
-                  </li>
-                </div>
-                <div className="col">
-                  <li className="nav-item">
-                    <NavLink
-                      to="/quy-dinh"
-                      addClassName="active"
-                      className="nav-link "
-                    >
-                      Quy định
-                    </NavLink>
-                  </li>
-                </div>
-                <div className="col">
-                  <li className="nav-item">
-                    <NavLink
-                      to="/lien-he"
-                      addClassName="active"
-                      className="nav-link "
-                    >
-                      Liên hệ
-                    </NavLink>
-                  </li>
-                </div>
-                </div>
+                  <div className="row">
+                    <div className="col">
+                      <li className="nav-item">
+                        <NavLink
+                          to="/"
+                          addClassName="active"
+                          className="nav-link"
+                          aria-current="page"
+                          exact={true}
+                        >
+                          Trang chủ
+                        </NavLink>
+                      </li>
+                    </div>
+                    <div className="col">
+                      <li className="nav-item sub-nav ">
+                        <p className="nav-item-title nav-link">Giải đấu</p>
+
+                        <ul className="sub-nav-list">
+                          <li className="sub-nav-item">
+                            <NavLink
+                              className="sub-nav-item-link nav-link"
+                              to="/giai-dau/bxh-doi-bong"
+                            >
+                              Bảng xếp hạng đội bóng
+                            </NavLink>
+                          </li>
+                          <li className="sub-nav-item">
+                            <NavLink
+                              className="sub-nav-item-link nav-link"
+                              to="/giai-dau/bxh-cau-thu"
+                            >
+                              Bảng xếp hạng cầu thủ
+                            </NavLink>
+                          </li>
+                          <li className="sub-nav-item">
+                            <NavLink
+                              className="sub-nav-item-link nav-link"
+                              to="/giai-dau/cac-tran-dau"
+                            >
+                              Các trận đấu
+                            </NavLink>
+                          </li>
+                          <li className="sub-nav-item">
+                            <NavLink
+                              className="sub-nav-item-link nav-link"
+                              to="/giai-dau/chi-tiet-tran-dau"
+                            >
+                              Chi tiết trận đấu
+                            </NavLink>
+                          </li>
+                          <li className="sub-nav-item">
+                            <NavLink
+                              className="sub-nav-item-link nav-link"
+                              to="/giai-dau/trong-tai"
+                            >
+                              Trọng tài
+                            </NavLink>
+                          </li>
+                        </ul>
+                      </li>
+                    </div>
+                    <div className="col">
+                      <li className="nav-item">
+                        <NavLink
+                          to="/doi-bong"
+                          addClassName="active"
+                          className="nav-link "
+                        >
+                          Đội bóng
+                        </NavLink>
+                      </li>
+                    </div>
+                    <div className="col">
+                      <li className="nav-item">
+                        <NavLink
+                          to="/quy-dinh"
+                          addClassName="active"
+                          className="nav-link "
+                        >
+                          Quy định
+                        </NavLink>
+                      </li>
+                    </div>
+                    <div className="col">
+                      <li className="nav-item">
+                        <NavLink
+                          to="/lien-he"
+                          addClassName="active"
+                          className="nav-link "
+                        >
+                          Liên hệ
+                        </NavLink>
+                      </li>
+                    </div>
+                  </div>
                 </div>
                 <div className="col col-xl-5 col-lg-3 col-md-3 ">
                   <form className="d-flex">
@@ -151,8 +185,6 @@ export default class Nav extends Component {
                     ></box-icon>
                   </form>
                 </div>
-
-               
               </ul>
             </div>
             <div className="category">
@@ -177,5 +209,4 @@ export default class Nav extends Component {
       </div>
     );
   }
-};
-
+}

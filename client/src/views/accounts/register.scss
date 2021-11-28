@@ -1,0 +1,159 @@
+@import "../../styles/variables";
+@import "../../styles/global";
+
+.component {
+  position: relative;
+  padding: 3rem 2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .background{
+    width: 100vw;
+     position: fixed;
+       top: 0;
+       left: 0;
+       right: 0;
+       bottom: 0;
+
+}
+  .register-form {
+    margin: auto;
+    background: $white-color;
+    border-radius: 2.5rem;
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 10%);
+    width: 486px;
+    padding: 2rem;
+    float: right;
+    padding-bottom: 50px;
+  }
+
+  .register-form.active {
+    top: 70px;
+    right: 2rem;
+    -webkit-transition: 0.4s linear;
+    transition: 0.4s linear;
+  }
+
+  .register-form h3 {
+    margin-top: 12px;
+    text-transform: uppercase;
+    font-size: 1.6rem;
+    text-align: center;
+    margin-bottom: 0.7rem;
+    color: $primary-color;
+  }
+
+  .register-form .box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 21px 0px;
+    border: 0.1rem solid rgba(0, 0, 0, 0.1);
+    font-size: 1.2rem;
+    text-transform: none;
+    width: 100%;
+    border-radius: 6px;
+    input {
+      flex: 1;
+      outline: none;
+      border: none;
+      padding: 10px 15px;
+      font-size: 1rem;
+    }
+    i {
+      padding: 10px;
+    }
+  }
+
+  .header .register-form .remember {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 0.5rem;
+    margin: 0.7rem 0;
+  }
+
+  .register-form .remember label {
+    font-size: 1.5rem;
+    color: $text-color;
+    cursor: pointer;
+  }
+
+  .register-form .btn {
+    width: 80%;
+    text-align: center;
+    margin: 5px 50px;
+    border-radius: 15px;
+    color: $white-color;
+    height: 50px;
+    font-size: 1.5rem;
+    background: $bg-btn;
+    cursor: pointer;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    &:hover {
+      background: $blue-color;
+    }
+  }
+
+  .register-form p {
+    color: $text-color;
+    padding-top: 0.7rem;
+    font-size: 1.4rem;
+  }
+
+  .header .register-form p a:hover {
+    text-decoration: underline;
+  }
+
+  .register-form div img {
+    height: 24px;
+    width: 20px;
+    float: right;
+    opacity: 50%;
+  }
+
+  .register-form input {
+    font-size: 1.4rem;
+    font-weight: 500;
+  }
+
+  .social {
+    display: flex;
+    margin: 9px 72px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .social-icon {
+    margin: 8px 38px;
+    text-align: center;
+    align-items: center;
+    width: 55px;
+    height: 30px;
+  }
+
+  .social .social-icon img {
+    cursor: pointer;
+    opacity: 100%;
+    opacity: 100%;
+    width: 31px;
+    height: 32px;
+    background: $white-color;
+    transition: all 0.3s;
+    transform: scale(1);
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  .link__login {
+    color: $black-color !important;
+    a {
+      color: $bg-btn;
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+}

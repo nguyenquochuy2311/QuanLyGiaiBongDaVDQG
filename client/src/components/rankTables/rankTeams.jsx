@@ -1,45 +1,56 @@
-import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 
-import card_team_data from "../../assets/fake-data/CardTeams";
-import CardTeam from "../cards/cardTeam/cardTeam";
+import Helmet from '../Helmet/Helmet';
 
-import "./rankTables.scss";
-const NewStyleCard = styled.div``;
-const RankTeam = () => {
-  return (
-    <div
-      className=" rankteam "
-    >
-      <h3 className="rankteam__title">Các câu lạc bộ nổi bật</h3>
-      <table className="rankteam__table container">
-        <tr>
-          <th>Câu Lạc Bộ</th>
-          <th>Sân Vận Động</th>
-          <th>Chi Tiết</th>
-        </tr>
-        {card_team_data.getSortCards(8).map((item, index) => (
-          <tr className='team__item'>
-            <td >
-              <img className="team__logo" src={item.logo} alt="not found" />
-              <p className="team__title">{item.title}</p>
-            </td>
-            <td className="team__stadium">
-              <p >{item.stadium}</p>
-            </td>
-            <td className="team__description">
-              <p >
-                {item.description}
-              </p>
-                <i className="bx bx-right-arrow-alt bx-flashing"></i>
-            </td>
-          </tr>
-        ))}
-      </table>
-    </div>
-  );
-};
+//ip data
+import card_team_data from '../../assets/fake-data/CardTeams';
+import './rankTeams.scss';
+
+const RankTeam = (props) => {
+
+    return(
+<Helmet title="Bảng xếp hạng đội bóng">
+<div className="component">
+<div className="clb-chart-container">
+      <table>
+         <h2 className="name-bxh">V.League</h2>
+         <thead>
+           <tr>
+             <th className="stt" scope="col">Thứ tự</th>
+             <th className="clb-name" scope="col">Câu lạc bộ</th>
+             <th scope="col">Trận</th>
+             <th scope="col">T</th>
+             <th scope="col">H</th>
+             <th scope="col">B</th>
+             <th scope="col">GF</th>
+             <th scope="col">GA</th>
+             <th scope="col">GD</th>
+             <th className="sum-point" scope="col">Tổng điểm</th>
+           </tr>
+         </thead>
+         <tbody>
+           {card_team_data.getAllCards().map((item,index)=>(
+           <tr key={index}>
+             <td data-label="Thứ tự">{index + 1}</td>
+             <td className="clb-name" data-label="Câu lạc bộ">
+              <img src={item.logo} alt='not found' style={{width:'50px',height:'50px', borderRadius:'50%', marginRight:'20px'}}/> 
+            {item.title}</td>
+             <td data-label="Trận">{item.number_match}</td>
+             <td data-label="T">{item.number_win}</td>
+             <td data-label="H">{item.number_draw}</td>
+             <td data-label="B">{item.number_loss}</td>
+             <td data-label="GF">{item.gf}</td>
+             <td data-label="GA">{item.ga}</td>
+             <td data-label="T">{item.gd}</td>
+             <td data-label="Tổng điểm">{item.score}</td>
+           </tr>
+           ))}
+          
+         </tbody>
+       </table>
+   </div>
+</div>
+</Helmet>
+    )
+}
 
 export default RankTeam;

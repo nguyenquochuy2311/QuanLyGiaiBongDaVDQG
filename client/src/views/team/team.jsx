@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 
 // ip data
 import card_team_data from "../../assets/fake-data/CardTeams";
@@ -9,7 +8,7 @@ import Helmet from "../../components/Helmet/Helmet";
 import Header from "../../containers/header/header";
 import SortBar from "../../components/sortBar/sortBar";
 import CardTeam from "../../components/cards/cardTeam/cardTeam";
-import RankTeam from "../../components/rankTables/rankTeams";
+import HlTeam from "../../components/rankTables/HighlightTeams";
 import Dunors from "../../components/dunors/dunors";
 
 //css
@@ -42,7 +41,6 @@ const Team = () => {
 
       <SortBar>
         <div className="col">
-          {/* <StyleSortBar> */}
           <div className="sortbar__category sortbar__category-season">
             <p>Lọc theo mùa:</p>
             <select
@@ -55,7 +53,6 @@ const Team = () => {
               <option value="0">2019/20</option>
             </select>
           </div>
-          {/* </StyleSortBar> */}
         </div>
       </SortBar>
       <div className="container container-xxl container-xl ">
@@ -78,8 +75,7 @@ const Team = () => {
         </div>
 
         {/* get top 8 team */}
-        {/* <StyleTopTeamTitle> */}
-        <RankTeam/>
+        <HlTeam/>
         {/* dunors */}
         <Dunors />
       </div>
