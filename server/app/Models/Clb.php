@@ -24,6 +24,11 @@ class Clb extends Model
     
     public function ds_cau_thu()
     {
-        return $this->hasMany(CauThu::class, 'idCLB');
+        return $this->hasMany(Cauthu::class, 'idCLB' );
+    }
+    
+    public function ds_hlv()
+    {
+        return $this->hasMany(Hlv::class, 'idCLB' );
     }
 }

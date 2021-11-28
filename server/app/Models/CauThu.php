@@ -11,7 +11,19 @@ class CauThu extends Model
 
     protected $table = 'cauthu';
     protected $primaryKey = 'idCT';
-    
+
+    protected $fillable =[
+        'idCLB',
+        'TenCT',
+        'NgaySinh',
+        'ViTri',
+        'SoAo',
+        'ChieuCao',
+        'LoaiCauThu',
+        'AnhDaiDien',
+        'created_at',
+        'updated_at'
+    ];
     public function clb()
     {
         return $this->belongsTo(Clb::class, 'idCT');

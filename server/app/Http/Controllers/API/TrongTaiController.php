@@ -116,17 +116,29 @@ class TrongTaiController extends Controller
      */
     public function destroy($id)
     {
-        $data = TrongTai::findOrFail($id);
-        if(empty($data || !is_numeric($id) )){
+        $data = TrongTai::find($id);
+        if(empty($data)){
             return response([
                 'status' => 404,
                 'message' => 'Không tìm thấy'
             ]);
-        }
-        $data->delete();
+        }   
+        $data->delete(); 
         return response([
             'status' => 200,
             'message' => 'Xóa thành công'
+        ]);
+    }
+
+    public function search($tenTT)
+    {
+        $result = TrongTai::where('TenTT', 'like', '%'.$tenTT.'%')->get();
+        if(count($result)){
+            return $result;
+        }
+        return response([
+            'status' => 404,
+            'message' => 'Không tìm thấy'
         ]);
     }
 }

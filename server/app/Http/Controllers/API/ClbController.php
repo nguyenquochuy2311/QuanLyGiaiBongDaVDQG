@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreClbRequest;
 use App\Http\Requests\UpdateClbRequest;
 use App\Models\Clb;
-
+use App\Models\Hlv;
+use \DB;
 class ClbController extends Controller
 {
     /**
@@ -17,11 +18,20 @@ class ClbController extends Controller
      */
     public function index()
     {
-        // $data = Clb::all();
-        //$data = Clb::with('ds_cau_thu')->get(['idCLB', 'VietTat']);
-        //$data = Clb::all(['idCLB', 'VietTat']);
-        $data = Clb::with('ds_cau_thu')->get();
-        return response($data);
+        
+        // $data_HLV = Clb::with('ds_hlv')->get();
+        // $data_Cauthu = Clb::with('ds_cau_thu')->get();
+
+        
+        $clb = DB::table('clb')
+            ->join('cauthu', 'clb.idCLB', '=', 'cauthu.idCLB')
+            ->join('hlv','clb.idCLB', '=' ,'hlv.idCLB')
+            ->select( 'TenHLV','TenCT')
+           
+            ->get();
+        return response($clb);
+
+        // return response($data_HLV);
     }
 
     /**
@@ -69,6 +79,7 @@ class ClbController extends Controller
                 'message' => 'Không tìm thấy'
             ]);
         }
+
         return response($data);
     }
 
@@ -123,17 +134,20 @@ class ClbController extends Controller
     public function destroy($id)
     {
         $doi_bong = Clb::findOrFail($id);
-        if(empty($doi_bong || !is_numeric($id) )){
+        $data = count($doi_bong);
+
+        if($data = 0 ){
             return response([
                 'status' => 404,
                 'message' => 'Không tìm thấy'
             ]);
+        }else{
+            $doi_bong->delete();
+            return response([
+                'status' => 200,
+                'message' => 'Xóa thành công'
+            ]);
         }
-        $doi_bong->delete();
-        return response([
-            'status' => 200,
-            'message' => 'Xóa thành công'
-        ]);
     }
 
     public function search($keyword)
