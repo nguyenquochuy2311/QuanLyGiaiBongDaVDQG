@@ -28,4 +28,16 @@ class CauThu extends Model
     {
         return $this->belongsTo(Clb::class, 'idCT');
     }
+
+    public function banthangs()
+    {
+        return $this->hasMany(GhiBan::class, 'idCT');
+    }
+
+    public function xuphats()
+    {
+        return $this->hasMany(XuPhat::class, 'idCT');
+    }
+
+    
 }
