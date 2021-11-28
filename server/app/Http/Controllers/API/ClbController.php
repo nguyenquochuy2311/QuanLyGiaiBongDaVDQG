@@ -31,7 +31,6 @@ class ClbController extends Controller
      */
     public function create()
     {
-        // form get
         return response([
             'status' => 200,
             'message' => 'OK'

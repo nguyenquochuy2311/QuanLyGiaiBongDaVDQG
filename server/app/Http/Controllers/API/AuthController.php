@@ -8,27 +8,15 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Validator;
 use App\Models\User;
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\SignUpRequest;
 
 class AuthController extends Controller
 {
-    public function signup(Request $request)
+    public function signup(SignUpRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'UserName' => 'required|string',
-            'email' => 'required|string|email|unique:users',
-            'password' => 'required|string'
-        ]);
- 
-        if ($validator->fails()) {
-            return response()->json([
-                'status' => 'fails',
-                'message' => $validator->errors()->first(),
-                'errors' => $validator->errors()->toArray(),
-            ]);
-        }
- 
         $user = new User([
-            'UserName' => $request->UserName,
+            'username' => $request->username,
             'email' => $request->email,
             'password' => bcrypt($request->password)
         ]);
@@ -40,27 +28,13 @@ class AuthController extends Controller
         ]);
     }
     
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-            'remember_token' => 'boolean'
-        ]);
- 
-        if ($validator->fails()) {
-            return response()->json([
-                'status' => 'fails',
-                'message' => $validator->errors()->first(),
-                'errors' => $validator->errors()->toArray(),
-            ]);
-        }
- 
         $credentials = request(['email', 'password']);
  
         if (!Auth::attempt($credentials)) {
             return response()->json([
-                'status' => 'fails',
+                'status' => false,
                 'message' => 'Unauthorized'
             ], 401);
         }

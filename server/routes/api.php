@@ -23,24 +23,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Clb
-Route::get('clb', [ClbController::class, 'index']);
-Route::get('clb/{idCLB}', [ClbController::class, 'show']);
-Route::get('clb/search/{tenCLB}', [ClbController::class, 'search']);
-
-// // Cau thu
-Route::get('cauthu', [CauThuController::class, 'index']);
-Route::get('cauthu/{id}', [CauThuController::class, 'show']);
-// Route::get('cau_thu/search/{keyword}', [DoiBongController::class, 'search']);
-
-// // Admin
-Route::get('ad/clb/create', [ClbController::class, 'create']);
-Route::post('ad/clb/store',[ClbController::class, 'store']);
-Route::get('ad/clb/edit/{idCLB}', [ClbController::class, 'edit']);
-Route::put('ad/clb/update/{idCLB}', [ClbController::class, 'update']);
-Route::delete('ad/clb/delete/{idCLB}', [ClbController::class, 'destroy']);
-
-
 // User
 Route::get('ad/user', [UserController::class, 'index']);
 Route::get('ad/user/{UID}', [UserController::class, 'show']);
@@ -50,6 +32,16 @@ Route::get('ad/user/edit/{UID}', [UserController::class, 'edit']);
 Route::put('ad/user/update/{UID}', [UserController::class, 'update']);
 Route::delete('ad/user/delete/{UID}', [UserController::class, 'destroy']);
 Route::get('ad/user/login/{Email}/{Password}/{Role}', [UserController::class, 'login']);
+
+// Clb
+Route::get('clb', [ClbController::class, 'index']);
+Route::get('clb/{idCLB}', [ClbController::class, 'show']);
+Route::get('clb/search/{tenCLB}', [ClbController::class, 'search']);
+
+// // Cau thu
+Route::get('cauthu', [CauThuController::class, 'index']);
+Route::get('cauthu/{id}', [CauThuController::class, 'show']);
+// Route::get('cau_thu/search/{keyword}', [DoiBongController::class, 'search']);
 
 Route::group([
     'prefix' => 'auth'
@@ -61,6 +53,14 @@ Route::group([
     ], function() {
         Route::delete('logout', [AuthController::class, 'logout']);
         Route::get('me', [AuthController::class, 'user']);
+
+        Route::get('clb/create', [ClbController::class, 'create']);
+        Route::post('clb/store',[ClbController::class, 'store']);
+        Route::get('clb/edit/{idCLB}', [ClbController::class, 'edit']);
+        Route::put('clb/update/{idCLB}', [ClbController::class, 'update']);
+        Route::delete('clb/delete/{idCLB}', [ClbController::class, 'destroy']);
+        
+        
     });
 });
 

@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
 
-class LoginRequest extends FormRequest
+class SignUpRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,9 +26,9 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email',
-            'password' => 'required|string',
-            'remember_token' => 'boolean'
+            'username' => 'required|string',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|string'
         ];
     }
 
@@ -36,7 +36,7 @@ class LoginRequest extends FormRequest
     {
         throw new HttpResponseException(response()->json([
             'status' => false,
-            'message' => 'Lỗi đăng nhập không hợp lệ',
+            'message' => 'Lỗi đăng ký không hợp lệ',
             'detail' => $validator->errors()
         ]));
     }
@@ -46,6 +46,7 @@ class LoginRequest extends FormRequest
         return [
             'email.required' => 'Email không được bỏ trống!',
             'email.email' => 'Email không đúng định dạng!',
+            'email.unique' => 'Email đã được đăng ký!',
             'password.required' => 'Password không được bỏ trống',
             'remember_token' => 'Remember Token phải là kiểu boolean!'
         ];

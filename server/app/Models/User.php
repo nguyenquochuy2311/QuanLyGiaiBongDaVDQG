@@ -22,7 +22,7 @@ class User extends Authenticatable
     protected $primaryKey = 'UID';
      
     protected $fillable = [
-        'UserName',
+        'username',
         'email',
         'Role'
     ];
