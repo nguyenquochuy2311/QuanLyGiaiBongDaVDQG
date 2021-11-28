@@ -1,0 +1,84 @@
+@import "../../styles/variables";
+@import "../../styles/global";
+
+.footer {
+  background: $black-color;
+  a,i {
+    color: $white-color;
+    &:hover {
+      color: $primary-color;
+    }
+  }
+  .logo {
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  .card {
+    background: transparent;
+    &-title {
+      color: $bg-btn;
+      margin: 20px 0;
+    }
+  }
+
+  &__social-item {
+    font-size: 36px;
+  }
+
+  &__address {
+    padding-left: 40px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+    &-item {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 10px 0;
+      color: $white-color;
+      i{
+          font-size: 20px;
+      }
+      &:hover {
+            color: $primary-color;
+          i{
+              color: $primary-color;
+          }
+      }
+      &-text {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  &__policy {
+    a {
+      margin: 10px 0;
+    }
+  }
+
+  &__end {
+      position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 40px 0;
+    font-size: 16px;
+    color: $secondary-color;
+    &:after {
+      content: "";
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translate(-50%, 0);
+      width: 90%;
+      height: 1px;
+      background: $bg-btn;
+    }
+    a {
+      color: $bg-btn;
+    }
+  }
+}

@@ -1,0 +1,45 @@
+@import "../../../styles/variables";
+@import "../../../styles/global";
+
+.card {
+  justify-content: center;
+  align-items: center;
+  background: $white-color;
+  padding-top: 20px;
+  cursor: pointer;
+    
+  &:hover {
+    .card-img-top {
+      transform: scale(1.1);
+    }
+  }
+  &-img {
+    max-width: 266px;
+    max-height: 206px;
+    border-radius: 16px;
+    box-shadow: 0 4px 5px rgba($bg-btn, 0.3);
+    overflow: hidden;
+    margin: 10px;
+    &-top {
+      transform: scale(1);
+      transition: all 0.3s linear;
+    }
+  }
+  &-title {
+    color: $bg-btn;
+  }
+  &-text {
+    color: $black-color;
+  }
+  &-body{
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  &-icon {
+    i {
+      font-size: 30px;
+    }
+  }
+}
