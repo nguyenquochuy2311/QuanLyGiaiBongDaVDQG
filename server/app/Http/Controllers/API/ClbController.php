@@ -135,7 +135,6 @@ class ClbController extends Controller
     {
         $doi_bong = Clb::findOrFail($id);
         $data = count($doi_bong);
-
         if($data = 0 ){
             return response([
                 'status' => 404,
