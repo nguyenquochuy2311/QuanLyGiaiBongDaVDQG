@@ -27,11 +27,11 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'UserName' => 'required|max:255',
-            'Email' => 'required|email',
-            Rule::unique('user', 'Email')->ignore($this->id),
-            'Password' => 'required',
-            'Role' => 'required|integer'
+            'username' => 'required|max:255',
+            'email' => 'required|email',
+            Rule::unique('user', 'email')->ignore($this->id),
+            'password' => 'required',
+            'role' => 'required|integer'
         ];
     }
 
@@ -47,12 +47,12 @@ class UpdateUserRequest extends FormRequest
     public function messages()
     {
         return [
-            'UserName.required' => 'User name không được bỏ trống!',
-            'Email.required' => 'Email không được bỏ trống!',
-            'Email.email' => 'Email không đúng định dạng',
-            'Email.unique' => 'Email đã được đăng ký!',
-            'Password.required' => 'Mật khẩu không được bỏ trống',
-            'Role.required' => 'Chưa phân quyền user!',
+            'username.required' => 'User name không được bỏ trống!',
+            'email.required' => 'Email không được bỏ trống!',
+            'email.email' => 'Email không đúng định dạng',
+            'email.unique' => 'Email đã được đăng ký!',
+            'password.required' => 'Mật khẩu không được bỏ trống',
+            'role.required' => 'Chưa phân quyền user!',
         ];
     }
 }

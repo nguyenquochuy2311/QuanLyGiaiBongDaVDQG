@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreQDCauThuRequest;
+use App\Http\Requests\UpdateQDCauThuRequest;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreClbRequest;
-use App\Http\Requests\UpdateClbRequest;
-use App\Models\Clb;
+use App\Models\QuyDinhCauThu;
 
-class ClbController extends Controller
+class QDCauThuController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +17,7 @@ class ClbController extends Controller
      */
     public function index()
     {
-        // $data = Clb::all();
-        //$data = Clb::with('ds_cau_thu')->get(['idCLB', 'VietTat']);
-        //$data = Clb::all(['idCLB', 'VietTat']);
-        $data = Clb::with('ds_cau_thu')->get();
+        $data = QuyDinhCauThu::all();
         return response($data);
     }
 
@@ -43,10 +40,18 @@ class ClbController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreClbRequest $request)
+    public function store(StoreQDCauThuRequest $request)
     {
-        // post
-        Clb::create($request->all());
+        if(is_numeric($request->SLToiThieu) && is_numeric($request->SLToiDa)){
+            if($request->SLToiThieu>$request->SLToiDa){
+                return response()->json([
+                   'status' => false,
+                   'message' => 'Lỗi thêm dữ liệu',
+                   'detail'=> 'Số lượng tối thiểu phải nhỏ hơn số lượng tối đa'
+                ]);
+            }
+        }
+        QuyDinhCauThu::create($request->all());
         return response([
             'status' => 200,
             'message' => "Thêm thành công"
@@ -61,7 +66,7 @@ class ClbController extends Controller
      */
     public function show($id)
     {
-        $data = Clb::find($id);
+        $data = QuyDinhCauThu::find($id);
         if(empty($data)){
             return response([
                 'status' => 404,
@@ -79,7 +84,7 @@ class ClbController extends Controller
      */
     public function edit($id)
     {
-        $data = Clb::find($id);
+        $data = QuyDinhCauThu::find($id);
         if(empty($data)){
             return response([
                 'status' => 404,
@@ -96,20 +101,29 @@ class ClbController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateClbRequest $request, $id)
+    public function update(UpdateQDCauThuRequest $request, $id)
     {
-        $doi_bong = Clb::find($id);
-        if(empty($doi_bong)){
+        $quy_dinh = QuyDinhCauThu::find($id);
+        if(empty($quy_dinh)){
             return response([
                 'status' => 404,
                 'message' => 'Không tìm thấy'
             ]);
         }
-        $doi_bong->update($request->all());
+        if(is_numeric($request->SLToiThieu) && is_numeric($request->SLToiDa)){
+            if($request->SLToiThieu>$request->SLToiDa){
+                return response()->json([
+                   'status' => false,
+                   'message' => 'Lỗi cập nhật dữ liệu',
+                   'detail'=> 'Số lượng tối thiểu phải nhỏ hơn số lượng tối đa'
+                ]);
+            }
+        }
+        $quy_dinh->update($request->all());
         return response([
             'status' => 200,
             'message' => 'Cập nhật thành công',
-            "new_data" => $doi_bong
+            "new_data" => $quy_dinh
         ]);
     }
 
@@ -121,29 +135,17 @@ class ClbController extends Controller
      */
     public function destroy($id)
     {
-        $doi_bong = Clb::findOrFail($id);
-        if(empty($doi_bong || !is_numeric($id) )){
+        $quy_dinh = QuyDinhCauThu::find($id);
+        if(empty($quy_dinh)){
             return response([
                 'status' => 404,
                 'message' => 'Không tìm thấy'
             ]);
         }
-        $doi_bong->delete();
+        $quy_dinh->delete();
         return response([
             'status' => 200,
             'message' => 'Xóa thành công'
-        ]);
-    }
-
-    public function search($tenCLB)
-    {
-        $result = Clb::where('TenCLB', 'like', '%'.$tenCLB.'%')->get();
-        if(count($result)){
-            return $result;
-        }
-        return response([
-            'status' => 404,
-            'message' => 'Không tìm thấy'
         ]);
     }
 }

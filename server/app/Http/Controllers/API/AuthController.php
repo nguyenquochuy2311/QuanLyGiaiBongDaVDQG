@@ -6,10 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-use Validator;
 use App\Models\User;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\SignUpRequest;
+use App\Http\Requests\UpdateUserRequest;
 
 class AuthController extends Controller
 {
@@ -70,5 +70,92 @@ class AuthController extends Controller
     public function user(Request $request)
     {
         return response()->json($request->user());
+    }
+
+    public function index()
+    {
+        $data = User::all();
+        return response($data);
+    }
+
+    public function show($id)
+    {
+        $data = User::find($id);
+        if(empty($data)){
+            return response([
+                'status' => 404,
+                'message' => 'Không tìm thấy'
+            ]);
+        }
+        return response($data);
+    }
+
+    public function edit($id)
+    {
+        $data = User::find($id);
+        if(empty($data)){
+            return response([
+                'status' => 404,
+                'message' => 'Không tìm thấy'
+            ]);
+        }
+        return response($data);
+    }
+
+    public function update(UpdateUserRequest $request, $id)
+    {
+        $user = User::find($id);
+        if(empty($user)){
+            return response([
+                'status' => 404,
+                'message' => 'Không tìm thấy'
+            ]);
+        }
+        $user->update($request->all());
+        return response([
+            'status' => 200,
+            'message' => 'Cập nhật thành công',
+            "new_data" => $user 
+        ]);
+    }
+
+    public function destroy($id)
+    {
+        $user = User::find($id);
+        if(empty($user)){
+            return response([
+                'status' => 404,
+                'message' => 'Không tìm thấy'
+            ]);
+        }
+        $user->delete();
+        return response([
+            'status' => 200,
+            'message' => 'Xóa thành công'
+        ]);
+    }
+
+    public function search($username)
+    {
+        $result = User::where('username', 'like', '%'.$username.'%')->get();
+        if(count($result)){
+            return $result;
+        }
+        return response([
+            'status' => 404,
+            'message' => 'Không tìm thấy'
+        ]); 
+    }
+
+    public function searchEmail($email)
+    {
+        $result = User::where('email', 'like', '%'.$email.'%')->get();
+        if(count($result)){
+            return $result;
+        }
+        return response([
+            'status' => 404,
+            'message' => 'Không tìm thấy'
+        ]); 
     }
 }
