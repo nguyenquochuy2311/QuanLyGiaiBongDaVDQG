@@ -75,20 +75,10 @@ Route::get('ketqua/{idKQ}', [KetQuaController::class, 'show']);
 Route::get('xuphat', [XuPhatController::class, 'index']);
 Route::get('xuphat/{idXP}', [XuPhatController::class, 'show']);
 
-// Clb
-Route::get('clb', [ClbController::class, 'index']);
-Route::get('clb/{idCLB}', [ClbController::class, 'show']);
-Route::get('clb/search/{keyword}', [ClbController::class, 'search']);
-
 // Cau thu
 Route::get('cauthu', [CauThuController::class, 'index']);
 Route::get('cauthu/{id}', [CauThuController::class, 'show']);
 // Route::get('cau_thu/search/{keyword}', [DoiBongController::class, 'search']);
-
-// Clb
-Route::get('clb', [ClbController::class, 'index']);
-Route::get('clb/{idCLB}', [ClbController::class, 'show']);
-Route::get('clb/search/{tenCLB}', [ClbController::class, 'search']);
 
 // Cau thu
 Route::get('cauthu', [CauThuController::class, 'index']);
@@ -113,11 +103,6 @@ Route::get('bxh_clb', [BxhCLBController::class, 'index']);
 //bxh CT
 Route::get('bxh_ct', [BxhCTController::class, 'index']);
 
-// Clb
-Route::get('clb', [ClbController::class, 'index']);
-Route::get('clb/{idCLB}', [ClbController::class, 'show']);
-Route::get('clb/search/{tenCLB}', [ClbController::class, 'search']);
-
 // Quy Dinh Ban Thang
 Route::get('qd-banthang', [QDBanThangController::class, 'index']);
 Route::get('qd-banthang/{idQUYDINHBANTHANG}', [QDBanThangController::class, 'show']);
@@ -130,11 +115,6 @@ Route::get('qd-cauthu/{idQDCT}', [QDCauThuController::class, 'show']);
 // Quy Dinh Diem So
 Route::get('qd-diemso', [QDDiemSoController::class, 'index']);
 Route::get('qd-diemso/{idQUYDINHDIEMSO}', [QDDiemSoController::class, 'show']);
-
-// Cau thu
-Route::get('cauthu', [CauThuController::class, 'index']);
-Route::get('cauthu/{id}', [CauThuController::class, 'show']);
-// Route::get('cau_thu/search/{keyword}', [DoiBongController::class, 'search']);
 
 Route::group([
     'prefix' => 'auth'
