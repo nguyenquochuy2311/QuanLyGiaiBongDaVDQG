@@ -40,131 +40,63 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('clb', [ClbController::class, 'index']);
 Route::get('clb/{idCLB}', [ClbController::class, 'show']);
 Route::get('clb/search/{tenCLB}', [ClbController::class, 'search']);
+
 // Tran Dau
 Route::get('trandau', [TranDauController::class, 'index']);
 Route::get('trandau/{idTD}', [TranDauController::class, 'show']);
 Route::get('trandau/filterlsd/{day}-{month}', [TranDauController::class, 'getLichSuDau']);
-// Admin Tran Dau
-Route::get('ad/trandau/edit/{idTD}', [TranDauController::class, 'edit']);
-Route::put('ad/trandau/update/{idTD}', [TranDauController::class, 'update']);
 
 // Ghi Ban
 Route::get('ghiban', [GhiBanController::class, 'index']);
 Route::get('ghiban/{idGB}', [GhiBanController::class, 'show']);
 
-
-// Admin Ghi Ban
-Route::get('ad/ghiban/create', [GhiBanController::class, 'create']);
-Route::post('ad/ghiban/store', [GhiBanController::class, 'store']);
-Route::get('ad/ghiban/edit/{idGB}', [GhiBanController::class, 'edit']);
-Route::put('ad/ghiban/update/{idGB}', [GhiBanController::class, 'update']);
-Route::delete('ad/ghiban/delete/{idGB}', [GhiBanController::class, 'destroy']);
-
 // Ket Qua
 Route::get('ketqua', [KetQuaController::class, 'index']);
 Route::get('ketqua/{idKQ}', [KetQuaController::class, 'show']);
-Route::post('ad/ketqua/store', [KetQuaController::class, 'store']);
-Route::delete('ad/ketqua/delete/{idGB}', [KetQuaController::class, 'destroy']);
-
-// Admin Ket Qua 
-Route::get('ad/ketqua/edit/{idKQ}', [KetQuaController::class, 'edit']);
-Route::put('ad/ketqua/update/{idKQ}', [KetQuaController::class, 'update']);
 
 // Xu phat
 Route::get('xuphat', [XuPhatController::class, 'index']);
 Route::get('xuphat/{idXP}', [XuPhatController::class, 'show']);
-// Admin Xu Phat
-Route::get('ad/xuphat/create', [XuPhatController::class, 'create']);
-Route::post('ad/xuphat/store', [XuPhatController::class, 'store']);
-Route::get('ad/xuphat/edit/{idXP}', [XuPhatController::class, 'edit']);
-Route::put('ad/xuphat/update/{idXP}', [XuPhatController::class, 'update']);
-Route::delete('ad/xuphat/delete/{idXP}', [XuPhatController::class, 'destroy']);
-
-// Clb
-Route::get('clb', [ClbController::class, 'index']);
-Route::get('clb/{idCLB}', [ClbController::class, 'show']);
-Route::get('clb/search/{keyword}', [ClbController::class, 'search']);
 
 // Tran Dau
 Route::get('trandau', [TranDauController::class, 'index']);
 Route::get('trandau/{idTD}', [TranDauController::class, 'show']);
-// Admin Tran Dau
-Route::put('ad/trandau/edit/{idTD}', [TranDauController::class, 'edit']);
-Route::put('ad/trandau/update/{idTD}', [TranDauController::class, 'update']);
 
 // Ghi Ban
 Route::get('ghiban', [GhiBanController::class, 'index']);
 Route::get('ghiban/{idGB}', [GhiBanController::class, 'show']);
 Route::get('ghiban/detail/{idGB}', [GhiBanController::class, 'showDetail']);
-// Admin Ghi Ban
-Route::put('ad/ghiban/create', [GhiBanController::class, 'create']);
-Route::post('ad/ghiban/store', [GhiBanController::class, 'store']);
-Route::put('ad/ghiban/edit/{idGB}', [GhiBanController::class, 'edit']);
-Route::put('ad/ghiban/update/{idGB}', [GhiBanController::class, 'update']);
-Route::delete('ad/ghiban/delete/{idGB}', [GhiBanController::class, 'destroy']);
 
 // Ket Qua
 Route::get('ketqua', [KetQuaController::class, 'index']);
 Route::get('ketqua/{idKQ}', [KetQuaController::class, 'show']);
 
-
-// Admin Ket Qua 
-Route::put('ad/ketqua/edit/{idKQ}', [KetQuaController::class, 'edit']);
-Route::put('ad/ketqua/update/{idKQ}', [KetQuaController::class, 'update']);
-
 // Xu phat
 Route::get('xuphat', [XuPhatController::class, 'index']);
 Route::get('xuphat/{idXP}', [XuPhatController::class, 'show']);
-// Admin Xu Phat
-
 
 // Clb
 Route::get('clb', [ClbController::class, 'index']);
 Route::get('clb/{idCLB}', [ClbController::class, 'show']);
 Route::get('clb/search/{keyword}', [ClbController::class, 'search']);
 
-
-// // Cau thu
+// Cau thu
 Route::get('cauthu', [CauThuController::class, 'index']);
 Route::get('cauthu/{id}', [CauThuController::class, 'show']);
 // Route::get('cau_thu/search/{keyword}', [DoiBongController::class, 'search']);
-
-// // Admin
-Route::get('ad/clb/create', [ClbController::class, 'create']);
-Route::get('ad/clb/edit/{idCLB}', [ClbController::class, 'edit']);
-Route::post('ad/clb/store',[ClbController::class, 'store']);
-Route::put('ad/clb/update/{idCLB}', [ClbController::class, 'update']);
-Route::delete('ad/clb/delete/{idCLB}', [ClbController::class, 'destroy']);
-
-
-Route::post('ad/hlv/store',[HlvController::class, 'store']);
-Route::delete('ad/hlv/delete/{idhlv}', [HlvController::class, 'destroy']);
-Route::put('ad/hlv/update/{idHLV}', [HlvController::class, 'update']);
-
-Route::post('ad/trongtai/store',[TrongTaiController::class, 'store']);
-Route::delete('ad/trongtai/delete/{idTT}', [TrongTaiController::class, 'destroy']);
-Route::put('ad/trongtai/update/{idTT}', [TrongTaiController::class, 'update']);
-
-Route::post('totrongtai/addTotrongtai/{idTTC},{idTTB1},{idTTB2}',[ToTrongTaiController::class, 'addTotrongtai']);
-Route::put('ad/totrongtai/update/{idToTT},{idTT}', [ToTrongTaiController::class, 'update']);
-
-Route::post('ad/cauthu/store',[CauThuController::class, 'store']);
-Route::delete('ad/cauthu/delete/{idCT}', [CauThuController::class, 'destroy']);
-Route::put('ad/cauthu/update/{idCT}', [CauThuController::class, 'update']);
 
 // Clb
 Route::get('clb', [ClbController::class, 'index']);
 Route::get('clb/{idCLB}', [ClbController::class, 'show']);
 Route::get('clb/search/{tenCLB}', [ClbController::class, 'search']);
 
-// // Cau thu
+// Cau thu
 Route::get('cauthu', [CauThuController::class, 'index']);
-Route::get('clb/search/{tenCT}', [CauThuController::class, 'search']);
+Route::get('cauthu/search/{tenCT}', [CauThuController::class, 'search']);
 
-// hlv
+// HLV
 Route::get('hlv', [HlvController::class, 'index']);
 Route::get('hlv/search/{tenHLV}', [HlvController::class, 'search']);
-
 // Route::get('hlv/{idHLV}', [HlvController::class, 'show']);
 // Route::get('hlv/search/{keyword}', [HlvController::class, 'search']);
 
@@ -212,6 +144,7 @@ Route::group([
     Route::group([
       'middleware' => 'auth:api'
     ], function() {
+        // Admin User
         Route::delete('logout', [AuthController::class, 'logout']);
         Route::get('me', [AuthController::class, 'user']);
         
@@ -223,24 +156,71 @@ Route::group([
         Route::get('search-name/{username}', [AuthController::class, 'search']);
         Route::get('search-email/{email}', [AuthController::class, 'searchEmail']);
         
+        // Admin CLB
         Route::get('clb/create', [ClbController::class, 'create']);
         Route::post('clb/store',[ClbController::class, 'store']);
         Route::get('clb/edit/{idCLB}', [ClbController::class, 'edit']);
         Route::put('clb/update/{idCLB}', [ClbController::class, 'update']);
         Route::delete('clb/delete/{idCLB}', [ClbController::class, 'destroy']);
+
+        // Admin HLV
+        Route::post('hlv/store',[HlvController::class, 'store']);
+        Route::delete('hlv/delete/{idhlv}', [HlvController::class, 'destroy']);
+        Route::put('hlv/update/{idHLV}', [HlvController::class, 'update']);
         
+        // Admin Cau Thu
+        Route::post('cauthu/store',[CauThuController::class, 'store']);
+        Route::delete('cauthu/delete/{idCT}', [CauThuController::class, 'destroy']);
+        Route::put('cauthu/update/{idCT}', [CauThuController::class, 'update']);
+
+        // Admin Trong Tai
+        Route::post('trongtai/store',[TrongTaiController::class, 'store']);
+        Route::delete('trongtai/delete/{idTT}', [TrongTaiController::class, 'destroy']);
+        Route::put('trongtai/update/{idTT}', [TrongTaiController::class, 'update']);
+        
+        // Admin To Trong Tai
+        Route::post('totrongtai/addTotrongtai/{idTTC},{idTTB1},{idTTB2}',[ToTrongTaiController::class, 'addTotrongtai']);
+        Route::put('totrongtai/update/{idToTT},{idTT}', [ToTrongTaiController::class, 'update']);
+
+        // Admin Tran Dau
+        Route::get('trandau/edit/{idTD}', [TranDauController::class, 'edit']);
+        Route::put('trandau/update/{idTD}', [TranDauController::class, 'update']);
+
+        // Admin Ket Qua 
+        Route::post('ketqua/store', [KetQuaController::class, 'store']);
+        Route::put('ketqua/edit/{idKQ}', [KetQuaController::class, 'edit']);
+        Route::put('ketqua/update/{idKQ}', [KetQuaController::class, 'update']);
+        Route::delete('ketqua/delete/{idGB}', [KetQuaController::class, 'destroy']);
+
+        // Admin Ghi Ban
+        Route::get('ghiban/create', [GhiBanController::class, 'create']);
+        Route::post('ghiban/store', [GhiBanController::class, 'store']);
+        Route::get('ghiban/edit/{idGB}', [GhiBanController::class, 'edit']);
+        Route::put('ghiban/update/{idGB}', [GhiBanController::class, 'update']);
+        Route::delete('ghiban/delete/{idGB}', [GhiBanController::class, 'destroy']);
+        
+        // Admin Xu Phat
+        Route::get('xuphat/create', [XuPhatController::class, 'create']);
+        Route::post('xuphat/store', [XuPhatController::class, 'store']);
+        Route::get('xuphat/edit/{idXP}', [XuPhatController::class, 'edit']);
+        Route::put('xuphat/update/{idXP}', [XuPhatController::class, 'update']);
+        Route::delete('xuphat/delete/{idXP}', [XuPhatController::class, 'destroy']);
+
+        // Admin Quy Dinh Ban Thang
         Route::get('qd-banthang/create', [QDBanThangController::class, 'create']);
         Route::post('qd-banthang/store',[QDBanThangController::class, 'store']);
         Route::get('qd-banthang/edit/{idQUYDINHBANTHANG}', [QDBanThangController::class, 'edit']);
         Route::put('qd-banthang/update/{idQUYDINHBANTHANG}', [QDBanThangController::class, 'update']);
         Route::delete('qd-banthang/delete/{idQUYDINHBANTHANG}', [QDBanThangController::class, 'destroy']);
 
+        // Admin Quy Dinh Cau Thu
         Route::get('qd-cauthu/create', [QDCauThuController::class, 'create']);
         Route::post('qd-cauthu/store',[QDCauThuController::class, 'store']);
         Route::get('qd-cauthu/edit/{idQDCT}', [QDCauThuController::class, 'edit']);
         Route::put('qd-cauthu/update/{idQDCT}', [QDCauThuController::class, 'update']);
         Route::delete('qd-cauthu/delete/{idQDCT}', [QDCauThuController::class, 'destroy']);
 
+        // Admin Quy Dinh Diem So
         Route::get('qd-diemso/create', [QDDiemSoController::class, 'create']);
         Route::post('qd-diemso/store',[QDDiemSoController::class, 'store']);
         Route::get('qd-diemso/edit/{idQUYDINHDIEMSO}', [QDDiemSoController::class, 'edit']);
