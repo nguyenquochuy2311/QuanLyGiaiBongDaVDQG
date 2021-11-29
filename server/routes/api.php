@@ -35,6 +35,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
 // Clb
 Route::get('clb', [ClbController::class, 'index']);
 Route::get('clb/{idCLB}', [ClbController::class, 'show']);

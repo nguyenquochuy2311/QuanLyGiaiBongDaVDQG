@@ -5,7 +5,9 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Hlv;
+use App\Http\Requests\StoreHLVRequest;
+use App\Http\Requests\UpdateHlvRequest;
 
 class HlvController extends Controller
 {
@@ -16,7 +18,11 @@ class HlvController extends Controller
      */
     public function index()
     {
-        //
+        // $data = Hlv::with('CLB')->get();
+        $data = Hlv::with('CLB')->get();
+
+        return response($data);
+        
     }
 
     /**
@@ -69,7 +75,7 @@ class HlvController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUserRequest $request, $id)
+    public function update(UpdateHlvRequest $request, $id)
     {
         
     }
@@ -82,6 +88,30 @@ class HlvController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Hlv::findOrFail($id);
+        // if(empty($doi_bong) || !is_numeric() ){
+         if(empty($data)  ){
+            return response([
+                'status' => 404,
+                'message' => 'Không tìm thấy'
+            ]);
+        }
+        $data->delete(); 
+        return response([
+            'status' => 200,
+            'message' => 'Xóa thành công'
+        ]);
+    }
+
+    public function search($tenHLV)
+    {
+        $result = Hlv::where('TenHlv', 'like', '%'.$tenHLV.'%')->get();
+        if(count($result)){
+            return $result;
+        }
+        return response([
+            'status' => 404,
+            'message' => 'Không tìm thấy'
+        ]);
     }
 }

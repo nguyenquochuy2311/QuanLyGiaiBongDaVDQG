@@ -4,12 +4,12 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreClbRequest;
-use App\Http\Requests\UpdateClbRequest;
-use App\Models\Clb;
-use App\Models\Hlv;
-use \DB;
-class ClbController extends Controller
+use App\Http\Requests\StoreGhiBanRequest;
+use App\Http\Requests\UpdateGhiBanRequest;
+use App\Models\GhiBan;
+use Illuminate\Support\Facades\DB;
+
+class GhiBanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,20 +18,14 @@ class ClbController extends Controller
      */
     public function index()
     {
+        $banthangs = GhiBan::all();
         
-        // $data_HLV = Clb::with('ds_hlv')->get();
-        // $data_Cauthu = Clb::with('ds_cau_thu')->get();
-
-        
-        $clb = DB::table('clb')
-            ->join('cauthu', 'clb.idCLB', '=', 'cauthu.idCLB')
-            ->join('hlv','clb.idCLB', '=' ,'hlv.idCLB')
-            ->select( 'TenHLV','TenCT')
-           
-            ->get();
-        return response($clb);
-
-        // return response($data_HLV);
+        foreach ($banthangs as $banthang) {
+            $banthang['TenCauThu'] = $banthang['cauthu']['TenCT'];
+            $banthang['SoAo'] = $banthang['cauthu']['SoAo'];
+            $banthang['ViTri'] = $banthang['cauthu']['ViTri'];
+        }
+        return response($banthangs);
     }
 
     /**
@@ -42,7 +36,7 @@ class ClbController extends Controller
     public function create()
     {
         return response([
-            'status' => 200,
+            'status' => 201,
             'message' => 'OK'
         ]);
     }
@@ -53,12 +47,11 @@ class ClbController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreClbRequest $request)
+    public function store(StoreGhiBanRequest $request)
     {
-        // post
-        Clb::create($request->all());
+        GhiBan::create($request->all());
         return response([
-            'status' => 200,
+            'status' => 201,
             'message' => "Thêm thành công"
         ]);
     }
@@ -71,7 +64,7 @@ class ClbController extends Controller
      */
     public function show($id)
     {
-        $data = Clb::find($id);
+        $data = GhiBan::find($id);
         if(empty($data)){
             return response([
                 'status' => 404,
@@ -79,7 +72,18 @@ class ClbController extends Controller
             ]);
         }
 
-        return response($data);
+        $detail = [
+            'idGB' => $data['idGB'],
+            'idKQ' => $data['idKQ'],
+            'idCT' => $data['idCT'],
+            'TenCauThu' => $data->cauthu['TenCT'],
+            'SoAo' => $data->cauthu['SoAo'],
+            'ViTri' => $data->cauthu['ViTri'],
+            'LoaiBT' => $data['LoaiBT'],
+            'ThoiDiem' => $data['ThoiDiem']
+        ];
+
+        return response($detail);
     }
 
     /**
@@ -90,7 +94,7 @@ class ClbController extends Controller
      */
     public function edit($id)
     {
-        $data = Clb::find($id);
+        $data = GhiBan::find($id);
         if(empty($data)){
             return response([
                 'status' => 404,
@@ -107,20 +111,20 @@ class ClbController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateClbRequest $request, $id)
+    public function update(UpdateGhiBanRequest $request, $id)
     {
-        $doi_bong = Clb::find($id);
-        if(empty($doi_bong)){
+        $ban_thang = GhiBan::find($id);
+        if(empty($ban_thang )){
             return response([
                 'status' => 404,
                 'message' => 'Không tìm thấy'
             ]);
         }
-        $doi_bong->update($request->all());
+        $ban_thang ->update($request->all());
         return response([
             'status' => 200,
             'message' => 'Cập nhật thành công',
-            "new_data" => $doi_bong
+            "new_data" => $ban_thang 
         ]);
     }
 
@@ -132,24 +136,20 @@ class ClbController extends Controller
      */
     public function destroy($id)
     {
-        $doi_bong = Clb::findOrFail($id);
-        $data = count($doi_bong);
-        if($data = 0 ){
+        
+        $ban_thang = GhiBan::findOrFail($id);
+        if(empty($ban_thang || !is_numeric($id) )){
             return response([
                 'status' => 404,
                 'message' => 'Không tìm thấy'
             ]);
-        }else{
-            $doi_bong->delete();
-            return response([
-                'status' => 200,
-                'message' => 'Xóa thành công'
-            ]);
         }
+        $ban_thang->delete();
+        return response([
+            'status' => 200,
+            'message' => 'Xóa thành công'
+        ]);
     }
 
-    public function search($keyword)
-    {
-        return Clb::where('TenCLB', 'like', '%'.$keyword.'%')->get();
-    }
+ 
 }
