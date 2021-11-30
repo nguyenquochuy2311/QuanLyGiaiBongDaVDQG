@@ -31,12 +31,8 @@ class UpdateHLVRequest extends FormRequest
             'TenHLV'=> 'required',
             'NgaySinh'=> 'required',
             'ChucVu'=> 'required',
-            // 'AnhDaiDien'=>'required',
-            Rule::unique('hlv', 'idClb')->ignore($this->id), 
-            Rule::unique('hlv', 'TenHLV')->ignore($this->id),
-            Rule::unique('hlv', 'NgaySinh')->ignore($this->id),
-            Rule::unique('hlv', 'ChucVu')->ignore($this->id)
-            // Rule::unique('hlv', 'AnhDaiDien')->ignore($this->id)
+            'AnhDaiDien'=>'required',
+            Rule::unique('hlv', 'AnhDaiDien')->ignore($this->id)
         ];
     }
 
@@ -56,7 +52,7 @@ class UpdateHLVRequest extends FormRequest
             'TenHLV.required' => 'Tên HLV không được bỏ trống!',
             'NgaySinh.required' => 'Ngày sinh HLV không được bỏ trống!',
             'ChucVu.required' => 'Chức vụ HLV không được bỏ trống!',
-            // 'AnhDaiDien.required' => 'Ảnh HLV HLV không được bỏ trống!',
+            'AnhDaiDien.required' => 'Ảnh HLV HLV không được bỏ trống!',
 
         ];
     }

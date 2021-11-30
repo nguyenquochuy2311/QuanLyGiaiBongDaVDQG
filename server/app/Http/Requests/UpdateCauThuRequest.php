@@ -34,11 +34,7 @@ class UpdateCauThuRequest extends FormRequest
             'ChieuCao'=> 'required',
             'LoaiCauThu'=> 'required',
             'AnhDaiDien'=>'required',
-            Rule::unique('hlv', 'idClb')->ignore($this->id), 
-            Rule::unique('hlv', 'TenHLV')->ignore($this->id),
-            Rule::unique('hlv', 'NgaySinh')->ignore($this->id),
-            Rule::unique('hlv', 'ChucVu')->ignore($this->id),
-            Rule::unique('hlv', 'AnhDaiDien')->ignore($this->id)
+            
         ];
     }
 

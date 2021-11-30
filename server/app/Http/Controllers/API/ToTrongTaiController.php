@@ -28,8 +28,8 @@ class ToTrongTaiController extends Controller
     public function create()
     {
         return response([
-            'status' => 200,
-            'message' => 'OK'
+            'status' => 201,
+            'message' => 'Thêm Tổ trọng tài thành công'
         ]);
     }
 
@@ -39,15 +39,9 @@ class ToTrongTaiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store($idTTC,$idTTB1,$idTTB2)
     {
       
-        // $data = $Array;
-        // return response($data);
-    }
-
-    public function addTotrongtai($idTTC,$idTTB1,$idTTB2){
-       
         $Trongtaichinh = TrongTai::find($idTTC);
         $Trongtaibien1 = TrongTai::find($idTTB1);
         $TrongTaibien2 = TrongTai::find($idTTB2);
@@ -106,8 +100,7 @@ class ToTrongTaiController extends Controller
         }
     }
 
-    public function show_array(){
-    }
+   
     /**
      * Display the specified resource.
      *
@@ -116,7 +109,9 @@ class ToTrongTaiController extends Controller
      */
     public function show($id)
     {
-        //
+        // $Totrongtai = ToTrongTai::where('idToTT', $id)->value('idTT');
+        $Totrongtai = DB::select('select TenTT from trongtai join totrongtai on trongtai.idTT = totrongtai.idTT where idToTT = "'.$id.'"');
+        return response(['Totrongtai'=>$Totrongtai]);
     }
 
     /**
@@ -127,7 +122,15 @@ class ToTrongTaiController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = ToTrongTai::find($id);
+        if(empty($data)){
+            return response([
+                'status' => 404,
+                'message' => 'Không tìm thấy'
+            ]);
+        }
+        
+        return response($data);
     }
 
     /**
@@ -169,7 +172,7 @@ class ToTrongTaiController extends Controller
     public function destroy($id)
     {
         $data = ToTrongTai::findOrFail($id);
-         if(empty($data)  ){
+        if(empty($data)){
             return response([
                 'status' => 404,
                 'message' => 'Không tìm thấy'

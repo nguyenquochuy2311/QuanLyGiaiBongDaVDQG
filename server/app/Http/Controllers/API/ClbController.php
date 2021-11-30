@@ -27,7 +27,6 @@ class ClbController extends Controller
             ->join('cauthu', 'clb.idCLB', '=', 'cauthu.idCLB')
             ->join('hlv','clb.idCLB', '=' ,'hlv.idCLB')
             ->select( 'TenHLV','TenCT')
-           
             ->get();
         return response($clb);
 
@@ -43,8 +42,8 @@ class ClbController extends Controller
     {
         // form get
         return response([
-            'status' => 200,
-            'message' => 'OK'
+            'status' => 201,
+            'message' => 'Thêm CLB thành công'
         ]);
     }
 

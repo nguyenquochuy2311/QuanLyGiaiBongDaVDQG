@@ -28,10 +28,8 @@ class UpdateTrongTaiRequest extends FormRequest
             'NgaySinh'=> 'required',
             'ViTri'=> 'required',
             'AnhDaiDien'=> 'required',
-            Rule::unique('hlv', 'TenHLV')->ignore($this->id),
-            Rule::unique('hlv', 'NgaySinh')->ignore($this->id),
-            Rule::unique('hlv', 'ViTri')->ignore($this->id),
-            Rule::unique('hlv', 'AnhDaiDien')->ignore($this->id)
+            
+            Rule::unique('trongtai', 'AnhDaiDien')->ignore($this->id)
         ];
     }
 

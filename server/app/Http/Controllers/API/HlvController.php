@@ -32,8 +32,8 @@ class HlvController extends Controller
     public function create()
     {
         return response([
-            'status' => 200,
-            'message' => 'OK'
+            'status' => 201,
+            'message' => 'Thêm HLV thành công'
         ]);
     }
 
