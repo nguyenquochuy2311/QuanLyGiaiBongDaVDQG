@@ -31,7 +31,10 @@ class HlvController extends Controller
      */
     public function create()
     {
-        //
+        return response([
+            'status' => 201,
+            'message' => 'Thêm HLV thành công'
+        ]);
     }
 
     /**
@@ -40,9 +43,13 @@ class HlvController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreHLVRequest $request)
     {
-        //
+        Hlv::create($request->all());
+        return response([
+            'status' => 200,
+            'message' => "Thêm thành công"
+        ]);
     }
 
     /**
@@ -53,7 +60,14 @@ class HlvController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Hlv::find($id);
+        if(empty($data)){
+            return response([
+                'status' => 404,
+                'message' => 'Không tìm thấy'
+            ]);
+        }
+        return response($data);
     }
 
     /**
@@ -64,7 +78,14 @@ class HlvController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Hlv::find($id);
+        if(empty($data)){
+            return response([
+                'status' => 404,
+                'message' => 'Không tìm thấy'
+            ]);
+        }
+        return response($data);
     }
 
     /**
@@ -76,7 +97,19 @@ class HlvController extends Controller
      */
     public function update(UpdateHlvRequest $request, $id)
     {
-        //
+        $HLV = Hlv::find($id);
+        if(empty($HLV)){
+            return response([
+                'status' => 404,
+                'message' => 'Không tìm thấy'
+            ]);
+        }
+        $HLV->update($request->all());
+        return response([
+            'status' => 200,
+            'message' => 'Cập nhật thành công',
+            "new_data" => $HLV
+        ]);
     }
 
     /**

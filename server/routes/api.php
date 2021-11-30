@@ -136,17 +136,27 @@ Route::delete('ad/clb/delete/{idCLB}', [ClbController::class, 'destroy']);
 Route::post('ad/hlv/store',[HlvController::class, 'store']);
 Route::delete('ad/hlv/delete/{idhlv}', [HlvController::class, 'destroy']);
 Route::put('ad/hlv/update/{idHLV}', [HlvController::class, 'update']);
+Route::get('ad/hlv/edit/{id}',[HlvController::class, 'edit']);
+Route::get('ad/hlv/show/{id}',[HlvController::class, 'show']);
 
 Route::post('ad/trongtai/store',[TrongTaiController::class, 'store']);
 Route::delete('ad/trongtai/delete/{idTT}', [TrongTaiController::class, 'destroy']);
 Route::put('ad/trongtai/update/{idTT}', [TrongTaiController::class, 'update']);
+Route::get('ad/trongtai/edit/{id}',[TrongTaiController::class, 'edit']);
+Route::get('ad/trongtai/show/{id}',[TrongTaiController::class, 'show']);
 
-Route::post('totrongtai/addTotrongtai/{idTTC},{idTTB1},{idTTB2}',[ToTrongTaiController::class, 'addTotrongtai']);
+Route::post('ad/totrongtai/store/{idTTC},{idTTB1},{idTTB2}',[ToTrongTaiController::class, 'store']);
 Route::put('ad/totrongtai/update/{idToTT},{idTT}', [ToTrongTaiController::class, 'update']);
+Route::get('ad/totrongtai/edit/{id}',[ToTrongTaiController::class, 'edit']);
+Route::get('ad/totrongtai/show/{id}',[ToTrongTaiController::class, 'show']);
+Route::delete('ad/totrongtai/delete/{idToTT}', [ToTrongTaiController::class, 'destroy']);
+
 
 Route::post('ad/cauthu/store',[CauThuController::class, 'store']);
 Route::delete('ad/cauthu/delete/{idCT}', [CauThuController::class, 'destroy']);
 Route::put('ad/cauthu/update/{idCT}', [CauThuController::class, 'update']);
+Route::get('ad/cauthu/edit/{id}',[CauThuController::class, 'edit']);
+Route::get('ad/cauthu/show/{id}',[CauThuController::class, 'show']);
 
 // Clb
 Route::get('clb', [ClbController::class, 'index']);
@@ -160,9 +170,6 @@ Route::get('clb/search/{tenCT}', [CauThuController::class, 'search']);
 // hlv
 Route::get('hlv', [HlvController::class, 'index']);
 Route::get('hlv/search/{tenHLV}', [HlvController::class, 'search']);
-
-// Route::get('hlv/{idHLV}', [HlvController::class, 'show']);
-// Route::get('hlv/search/{keyword}', [HlvController::class, 'search']);
 
 // trong tài
 Route::get('trongtai', [TrongTaiController::class, 'index']);
