@@ -27,7 +27,7 @@ class UpdateQDCauThuRequest extends FormRequest
     public function rules()
     {
         return [
-            'idMG' => 'required|interger',
+            'idMG' => 'required',
             'TuoiToiThieu' => 'required|integer|between:15,20',
             'TuoiToiDa' => 'required|integer|between:20,55',
             'SLToiThieu' => 'required|integer|between:0,32',

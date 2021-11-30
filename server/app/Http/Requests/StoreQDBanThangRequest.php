@@ -26,7 +26,7 @@ class StoreQDBanThangRequest extends FormRequest
     public function rules()
     {
         return [
-            'idMG' => 'required|interger',
+            'idMG' => 'required',
             'LoaiBT' => 'required|string|max:10',
             'ThoiDiemBatDau' => 'required|integer|between:0,100',
             'ThoiDiemKetThuc' => 'required|integer|between:0,100',

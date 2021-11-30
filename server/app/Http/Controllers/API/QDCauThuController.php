@@ -42,15 +42,15 @@ class QDCauThuController extends Controller
      */
     public function store(StoreQDCauThuRequest $request)
     {
-        if(is_numeric($request->SLToiThieu) && is_numeric($request->SLToiDa)){
-            if($request->SLToiThieu>$request->SLToiDa){
-                return response()->json([
-                   'status' => false,
-                   'message' => 'Lỗi thêm dữ liệu',
-                   'detail'=> 'Số lượng tối thiểu phải nhỏ hơn số lượng tối đa'
-                ]);
-            }
-        }
+        // if(is_numeric($request->SLToiThieu) && is_numeric($request->SLToiDa)){
+        //     if($request->SLToiThieu>$request->SLToiDa){
+        //         return response()->json([
+        //            'status' => false,
+        //            'message' => 'Lỗi thêm dữ liệu',
+        //            'detail'=> 'Số lượng tối thiểu phải nhỏ hơn số lượng tối đa'
+        //         ]);
+        //     }
+        // }
         QuyDinhCauThu::create($request->all());
         return response([
             'status' => 200,
@@ -110,15 +110,15 @@ class QDCauThuController extends Controller
                 'message' => 'Không tìm thấy'
             ]);
         }
-        if(is_numeric($request->SLToiThieu) && is_numeric($request->SLToiDa)){
-            if($request->SLToiThieu>$request->SLToiDa){
-                return response()->json([
-                   'status' => false,
-                   'message' => 'Lỗi cập nhật dữ liệu',
-                   'detail'=> 'Số lượng tối thiểu phải nhỏ hơn số lượng tối đa'
-                ]);
-            }
-        }
+        // if(is_numeric($request->SLToiThieu) && is_numeric($request->SLToiDa)){
+        //     if($request->SLToiThieu>$request->SLToiDa){
+        //         return response()->json([
+        //            'status' => false,
+        //            'message' => 'Lỗi cập nhật dữ liệu',
+        //            'detail'=> 'Số lượng tối thiểu phải nhỏ hơn số lượng tối đa'
+        //         ]);
+        //     }
+        // }
         $quy_dinh->update($request->all());
         return response([
             'status' => 200,

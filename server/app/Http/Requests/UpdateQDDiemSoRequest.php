@@ -26,7 +26,7 @@ class UpdateQDDiemSoRequest extends FormRequest
     public function rules()
     {
         return [
-            'idMG' => 'required|interger',
+            'idMG' => 'required',
             'DiemThang' => 'required|interger',
             'DiemHoa' => 'required|integer',
             'DiemThua' => 'required|integer'
