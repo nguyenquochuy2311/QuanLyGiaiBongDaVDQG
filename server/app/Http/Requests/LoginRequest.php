@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
 
-class StoreToTrongTaiRequest extends FormRequest
+class LoginRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,13 +26,9 @@ class StoreToTrongTaiRequest extends FormRequest
     public function rules()
     {
         return [
-            'idCLB' => 'required|max:10',
-            'TenHLV' => 'required|max:45',
-            'NgaySinh' => 'required|max:45',
-            'ChucVu' => 'required|max:45',
-            'AnhDaiDien' => 'required|max:45',
-            // 'created_at' => 'required|max:45',
-            // 'updated_at' => 'required|max:45',
+            'email' => 'required|email',
+            'password' => 'required|string',
+            'remember_token' => 'boolean'
         ];
     }
 
@@ -40,7 +36,7 @@ class StoreToTrongTaiRequest extends FormRequest
     {
         throw new HttpResponseException(response()->json([
             'status' => false,
-            'message' => 'Lỗi thêm dữ liệu',
+            'message' => 'Lỗi đăng nhập không hợp lệ',
             'detail' => $validator->errors()
         ]));
     }
@@ -48,12 +44,10 @@ class StoreToTrongTaiRequest extends FormRequest
     public function messages()
     {
         return [
-            'TenHLV.required' => 'Chưa nhập tên HLV',
-            'ChucVu.required' => 'Chưa nhập chức vụ',
-            'NgaySinh.required' => 'Chưa nhập ngày sinh ',
-            'AnhDaiDien.required' => 'Chưa cập nhập ảnh đại diện',
-            // 'TenHLV.unique' => 'sđsad',
-            
+            'email.required' => 'Email không được bỏ trống!',
+            'email.email' => 'Email không đúng định dạng!',
+            'password.required' => 'Password không được bỏ trống',
+            'remember_token' => 'Remember Token phải là kiểu boolean!'
         ];
     }
 }

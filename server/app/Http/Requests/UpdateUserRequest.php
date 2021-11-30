@@ -5,8 +5,9 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Validation\Rule;
 
-class StoreToTrongTaiRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,13 +27,11 @@ class StoreToTrongTaiRequest extends FormRequest
     public function rules()
     {
         return [
-            'idCLB' => 'required|max:10',
-            'TenHLV' => 'required|max:45',
-            'NgaySinh' => 'required|max:45',
-            'ChucVu' => 'required|max:45',
-            'AnhDaiDien' => 'required|max:45',
-            // 'created_at' => 'required|max:45',
-            // 'updated_at' => 'required|max:45',
+            'username' => 'required|max:255',
+            'email' => 'required|email',
+            Rule::unique('user', 'email')->ignore($this->id),
+            'password' => 'required',
+            'role' => 'required|integer'
         ];
     }
 
@@ -40,7 +39,7 @@ class StoreToTrongTaiRequest extends FormRequest
     {
         throw new HttpResponseException(response()->json([
             'status' => false,
-            'message' => 'Lỗi thêm dữ liệu',
+            'message' => 'Lỗi cập nhật dữ liệu',
             'detail' => $validator->errors()
         ]));
     }
@@ -48,12 +47,12 @@ class StoreToTrongTaiRequest extends FormRequest
     public function messages()
     {
         return [
-            'TenHLV.required' => 'Chưa nhập tên HLV',
-            'ChucVu.required' => 'Chưa nhập chức vụ',
-            'NgaySinh.required' => 'Chưa nhập ngày sinh ',
-            'AnhDaiDien.required' => 'Chưa cập nhập ảnh đại diện',
-            // 'TenHLV.unique' => 'sđsad',
-            
+            'username.required' => 'User name không được bỏ trống!',
+            'email.required' => 'Email không được bỏ trống!',
+            'email.email' => 'Email không đúng định dạng',
+            'email.unique' => 'Email đã được đăng ký!',
+            'password.required' => 'Mật khẩu không được bỏ trống',
+            'role.required' => 'Chưa phân quyền user!',
         ];
     }
 }

@@ -9,12 +9,11 @@ class KetQua extends Model
 {
     use HasFactory;
 
-    const CREATED_AT = null;
-
     protected $table ='ketqua';
     protected $primaryKey = 'idKQ';
 
     protected $fillable = [
+        'idTD',
         'BTDoi1',
         'BTDoi2',
     ];

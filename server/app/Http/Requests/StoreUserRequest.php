@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Requests;
-
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
 
-class StoreToTrongTaiRequest extends FormRequest
+use Illuminate\Foundation\Http\FormRequest;
+
+class StoreUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,13 +26,10 @@ class StoreToTrongTaiRequest extends FormRequest
     public function rules()
     {
         return [
-            'idCLB' => 'required|max:10',
-            'TenHLV' => 'required|max:45',
-            'NgaySinh' => 'required|max:45',
-            'ChucVu' => 'required|max:45',
-            'AnhDaiDien' => 'required|max:45',
-            // 'created_at' => 'required|max:45',
-            // 'updated_at' => 'required|max:45',
+            'UserName' => 'required|max:255',
+            'Email' => 'required|unique:user|email|max:255',
+            'Password' => 'required|max:255',
+            'Role' => 'required|integer',
         ];
     }
 
@@ -48,12 +45,12 @@ class StoreToTrongTaiRequest extends FormRequest
     public function messages()
     {
         return [
-            'TenHLV.required' => 'Chưa nhập tên HLV',
-            'ChucVu.required' => 'Chưa nhập chức vụ',
-            'NgaySinh.required' => 'Chưa nhập ngày sinh ',
-            'AnhDaiDien.required' => 'Chưa cập nhập ảnh đại diện',
-            // 'TenHLV.unique' => 'sđsad',
-            
+            'UserName.required' => 'User name không được bỏ trống!',
+            'Email.required' => 'Email không được bỏ trống!',
+            'Email.email' => 'Email không đúng định dạng',
+            'Email.unique' => 'Email đã được đăng ký!',
+            'Password.required' => 'Mật khẩu không được bỏ trống',
+            'Role.required' => 'Chưa phân quyền user!',
         ];
     }
 }

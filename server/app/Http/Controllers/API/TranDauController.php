@@ -47,7 +47,10 @@ class TranDauController extends Controller
      */
     public function create()
     {
-        //
+        return response([
+            'status' => 200,
+            'message' => 'OK'
+        ]);
     }
 
     /**
@@ -58,7 +61,11 @@ class TranDauController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        TranDau::create($request->all());
+        return response([
+            'status' => 201,
+            'message' => "Thêm thành công"
+        ]);
     }
 
     /**

@@ -84,6 +84,11 @@ class CauThuController extends Controller
                 'message' => 'Không tìm thấy'
             ]);
         }
+        // $cau_thu = DB::table('cau_thus')
+        //     ->join('doi_bongs', 'cau_thus.doi_bong_id', '=', 'doi_bongs.id')
+        //     ->where('cau_thus.id', '=', $id)
+        //     ->select('cau_thus.*', 'doi_bongs.ten_doi_bong')
+        //     ->get(); 
         return response($data);
     }
 

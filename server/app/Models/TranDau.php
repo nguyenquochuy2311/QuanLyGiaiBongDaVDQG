@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\DB;
 class TranDau extends Model
 {
     use HasFactory;
-    
-    const CREATED_AT = null;
 
     protected $table = 'trandau';
     protected $primaryKey = 'idTD';
