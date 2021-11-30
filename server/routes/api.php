@@ -163,10 +163,14 @@ Route::group([
         Route::put('totrongtai/update/{idToTT},{idTT}', [ToTrongTaiController::class, 'update']);
 
         // Admin Tran Dau
+        Route::get('trandau/create', [TranDauController::class, 'create']);
+        Route::post('trandau/store', [TranDauController::class, 'store']);
         Route::get('trandau/edit/{idTD}', [TranDauController::class, 'edit']);
         Route::put('trandau/update/{idTD}', [TranDauController::class, 'update']);
+        Route::delete('ketqua/delete/{idGB}', [TranDauController::class, 'destroy']);
 
         // Admin Ket Qua 
+        Route::get('ketqua/create', [KetQuaController::class, 'create']);
         Route::post('ketqua/store', [KetQuaController::class, 'store']);
         Route::put('ketqua/edit/{idKQ}', [KetQuaController::class, 'edit']);
         Route::put('ketqua/update/{idKQ}', [KetQuaController::class, 'update']);
