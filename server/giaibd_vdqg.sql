@@ -13,7 +13,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 -- Dumping structure for table giaibd_vdqg.bxh_clb
-DROP TABLE IF EXISTS `bxh_clb`;
 CREATE TABLE IF NOT EXISTS `bxh_clb` (
   `idMG` int(10) unsigned NOT NULL,
   `idCLB` int(10) unsigned NOT NULL,
@@ -45,7 +44,6 @@ INSERT INTO `bxh_clb` (`idMG`, `idCLB`, `Thang`, `Hoa`, `Thua`, `SoTran`, `Diem`
 /*!40000 ALTER TABLE `bxh_clb` ENABLE KEYS */;
 
 -- Dumping structure for table giaibd_vdqg.bxh_ct
-DROP TABLE IF EXISTS `bxh_ct`;
 CREATE TABLE IF NOT EXISTS `bxh_ct` (
   `idMG` int(10) unsigned NOT NULL,
   `idCT` int(10) unsigned NOT NULL,
@@ -99,7 +97,6 @@ INSERT INTO `bxh_ct` (`idMG`, `idCT`, `SoBanThang`, `created_at`, `updated_at`) 
 /*!40000 ALTER TABLE `bxh_ct` ENABLE KEYS */;
 
 -- Dumping structure for table giaibd_vdqg.cauthu
-DROP TABLE IF EXISTS `cauthu`;
 CREATE TABLE IF NOT EXISTS `cauthu` (
   `idCT` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `idCLB` int(10) unsigned NOT NULL,
@@ -244,7 +241,6 @@ INSERT INTO `cauthu` (`idCT`, `idCLB`, `TenCT`, `NgaySinh`, `ViTri`, `SoAo`, `Ch
 /*!40000 ALTER TABLE `cauthu` ENABLE KEYS */;
 
 -- Dumping structure for table giaibd_vdqg.clb
-DROP TABLE IF EXISTS `clb`;
 CREATE TABLE IF NOT EXISTS `clb` (
   `idCLB` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `VietTat` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -271,12 +267,10 @@ INSERT INTO `clb` (`idCLB`, `VietTat`, `TenCLB`, `SanNha`, `TruSo`, `Logo`, `cre
 	(6, 'BFC', 'Becamex Bình Dương', 'SVĐ Bình Dương', 'Bình Dương', 'Logo_BFC', NULL, NULL),
 	(7, 'HNFC', 'Hà Nội', 'SVĐ Hàng Đẫy', 'Hà Nội', 'Logo_HNFC', NULL, NULL),
 	(8, 'BDFC', 'Topenland Bình Định', 'SVĐ Quy Nhơn', 'Bình Đinh', 'Logo_BDFC', NULL, NULL),
-	(9, '11112222', 'b', 'b', 'QQQ', 'Logo', '2021-11-12 16:19:30', '2021-11-12 21:10:53'),
-	(10, 'ABCD', 'AAAAAA2AAA', 'b', 'QQQ', 'Logo', '2021-11-12 21:00:50', '2021-11-12 21:08:53');
+	(9, '11112222', 'b', 'b', 'QQQ', 'Logo', '2021-11-12 16:19:30', '2021-11-12 21:10:53');
 /*!40000 ALTER TABLE `clb` ENABLE KEYS */;
 
 -- Dumping structure for table giaibd_vdqg.failed_jobs
-DROP TABLE IF EXISTS `failed_jobs`;
 CREATE TABLE IF NOT EXISTS `failed_jobs` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -295,13 +289,14 @@ DELETE FROM `failed_jobs`;
 /*!40000 ALTER TABLE `failed_jobs` ENABLE KEYS */;
 
 -- Dumping structure for table giaibd_vdqg.ghiban
-DROP TABLE IF EXISTS `ghiban`;
 CREATE TABLE IF NOT EXISTS `ghiban` (
   `idGB` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `idKQ` int(10) unsigned NOT NULL,
   `idCT` int(10) unsigned NOT NULL,
   `LoaiBT` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
   `ThoiDiem` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`idGB`),
   KEY `ghiban_idkq_foreign` (`idKQ`),
   KEY `ghiban_idct_foreign` (`idCT`),
@@ -309,86 +304,12 @@ CREATE TABLE IF NOT EXISTS `ghiban` (
   CONSTRAINT `ghiban_idkq_foreign` FOREIGN KEY (`idKQ`) REFERENCES `ketqua` (`idKQ`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table giaibd_vdqg.ghiban: ~72 rows (approximately)
+-- Dumping data for table giaibd_vdqg.ghiban: ~0 rows (approximately)
 DELETE FROM `ghiban`;
 /*!40000 ALTER TABLE `ghiban` DISABLE KEYS */;
-INSERT INTO `ghiban` (`idGB`, `idKQ`, `idCT`, `LoaiBT`, `ThoiDiem`) VALUES
-	(1, 1, 8, 'A', 17),
-	(2, 1, 9, 'C', 79),
-	(3, 2, 34, 'B', 51),
-	(4, 3, 7, 'A', 30),
-	(5, 3, 9, 'B', 67),
-	(6, 3, 67, 'A', 26),
-	(7, 4, 8, 'C', 70),
-	(8, 4, 62, 'C', 80),
-	(9, 6, 5, 'A', 23),
-	(10, 6, 99, 'C', 65),
-	(11, 6, 95, 'C', 87),
-	(12, 7, 116, 'B', 59),
-	(13, 7, 5, 'C', 76),
-	(14, 8, 19, 'B', 51),
-	(15, 9, 52, 'A', 26),
-	(16, 10, 20, 'B', 47),
-	(17, 10, 25, 'C', 87),
-	(18, 11, 90, 'C', 73),
-	(19, 12, 17, 'A', 15),
-	(20, 12, 22, 'C', 84),
-	(21, 13, 24, 'A', 28),
-	(22, 14, 35, 'A', 24),
-	(23, 14, 35, 'B', 57),
-	(24, 14, 54, 'C', 72),
-	(25, 16, 90, 'C', 74),
-	(26, 17, 35, 'C', 68),
-	(27, 18, 118, 'B', 40),
-	(28, 20, 90, 'A', 11),
-	(29, 20, 90, 'B', 55),
-	(30, 21, 52, 'A', 19),
-	(31, 21, 95, 'C', 66),
-	(32, 22, 53, 'B', 61),
-	(33, 23, 75, 'C', 84),
-	(34, 23, 90, 'A', 19),
-	(35, 23, 90, 'C', 64),
-	(36, 25, 118, 'B', 43),
-	(37, 27, 90, 'A', 27),
-	(38, 27, 114, 'C', 63),
-	(39, 28, 95, 'A', 13),
-	(40, 29, 8, 'A', 21),
-	(41, 29, 9, 'B', 33),
-	(42, 29, 8, 'C', 64),
-	(43, 30, 24, 'C', 89),
-	(44, 31, 120, 'B', 42),
-	(45, 31, 114, 'C', 81),
-	(46, 32, 109, 'B', 40),
-	(47, 32, 54, 'A', 26),
-	(48, 34, 90, 'C', 76),
-	(49, 35, 102, 'A', 29),
-	(50, 35, 102, 'B', 44),
-	(51, 35, 98, 'B', 59),
-	(52, 36, 102, 'B', 32),
-	(53, 36, 9, 'A', 17),
-	(54, 36, 5, 'C', 88),
-	(55, 37, 102, 'C', 71),
-	(56, 39, 95, 'A', 16),
-	(57, 40, 68, 'B', 56),
-	(58, 41, 92, 'B', 53),
-	(59, 41, 85, 'A', 24),
-	(60, 42, 9, 'B', 53),
-	(61, 44, 85, 'C', 76),
-	(62, 44, 34, 'B', 37),
-	(63, 45, 54, 'A', 22),
-	(64, 47, 68, 'B', 31),
-	(65, 47, 8, 'C', 66),
-	(66, 48, 24, 'B', 33),
-	(67, 50, 69, 'C', 87),
-	(68, 51, 53, 'A', 27),
-	(69, 51, 10, 'B', 59),
-	(70, 53, 64, 'C', 86),
-	(71, 54, 10, 'A', 28),
-	(72, 54, 9, 'C', 78);
 /*!40000 ALTER TABLE `ghiban` ENABLE KEYS */;
 
 -- Dumping structure for table giaibd_vdqg.hlv
-DROP TABLE IF EXISTS `hlv`;
 CREATE TABLE IF NOT EXISTS `hlv` (
   `idHLV` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `idCLB` int(10) unsigned NOT NULL,
@@ -418,7 +339,6 @@ INSERT INTO `hlv` (`idHLV`, `idCLB`, `TenHLV`, `NgaySinh`, `ChucVu`, `AnhDaiDien
 /*!40000 ALTER TABLE `hlv` ENABLE KEYS */;
 
 -- Dumping structure for procedure giaibd_vdqg.insert_update_BXH_CT
-DROP PROCEDURE IF EXISTS `insert_update_BXH_CT`;
 DELIMITER //
 CREATE PROCEDURE `insert_update_BXH_CT`()
 begin
@@ -449,7 +369,6 @@ end//
 DELIMITER ;
 
 -- Dumping structure for table giaibd_vdqg.ketqua
-DROP TABLE IF EXISTS `ketqua`;
 CREATE TABLE IF NOT EXISTS `ketqua` (
   `idKQ` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `idTD` int(10) unsigned NOT NULL,
@@ -462,76 +381,20 @@ CREATE TABLE IF NOT EXISTS `ketqua` (
   CONSTRAINT `ketqua_idtd_foreign` FOREIGN KEY (`idTD`) REFERENCES `trandau` (`idTD`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table giaibd_vdqg.ketqua: ~54 rows (approximately)
+-- Dumping data for table giaibd_vdqg.ketqua: ~0 rows (approximately)
 DELETE FROM `ketqua`;
 /*!40000 ALTER TABLE `ketqua` DISABLE KEYS */;
-INSERT INTO `ketqua` (`idKQ`, `idTD`, `BTDoi1`, `BTDoi2`, `created_at`, `updated_at`) VALUES
-	(1, 1, 2, 0, NULL, NULL),
-	(2, 2, 0, 1, NULL, NULL),
-	(3, 3, 2, 1, NULL, NULL),
-	(4, 4, 1, 1, NULL, NULL),
-	(5, 5, 0, 0, NULL, NULL),
-	(6, 6, 1, 2, NULL, NULL),
-	(7, 7, 1, 1, NULL, NULL),
-	(8, 8, 1, 0, NULL, NULL),
-	(9, 9, 0, 1, NULL, NULL),
-	(10, 10, 2, 0, NULL, NULL),
-	(11, 11, 0, 1, NULL, NULL),
-	(12, 12, 2, 0, NULL, NULL),
-	(13, 13, 1, 0, NULL, NULL),
-	(14, 14, 2, 1, NULL, NULL),
-	(15, 15, 0, 0, NULL, NULL),
-	(16, 16, 0, 1, NULL, NULL),
-	(17, 17, 1, 0, NULL, NULL),
-	(18, 18, 0, 1, NULL, NULL),
-	(19, 19, 0, 0, NULL, NULL),
-	(20, 20, 0, 2, NULL, NULL),
-	(21, 21, 1, 1, NULL, NULL),
-	(22, 22, 1, 0, NULL, NULL),
-	(23, 23, 1, 2, NULL, NULL),
-	(24, 24, 0, 0, NULL, NULL),
-	(25, 25, 0, 1, NULL, NULL),
-	(26, 26, 0, 0, NULL, NULL),
-	(27, 27, 1, 1, NULL, NULL),
-	(28, 28, 1, 0, NULL, NULL),
-	(29, 29, 0, 3, NULL, NULL),
-	(30, 30, 0, 1, NULL, NULL),
-	(31, 31, 2, 0, NULL, NULL),
-	(32, 32, 1, 1, NULL, NULL),
-	(33, 33, 0, 0, NULL, NULL),
-	(34, 34, 0, 1, NULL, NULL),
-	(35, 35, 0, 3, NULL, NULL),
-	(36, 36, 2, 1, NULL, NULL),
-	(37, 37, 1, 0, NULL, NULL),
-	(38, 38, 0, 0, NULL, NULL),
-	(39, 39, 1, 0, NULL, NULL),
-	(40, 40, 0, 1, NULL, NULL),
-	(41, 41, 1, 1, NULL, NULL),
-	(42, 42, 0, 1, NULL, NULL),
-	(43, 43, 0, 0, NULL, NULL),
-	(44, 44, 1, 1, NULL, NULL),
-	(45, 45, 0, 1, NULL, NULL),
-	(46, 46, 0, 0, NULL, NULL),
-	(47, 47, 1, 1, NULL, NULL),
-	(48, 48, 0, 1, NULL, NULL),
-	(49, 49, 0, 0, NULL, NULL),
-	(50, 50, 1, 0, NULL, NULL),
-	(51, 51, 1, 1, NULL, NULL),
-	(52, 52, 0, 0, NULL, NULL),
-	(53, 53, 1, 0, NULL, NULL),
-	(54, 54, 0, 2, NULL, NULL);
 /*!40000 ALTER TABLE `ketqua` ENABLE KEYS */;
 
 -- Dumping structure for table giaibd_vdqg.migrations
-DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE IF NOT EXISTS `migrations` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table giaibd_vdqg.migrations: ~21 rows (approximately)
+-- Dumping data for table giaibd_vdqg.migrations: ~25 rows (approximately)
 DELETE FROM `migrations`;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -555,11 +418,15 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(18, '2021_11_11_170130_create_quy_dinh_ban_thangs_table', 13),
 	(19, '2021_11_12_091310_create_bxh_cts_table', 14),
 	(22, '2021_11_12_093454_create_bxh_clbs_table', 15),
-	(25, '2021_11_12_102425_create_phe_duyets_table', 16);
+	(25, '2021_11_12_102425_create_phe_duyets_table', 16),
+	(26, '2016_06_01_000001_create_oauth_auth_codes_table', 17),
+	(27, '2016_06_01_000002_create_oauth_access_tokens_table', 17),
+	(28, '2016_06_01_000003_create_oauth_refresh_tokens_table', 17),
+	(29, '2016_06_01_000004_create_oauth_clients_table', 17),
+	(30, '2016_06_01_000005_create_oauth_personal_access_clients_table', 17);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 
 -- Dumping structure for table giaibd_vdqg.muagiai
-DROP TABLE IF EXISTS `muagiai`;
 CREATE TABLE IF NOT EXISTS `muagiai` (
   `idMG` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `TenMG` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -570,15 +437,122 @@ CREATE TABLE IF NOT EXISTS `muagiai` (
   PRIMARY KEY (`idMG`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table giaibd_vdqg.muagiai: ~1 rows (approximately)
+-- Dumping data for table giaibd_vdqg.muagiai: ~0 rows (approximately)
 DELETE FROM `muagiai`;
 /*!40000 ALTER TABLE `muagiai` DISABLE KEYS */;
 INSERT INTO `muagiai` (`idMG`, `TenMG`, `NgayBD`, `NgayKT`, `created_at`, `updated_at`) VALUES
 	(1, 'Giải Vô Địch Quốc Gia V-Leauge', '2021-01-01', '2021-12-31', NULL, NULL);
 /*!40000 ALTER TABLE `muagiai` ENABLE KEYS */;
 
+-- Dumping structure for table giaibd_vdqg.oauth_access_tokens
+CREATE TABLE IF NOT EXISTS `oauth_access_tokens` (
+  `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint(20) unsigned DEFAULT NULL,
+  `client_id` bigint(20) unsigned NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `scopes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `revoked` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `expires_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `oauth_access_tokens_user_id_index` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Dumping data for table giaibd_vdqg.oauth_access_tokens: ~11 rows (approximately)
+DELETE FROM `oauth_access_tokens`;
+/*!40000 ALTER TABLE `oauth_access_tokens` DISABLE KEYS */;
+INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes`, `revoked`, `created_at`, `updated_at`, `expires_at`) VALUES
+	('0ad6c3cee49fd09acc6083aa44aace580043ca16e3f6cf392171c0e09445929636990ffa463750f6', 4, 3, 'Personal Access Token', '[]', 1, '2021-11-30 12:16:02', '2021-11-30 12:16:02', '2022-11-30 12:16:02'),
+	('2526eba61fd50b9886396bd2fb3b70acbe9638cf87e9d1318d815190456001edc026b493251b62ac', 4, 3, 'Personal Access Token', '[]', 0, '2021-11-30 12:05:29', '2021-11-30 12:05:29', '2022-11-30 12:05:29'),
+	('31db42810fda61298586b9e2cd20b0f085cec157ddfbebc10b627b3c6fcf3e855d09c80401de6085', 4, 3, 'Personal Access Token', '[]', 0, '2021-11-28 21:18:07', '2021-11-28 21:18:07', '2022-11-28 21:18:07'),
+	('431fd95f514d16d7e896b08f1d6c593b9b55d37fbcd3905b0bc82339b9650e5c1abacf19ff19de26', 4, 3, 'Personal Access Token', '[]', 0, '2021-11-28 21:15:14', '2021-11-28 21:15:14', '2022-11-28 21:15:14'),
+	('a058d641bd16f47dc7b3a09399a3e0815e4de09f8f983b6a7e30d7d69dd836c1a944172fb9630385', 4, 3, 'Personal Access Token', '[]', 0, '2021-11-28 21:34:26', '2021-11-28 21:34:26', '2022-11-28 21:34:26'),
+	('a3171827fb9f0a5319f1bd9eb3efd5193eab771702a7418643af5f9563771df40521949027f9e6e4', 4, 3, 'Personal Access Token', '[]', 1, '2021-11-28 21:35:39', '2021-11-28 21:35:39', '2022-11-28 21:35:39'),
+	('aeb370a7ba4c6fcfea9406066d205b3a2a32b5248083d728c7150cc9afd525837b40b7803b1f34b9', 4, 3, 'Personal Access Token', '[]', 0, '2021-11-30 12:24:11', '2021-11-30 12:24:11', '2022-11-30 12:24:11'),
+	('bc617cbbf32d3f0fedd93fc3768881d47319bbe1ae592e603f2ac081f28fbb821772c67ca4a8c15e', 4, 3, 'Personal Access Token', '[]', 0, '2021-11-28 21:18:38', '2021-11-28 21:18:38', '2022-11-28 21:18:38'),
+	('c36226ec3079e1e1e7356673d53ecbf0c332132b27bb663fd2feb750b5a8e14c39fb4849c6daa347', 4, 3, 'Personal Access Token', '[]', 0, '2021-11-27 02:04:10', '2021-11-27 02:04:10', '2022-11-27 02:04:10'),
+	('dfdd57415d4bd1ad90a2d2de62cf2793fcd786d84c75e9dc461fe91959b82d2c3388663d686f1096', 4, 3, 'Personal Access Token', '[]', 0, '2021-11-28 21:31:52', '2021-11-28 21:31:52', '2022-11-28 21:31:52'),
+	('e765ffae16a4960dc35a92ebd0f042c798d6d2cac613815e632a6d0831d0c729371afd0dcd37f1fe', 4, 3, 'Personal Access Token', '[]', 1, '2021-11-27 02:10:52', '2021-11-27 02:10:52', '2022-11-27 02:10:52');
+/*!40000 ALTER TABLE `oauth_access_tokens` ENABLE KEYS */;
+
+-- Dumping structure for table giaibd_vdqg.oauth_auth_codes
+CREATE TABLE IF NOT EXISTS `oauth_auth_codes` (
+  `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint(20) unsigned NOT NULL,
+  `client_id` bigint(20) unsigned NOT NULL,
+  `scopes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `revoked` tinyint(1) NOT NULL,
+  `expires_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `oauth_auth_codes_user_id_index` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Dumping data for table giaibd_vdqg.oauth_auth_codes: ~0 rows (approximately)
+DELETE FROM `oauth_auth_codes`;
+/*!40000 ALTER TABLE `oauth_auth_codes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `oauth_auth_codes` ENABLE KEYS */;
+
+-- Dumping structure for table giaibd_vdqg.oauth_clients
+CREATE TABLE IF NOT EXISTS `oauth_clients` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) unsigned DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `secret` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `provider` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `redirect` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `personal_access_client` tinyint(1) NOT NULL,
+  `password_client` tinyint(1) NOT NULL,
+  `revoked` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `oauth_clients_user_id_index` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Dumping data for table giaibd_vdqg.oauth_clients: ~4 rows (approximately)
+DELETE FROM `oauth_clients`;
+/*!40000 ALTER TABLE `oauth_clients` DISABLE KEYS */;
+INSERT INTO `oauth_clients` (`id`, `user_id`, `name`, `secret`, `provider`, `redirect`, `personal_access_client`, `password_client`, `revoked`, `created_at`, `updated_at`) VALUES
+	(1, NULL, 'Laravel Personal Access Client', '9CykOVmgexxZQnClzRjutqTo6kqi0nARo6MeqM9R', NULL, 'http://localhost', 1, 0, 0, '2021-11-27 00:22:25', '2021-11-27 00:22:25'),
+	(2, NULL, 'Laravel Password Grant Client', 'CPbSoP3UqH0vwVnz25Ro8Xk02VGiMCB5jj7uaDYl', 'users', 'http://localhost', 0, 1, 0, '2021-11-27 00:22:26', '2021-11-27 00:22:26'),
+	(3, NULL, 'Laravel Personal Access Client', 'iFGsCcDHNSIrhJ1sWXBkIabWp7pMAjEjOfbXEEk4', NULL, 'http://localhost', 1, 0, 0, '2021-11-27 01:25:51', '2021-11-27 01:25:51'),
+	(4, NULL, 'Laravel Password Grant Client', 'VQYidMd8hmN3wKl3j7IC5i8j06IMxkHwaeKqvBYs', 'users', 'http://localhost', 0, 1, 0, '2021-11-27 01:25:52', '2021-11-27 01:25:52');
+/*!40000 ALTER TABLE `oauth_clients` ENABLE KEYS */;
+
+-- Dumping structure for table giaibd_vdqg.oauth_personal_access_clients
+CREATE TABLE IF NOT EXISTS `oauth_personal_access_clients` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `client_id` bigint(20) unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Dumping data for table giaibd_vdqg.oauth_personal_access_clients: ~2 rows (approximately)
+DELETE FROM `oauth_personal_access_clients`;
+/*!40000 ALTER TABLE `oauth_personal_access_clients` DISABLE KEYS */;
+INSERT INTO `oauth_personal_access_clients` (`id`, `client_id`, `created_at`, `updated_at`) VALUES
+	(1, 1, '2021-11-27 00:22:26', '2021-11-27 00:22:26'),
+	(2, 3, '2021-11-27 01:25:52', '2021-11-27 01:25:52');
+/*!40000 ALTER TABLE `oauth_personal_access_clients` ENABLE KEYS */;
+
+-- Dumping structure for table giaibd_vdqg.oauth_refresh_tokens
+CREATE TABLE IF NOT EXISTS `oauth_refresh_tokens` (
+  `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `access_token_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `revoked` tinyint(1) NOT NULL,
+  `expires_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `oauth_refresh_tokens_access_token_id_index` (`access_token_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Dumping data for table giaibd_vdqg.oauth_refresh_tokens: ~0 rows (approximately)
+DELETE FROM `oauth_refresh_tokens`;
+/*!40000 ALTER TABLE `oauth_refresh_tokens` DISABLE KEYS */;
+/*!40000 ALTER TABLE `oauth_refresh_tokens` ENABLE KEYS */;
+
 -- Dumping structure for table giaibd_vdqg.password_resets
-DROP TABLE IF EXISTS `password_resets`;
 CREATE TABLE IF NOT EXISTS `password_resets` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -592,7 +566,6 @@ DELETE FROM `password_resets`;
 /*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
 
 -- Dumping structure for table giaibd_vdqg.personal_access_tokens
-DROP TABLE IF EXISTS `personal_access_tokens`;
 CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -606,15 +579,27 @@ CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table giaibd_vdqg.personal_access_tokens: ~0 rows (approximately)
+-- Dumping data for table giaibd_vdqg.personal_access_tokens: ~11 rows (approximately)
 DELETE FROM `personal_access_tokens`;
 /*!40000 ALTER TABLE `personal_access_tokens` DISABLE KEYS */;
+INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `name`, `token`, `abilities`, `last_used_at`, `created_at`, `updated_at`) VALUES
+	(1, 'App\\Models\\User', 4, 'Personal Access Token', 'd5b6bee11f6b5bbdc7f642a2e98e9bd8d98f16cc4d92411ebc5447f689b2df94', '["*"]', NULL, '2021-11-27 01:40:13', '2021-11-27 01:40:13'),
+	(2, 'App\\Models\\User', 4, 'Personal Access Token', 'd95ad303f5ff4a4b88bbe0ca82f3fb8efc678a9176238758c06ccaf408fbaa05', '["*"]', NULL, '2021-11-27 01:41:23', '2021-11-27 01:41:23'),
+	(3, 'App\\Models\\User', 4, 'Personal Access Token', '24f79ce086e47354d6b072a0136106889d94b86b04bd181aaf5f1ab7de3d82eb', '["*"]', NULL, '2021-11-27 01:46:43', '2021-11-27 01:46:43'),
+	(4, 'App\\Models\\User', 4, 'Personal Access Token', '17b78ac3d2ac941486d5a357a3c30771129e3a9f76110bace897bd472e40d7c7', '["*"]', NULL, '2021-11-27 01:47:52', '2021-11-27 01:47:52'),
+	(5, 'App\\Models\\User', 4, 'Personal Access Token', 'fad7d0b554dede77807573e42d8585b77c0acc9c82d4fa201551e8fa995e7821', '["*"]', NULL, '2021-11-27 01:48:36', '2021-11-27 01:48:36'),
+	(6, 'App\\Models\\User', 4, 'Personal Access Token', '198e7fada864591a19e47c31d2bc9621e7dcc7b19d3030fc97c7f0b657fcda92', '["*"]', NULL, '2021-11-27 01:48:38', '2021-11-27 01:48:38'),
+	(7, 'App\\Models\\User', 4, 'Personal Access Token', '8cd7ff2fc1b71ea2ac7d84964fd6b56ba931dee0dda36b98d349c2b973a5f16a', '["*"]', NULL, '2021-11-27 01:48:56', '2021-11-27 01:48:56'),
+	(8, 'App\\Models\\User', 4, 'Personal Access Token', '5029d5e51e0d1f6c8cef2d81a28034196b078a88e67993ddac02a069d3b58c88', '["*"]', NULL, '2021-11-27 01:50:31', '2021-11-27 01:50:31'),
+	(9, 'App\\Models\\User', 4, '24f79ce086e47354d6b072a0136106889d94b86b04bd181aaf5f1ab7de3d82eb', '1eb38ad2490e0fa73475825c8997c87d99dd9d40291b758df2aef57da39fd0e5', '["*"]', NULL, '2021-11-27 01:51:05', '2021-11-27 01:51:05'),
+	(10, 'App\\Models\\User', 4, 'Personal Access Token', 'c8e7afdd2fd38a54ef5309d0d15607303e5f48f325841bec27c6d6133c584699', '["*"]', NULL, '2021-11-27 01:51:40', '2021-11-27 01:51:40'),
+	(11, 'App\\Models\\User', 4, 'Personal Access Token', 'b83ad63eeaad3dc1bc8e55fcd5f4ea5f58dff39fa994fd5825c97f342e538a4f', '["*"]', NULL, '2021-11-27 01:51:41', '2021-11-27 01:51:41'),
+	(12, 'App\\Models\\User', 4, 'Personal Access Token', '7d5157c0dce513961781fd08550e4a6eed55301655b3d68859dcf23982f6031f', '["*"]', NULL, '2021-11-27 01:53:27', '2021-11-27 01:53:27');
 /*!40000 ALTER TABLE `personal_access_tokens` ENABLE KEYS */;
 
 -- Dumping structure for table giaibd_vdqg.pheduyet
-DROP TABLE IF EXISTS `pheduyet`;
 CREATE TABLE IF NOT EXISTS `pheduyet` (
   `idCLB` int(10) unsigned NOT NULL,
   `idMG` int(10) unsigned NOT NULL,
@@ -634,7 +619,6 @@ DELETE FROM `pheduyet`;
 /*!40000 ALTER TABLE `pheduyet` ENABLE KEYS */;
 
 -- Dumping structure for table giaibd_vdqg.quydinhbanthang
-DROP TABLE IF EXISTS `quydinhbanthang`;
 CREATE TABLE IF NOT EXISTS `quydinhbanthang` (
   `idQUYDINHBANTHANG` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `idMG` int(10) unsigned NOT NULL,
@@ -646,7 +630,7 @@ CREATE TABLE IF NOT EXISTS `quydinhbanthang` (
   PRIMARY KEY (`idQUYDINHBANTHANG`),
   KEY `quydinhbanthang_idmg_foreign` (`idMG`),
   CONSTRAINT `quydinhbanthang_idmg_foreign` FOREIGN KEY (`idMG`) REFERENCES `muagiai` (`idMG`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table giaibd_vdqg.quydinhbanthang: ~3 rows (approximately)
 DELETE FROM `quydinhbanthang`;
@@ -658,7 +642,6 @@ INSERT INTO `quydinhbanthang` (`idQUYDINHBANTHANG`, `idMG`, `LoaiBT`, `ThoiDiemB
 /*!40000 ALTER TABLE `quydinhbanthang` ENABLE KEYS */;
 
 -- Dumping structure for table giaibd_vdqg.quydinhcauthu
-DROP TABLE IF EXISTS `quydinhcauthu`;
 CREATE TABLE IF NOT EXISTS `quydinhcauthu` (
   `idQDCT` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `idMG` int(10) unsigned NOT NULL,
@@ -674,7 +657,7 @@ CREATE TABLE IF NOT EXISTS `quydinhcauthu` (
   CONSTRAINT `quydinhcauthu_idmg_foreign` FOREIGN KEY (`idMG`) REFERENCES `muagiai` (`idMG`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table giaibd_vdqg.quydinhcauthu: ~1 rows (approximately)
+-- Dumping data for table giaibd_vdqg.quydinhcauthu: ~0 rows (approximately)
 DELETE FROM `quydinhcauthu`;
 /*!40000 ALTER TABLE `quydinhcauthu` DISABLE KEYS */;
 INSERT INTO `quydinhcauthu` (`idQDCT`, `idMG`, `TuoiToiThieu`, `TuoiToiDa`, `SLToiThieu`, `SLToiDa`, `SLNuocNgoai`, `created_at`, `updated_at`) VALUES
@@ -682,7 +665,6 @@ INSERT INTO `quydinhcauthu` (`idQDCT`, `idMG`, `TuoiToiThieu`, `TuoiToiDa`, `SLT
 /*!40000 ALTER TABLE `quydinhcauthu` ENABLE KEYS */;
 
 -- Dumping structure for table giaibd_vdqg.quydinhdiemso
-DROP TABLE IF EXISTS `quydinhdiemso`;
 CREATE TABLE IF NOT EXISTS `quydinhdiemso` (
   `idQUYDINHDIEMSO` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `idMG` int(10) unsigned NOT NULL,
@@ -696,7 +678,7 @@ CREATE TABLE IF NOT EXISTS `quydinhdiemso` (
   CONSTRAINT `quydinhdiemso_idmg_foreign` FOREIGN KEY (`idMG`) REFERENCES `muagiai` (`idMG`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table giaibd_vdqg.quydinhdiemso: ~1 rows (approximately)
+-- Dumping data for table giaibd_vdqg.quydinhdiemso: ~0 rows (approximately)
 DELETE FROM `quydinhdiemso`;
 /*!40000 ALTER TABLE `quydinhdiemso` DISABLE KEYS */;
 INSERT INTO `quydinhdiemso` (`idQUYDINHDIEMSO`, `idMG`, `DiemThang`, `DiemHoa`, `DiemThua`, `created_at`, `updated_at`) VALUES
@@ -704,7 +686,6 @@ INSERT INTO `quydinhdiemso` (`idQUYDINHDIEMSO`, `idMG`, `DiemThang`, `DiemHoa`, 
 /*!40000 ALTER TABLE `quydinhdiemso` ENABLE KEYS */;
 
 -- Dumping structure for table giaibd_vdqg.totrongtai
-DROP TABLE IF EXISTS `totrongtai`;
 CREATE TABLE IF NOT EXISTS `totrongtai` (
   `idToTT` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `idTT` int(10) unsigned NOT NULL,
@@ -713,19 +694,19 @@ CREATE TABLE IF NOT EXISTS `totrongtai` (
   PRIMARY KEY (`idToTT`,`idTT`) USING BTREE,
   KEY `FK_totrongtai_trongtai` (`idTT`),
   CONSTRAINT `FK_totrongtai_trongtai` FOREIGN KEY (`idTT`) REFERENCES `trongtai` (`idTT`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table giaibd_vdqg.totrongtai: ~3 rows (approximately)
+-- Dumping data for table giaibd_vdqg.totrongtai: ~4 rows (approximately)
 DELETE FROM `totrongtai`;
 /*!40000 ALTER TABLE `totrongtai` DISABLE KEYS */;
 INSERT INTO `totrongtai` (`idToTT`, `idTT`, `created_at`, `updated_at`) VALUES
 	(1, 1, NULL, NULL),
 	(1, 2, NULL, NULL),
-	(1, 3, NULL, NULL);
+	(1, 3, NULL, NULL),
+	(2, 1, NULL, NULL);
 /*!40000 ALTER TABLE `totrongtai` ENABLE KEYS */;
 
 -- Dumping structure for table giaibd_vdqg.trandau
-DROP TABLE IF EXISTS `trandau`;
 CREATE TABLE IF NOT EXISTS `trandau` (
   `idTD` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `VongDau` int(11) NOT NULL,
@@ -735,6 +716,8 @@ CREATE TABLE IF NOT EXISTS `trandau` (
   `ThoiGian` datetime NOT NULL,
   `idMG` int(10) unsigned NOT NULL,
   `idToTT` int(10) unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`idTD`),
   KEY `trandau_doi1_foreign` (`Doi1`),
   KEY `trandau_doi2_foreign` (`Doi2`),
@@ -746,70 +729,12 @@ CREATE TABLE IF NOT EXISTS `trandau` (
   CONSTRAINT `trandau_idtott_foreign` FOREIGN KEY (`idToTT`) REFERENCES `totrongtai` (`idToTT`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table giaibd_vdqg.trandau: ~56 rows (approximately)
+-- Dumping data for table giaibd_vdqg.trandau: ~0 rows (approximately)
 DELETE FROM `trandau`;
 /*!40000 ALTER TABLE `trandau` DISABLE KEYS */;
-INSERT INTO `trandau` (`idTD`, `VongDau`, `Doi1`, `Doi2`, `SanDau`, `ThoiGian`, `idMG`, `idToTT`) VALUES
-	(1, 1, 1, 2, 'SVĐ Pleiku', '2021-01-05 00:00:00', 1, 1),
-	(2, 1, 1, 3, 'SVĐ Pleiku', '2021-01-10 00:00:00', 1, 1),
-	(3, 1, 1, 4, 'SVĐ Pleiku', '2021-01-15 00:00:00', 1, 1),
-	(4, 1, 1, 5, 'SVĐ Pleiku', '2021-01-20 00:00:00', 1, 1),
-	(5, 1, 1, 6, 'SVĐ Pleiku', '2021-01-25 00:00:00', 1, 1),
-	(6, 1, 1, 7, 'SVĐ Pleiku', '2020-01-30 00:00:00', 1, 1),
-	(7, 1, 1, 8, 'SVĐ Pleiku', '2021-02-05 00:00:00', 1, 1),
-	(8, 1, 2, 3, 'SVĐ Hàng Đẫy', '2021-02-10 00:00:00', 1, 1),
-	(9, 1, 2, 4, 'SVĐ Hàng Đẫy', '2021-02-15 00:00:00', 1, 1),
-	(10, 1, 2, 5, 'SVĐ Hàng Đẫy', '2020-02-20 00:00:00', 1, 1),
-	(11, 1, 2, 6, 'SVĐ Hàng Đẫy', '2020-02-25 00:00:00', 1, 1),
-	(12, 1, 2, 7, 'SVĐ Hàng Đẫy', '2020-03-05 00:00:00', 1, 1),
-	(13, 1, 2, 8, 'SVĐ Hàng Đẫy', '2020-03-10 00:00:00', 1, 1),
-	(14, 1, 3, 4, 'SVĐ Cẩm Phả', '2021-03-15 00:00:00', 1, 1),
-	(15, 1, 3, 5, 'SVĐ Cẩm Phả', '2021-03-20 00:00:00', 1, 1),
-	(16, 1, 3, 6, 'SVĐ Cẩm Phả', '2021-03-25 00:00:00', 1, 1),
-	(17, 1, 3, 7, 'SVĐ Cẩm Phả', '2021-03-30 00:00:00', 1, 1),
-	(18, 1, 3, 8, 'SVĐ Cẩm Phả', '2021-04-05 00:00:00', 1, 1),
-	(19, 1, 4, 5, 'SVĐ Thiên Trường', '2021-04-10 00:00:00', 1, 1),
-	(20, 1, 4, 6, 'SVĐ Thiên Trường', '2021-04-15 00:00:00', 1, 1),
-	(21, 1, 4, 7, 'SVĐ Thiên Trường', '2021-04-20 00:00:00', 1, 1),
-	(22, 1, 4, 8, 'SVĐ Thiên Trường', '2021-04-25 00:00:00', 1, 1),
-	(23, 1, 5, 6, 'SVĐ Thanh Hóa', '2021-04-30 00:00:00', 1, 1),
-	(24, 1, 5, 7, 'SVĐ Thanh Hóa', '2021-05-05 00:00:00', 1, 1),
-	(25, 1, 5, 8, 'SVĐ Thanh Hóa', '2021-05-10 00:00:00', 1, 1),
-	(26, 1, 6, 7, 'SVĐ Bình Dương', '2021-05-15 00:00:00', 1, 1),
-	(27, 1, 6, 8, 'SVĐ Bình Dương', '2021-05-20 00:00:00', 1, 1),
-	(28, 1, 7, 8, 'SVĐ Hàng Đẫy', '2021-05-25 00:00:00', 1, 1),
-	(29, 2, 8, 1, 'SVĐ Quy Nhơn', '2021-05-30 00:00:00', 1, 1),
-	(30, 2, 8, 2, 'SVĐ Quy Nhơn', '2021-06-05 00:00:00', 1, 1),
-	(31, 2, 8, 3, 'SVĐ Quy Nhơn', '2021-06-10 00:00:00', 1, 1),
-	(32, 2, 8, 4, 'SVĐ Quy Nhơn', '2021-06-15 00:00:00', 1, 1),
-	(33, 2, 8, 5, 'SVĐ Quy Nhơn', '2021-06-20 00:00:00', 1, 1),
-	(34, 2, 8, 6, 'SVĐ Quy Nhơn', '2021-06-25 00:00:00', 1, 1),
-	(35, 2, 8, 7, 'SVĐ Quy Nhơn', '2021-06-30 00:00:00', 1, 1),
-	(36, 2, 7, 1, 'SVĐ Hàng Đẫy', '2021-07-05 00:00:00', 1, 1),
-	(37, 2, 7, 2, 'SVĐ Hàng Đẫy', '2021-07-10 00:00:00', 1, 1),
-	(38, 2, 7, 3, 'SVĐ Hàng Đẫy', '2021-07-15 00:00:00', 1, 1),
-	(39, 2, 7, 4, 'SVĐ Hàng Đẫy', '2021-07-20 00:00:00', 1, 1),
-	(40, 2, 7, 5, 'SVĐ Hàng Đẫy', '2021-07-25 00:00:00', 1, 1),
-	(41, 2, 7, 6, 'SVĐ Hàng Đẫy', '2021-07-30 00:00:00', 1, 1),
-	(42, 2, 6, 1, 'SVĐ Bình Dương', '2021-08-05 00:00:00', 1, 1),
-	(43, 2, 6, 2, 'SVĐ Bình Dương', '2021-08-10 00:00:00', 1, 1),
-	(44, 2, 6, 3, 'SVĐ Bình Dương', '2021-08-15 00:00:00', 1, 1),
-	(45, 2, 6, 4, 'SVĐ Bình Dương', '2021-08-20 00:00:00', 1, 1),
-	(46, 2, 6, 5, 'SVĐ Bình Dương', '2021-08-25 00:00:00', 1, 1),
-	(47, 2, 5, 1, 'SVĐ Thanh Hóa', '2021-08-30 00:00:00', 1, 1),
-	(48, 2, 5, 2, 'SVĐ Thanh Hóa', '2021-09-05 00:00:00', 1, 1),
-	(49, 2, 5, 3, 'SVĐ Thanh Hóa', '2021-09-10 00:00:00', 1, 1),
-	(50, 2, 5, 4, 'SVĐ Thanh Hóa', '2021-09-15 00:00:00', 1, 1),
-	(51, 2, 4, 1, 'SVĐ Thiên Trường', '2021-09-20 00:00:00', 1, 1),
-	(52, 2, 4, 2, 'SVĐ Thiên Trường', '2021-09-25 00:00:00', 1, 1),
-	(53, 2, 4, 3, 'SVĐ Thiên Trường', '2021-09-30 00:00:00', 1, 1),
-	(54, 2, 3, 1, 'SVĐ Cẩm Phả', '2021-10-05 00:00:00', 1, 1),
-	(55, 2, 3, 2, 'SVĐ Cẩm Phả', '2021-10-10 00:00:00', 1, 1),
-	(56, 2, 2, 1, 'SVĐ Hàng Đẫy', '2021-10-15 00:00:00', 1, 1);
 /*!40000 ALTER TABLE `trandau` ENABLE KEYS */;
 
 -- Dumping structure for table giaibd_vdqg.trongtai
-DROP TABLE IF EXISTS `trongtai`;
 CREATE TABLE IF NOT EXISTS `trongtai` (
   `idTT` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `TenTT` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -831,7 +756,6 @@ INSERT INTO `trongtai` (`idTT`, `TenTT`, `NgaySinh`, `ViTri`, `AnhDaiDien`, `cre
 /*!40000 ALTER TABLE `trongtai` ENABLE KEYS */;
 
 -- Dumping structure for procedure giaibd_vdqg.update_BXH_CLB
-DROP PROCEDURE IF EXISTS `update_BXH_CLB`;
 DELIMITER //
 CREATE PROCEDURE `update_BXH_CLB`(
 	IN `ID_CLB ` INT
@@ -878,7 +802,6 @@ end//
 DELIMITER ;
 
 -- Dumping structure for procedure giaibd_vdqg.update_BXH_CT_TEST
-DROP PROCEDURE IF EXISTS `update_BXH_CT_TEST`;
 DELIMITER //
 CREATE PROCEDURE `update_BXH_CT_TEST`(
 	IN `ID_CLB` INT
@@ -888,29 +811,31 @@ begin
 end//
 DELIMITER ;
 
--- Dumping structure for table giaibd_vdqg.user
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE IF NOT EXISTS `user` (
+-- Dumping structure for table giaibd_vdqg.users
+CREATE TABLE IF NOT EXISTS `users` (
   `UID` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `UserName` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `Password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Role` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`UID`),
-  UNIQUE KEY `user_email_unique` (`Email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  UNIQUE KEY `user_email_unique` (`email`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table giaibd_vdqg.user: ~0 rows (approximately)
-DELETE FROM `user`;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+-- Dumping data for table giaibd_vdqg.users: ~3 rows (approximately)
+DELETE FROM `users`;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` (`UID`, `username`, `email`, `email_verified_at`, `password`, `remember_token`, `Role`, `created_at`, `updated_at`) VALUES
+	(1, 'quochuy2311', 'ab@gmail.com', NULL, '$2y$10$KCi6Qzo.p/qmXn8t/U5BBetMM7mQAU1uRsCo2Kz0E/5TiA.wApSQe', NULL, 0, '2021-11-26 23:36:27', '2021-11-27 00:02:13'),
+	(3, 'huy', 'test@gmail.com', NULL, '$2y$10$Qc840bc62BBylk.DMn1cXut1Rnqu8ktRgI7NgpEDNhSs1L.yD1Gnq', NULL, 1, '2021-11-27 00:42:01', '2021-11-27 00:42:01'),
+	(4, 'huy', 'huy@gmail.com', NULL, '$2y$10$U1kzYTWSM1c5b9WesCcbAOynb880weNWD95.jnaZ4a.LTDsF5dbCy', NULL, 0, '2021-11-27 00:58:58', '2021-11-27 00:58:58');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 -- Dumping structure for table giaibd_vdqg.xuphat
-DROP TABLE IF EXISTS `xuphat`;
 CREATE TABLE IF NOT EXISTS `xuphat` (
   `idXP` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `idKQ` int(10) unsigned NOT NULL,
@@ -926,19 +851,12 @@ CREATE TABLE IF NOT EXISTS `xuphat` (
   CONSTRAINT `xuphat_idkq_foreign` FOREIGN KEY (`idKQ`) REFERENCES `ketqua` (`idKQ`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table giaibd_vdqg.xuphat: ~5 rows (approximately)
+-- Dumping data for table giaibd_vdqg.xuphat: ~0 rows (approximately)
 DELETE FROM `xuphat`;
 /*!40000 ALTER TABLE `xuphat` DISABLE KEYS */;
-INSERT INTO `xuphat` (`idXP`, `idKQ`, `idCT`, `LoaiThe`, `ThoiDiem`, `created_at`, `updated_at`) VALUES
-	(1, 1, 4, 'vàng', 73, NULL, NULL),
-	(2, 5, 8, 'vàng', 33, NULL, NULL),
-	(3, 6, 102, 'vàng', 67, NULL, NULL),
-	(4, 7, 6, 'vàng', 78, NULL, NULL),
-	(5, 7, 108, 'đỏ', 84, NULL, NULL);
 /*!40000 ALTER TABLE `xuphat` ENABLE KEYS */;
 
 -- Dumping structure for trigger giaibd_vdqg.cauthu_BEFORE_INSERT_TUOI_CT
-DROP TRIGGER IF EXISTS `cauthu_BEFORE_INSERT_TUOI_CT`;
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
 CREATE TRIGGER `cauthu_BEFORE_INSERT_TUOI_CT` BEFORE INSERT ON `cauthu` FOR EACH ROW BEGIN
@@ -979,7 +897,6 @@ DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
 -- Dumping structure for trigger giaibd_vdqg.ghiban_AFTER_INSERT
-DROP TRIGGER IF EXISTS `ghiban_AFTER_INSERT`;
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
 CREATE TRIGGER `ghiban_AFTER_INSERT` AFTER INSERT ON `ghiban` FOR EACH ROW BEGIN
@@ -989,7 +906,6 @@ DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
 -- Dumping structure for trigger giaibd_vdqg.ghiban_AFTER_UPDATE
-DROP TRIGGER IF EXISTS `ghiban_AFTER_UPDATE`;
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
 CREATE TRIGGER `ghiban_AFTER_UPDATE` AFTER UPDATE ON `ghiban` FOR EACH ROW BEGIN
@@ -999,7 +915,6 @@ DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
 -- Dumping structure for trigger giaibd_vdqg.quydinhdiemso_AFTER_UPDATE
-DROP TRIGGER IF EXISTS `quydinhdiemso_AFTER_UPDATE`;
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
 CREATE TRIGGER `quydinhdiemso_AFTER_UPDATE` AFTER UPDATE ON `quydinhdiemso` FOR EACH ROW BEGIN
