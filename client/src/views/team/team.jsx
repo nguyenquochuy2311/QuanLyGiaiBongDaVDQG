@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link, useHistory } from "react-router-dom";
 // ip data
 import card_team_data from "../../assets/fake-data/CardTeams";
 
@@ -16,25 +16,38 @@ import "../../styles/_variables.scss";
 import "../../styles/global.scss";
 import "./team.scss";
 
-// const StyleTopTeamTitle = styled.h3`
-//   color: $primary-color;
-//   margin-top: 50px;
-//   padding: 20px 0;
-// `;
-// const StyleSortBar = styled.div`
-//   .sortbar__category-season {
-//     text-align: left;
-//     margin-left: 20px;
-//     // display: flex;
-//     // align-items: center;
-//     // justify-content: center;
-//     // flex-direction: column;
-//   }
-//   .season__option {
-//     padding: 10px 20px;
-//   }
-// `;
 const Team = () => {
+function to_slug(str)
+{
+    // Chuyển hết sang chữ thường
+    str = str.toLowerCase();     
+ 
+    // xóa dấu
+    str = str.replace(/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/g, 'a');
+    str = str.replace(/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/g, 'e');
+    str = str.replace(/(ì|í|ị|ỉ|ĩ)/g, 'i');
+    str = str.replace(/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/g, 'o');
+    str = str.replace(/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/g, 'u');
+    str = str.replace(/(ỳ|ý|ỵ|ỷ|ỹ)/g, 'y');
+    str = str.replace(/(đ)/g, 'd');
+ 
+    // Xóa ký tự đặc biệt
+    str = str.replace(/([^0-9a-z-\s])/g, '');
+ 
+    // Xóa khoảng trắng thay bằng ký tự -
+    str = str.replace(/(\s+)/g, '-');
+ 
+    // xóa phần dự - ở đầu
+    str = str.replace(/^-+/g, '');
+ 
+    // xóa phần dư - ở cuối
+    str = str.replace(/-+$/g, '');
+ 
+    // return
+    return str;
+}
+
+
   return (
     <Helmet title="Câu Lạc Bộ" className="component">
       <Header title="Các Câu Lạc Bộ"></Header>
@@ -63,19 +76,21 @@ const Team = () => {
               key={index}
               className="col col-xl-3 col-lg-4 col-md-6 col-sm-1"
             >
-              <CardTeam
-                img={item.img}
-                title={item.title}
-                logo={item.logo}
-                stadium={item.stadium}
-                description={item.description}
-              />
+              <Link to={`/doi-bong/${to_slug(item.title)}`}>
+                <CardTeam
+                  img={item.img}
+                  title={item.title}
+                  logo={item.logo}
+                  stadium={item.stadium}
+                  description={item.description}
+                />
+              </Link>
             </div>
           ))}
         </div>
 
         {/* get top 8 team */}
-        <HlTeam/>
+        <HlTeam />
         {/* dunors */}
         <Dunors />
       </div>

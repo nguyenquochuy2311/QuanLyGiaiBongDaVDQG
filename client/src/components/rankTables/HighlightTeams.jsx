@@ -5,33 +5,31 @@ import PropTypes from "prop-types";
 import card_team_data from "../../assets/fake-data/CardTeams";
 import CardTeam from "../cards/cardTeam/cardTeam";
 
-import "./rankTables.scss";
 const HlTeam = () => {
   return (
-    <div
-      className=" hlTeam "
-    >
-      <h3 className="hlTeam__title">Các câu lạc bộ nổi bật</h3>
-      <table className="hlTeam__table container">
+    <div className=" table" style={{transform: 'translateY(20px)'}}>
+      <h3 className="table__title">Các câu lạc bộ nổi bật</h3>
+      <table className="table__content" style={{width: '50vw'}}>
         <tr>
+          <th>STT</th>
           <th>Câu Lạc Bộ</th>
           <th>Sân Vận Động</th>
           <th>Chi Tiết</th>
         </tr>
         {card_team_data.getSortCards(8).map((item, index) => (
-          <tr className='team__item'>
-            <td >
-              <img className="team__logo" src={item.logo} alt="not found" />
-              <p className="team__title">{item.title}</p>
+          <tr key={index}>
+            <td>{index + 1}</td>
+            <td>
+              <div className="img logo">
+                <img src={item.logo} alt="not found" />
+              </div>
+              <p>{item.title}</p>
             </td>
-            <td className="team__stadium">
-              <p >{item.stadium}</p>
+            <td>
+              <p>{item.stadium}</p>
             </td>
-            <td className="team__description">
-              <p >
-                {item.description}
-              </p>
-                <i className="bx bx-right-arrow-alt bx-flashing"></i>
+            <td>
+              <i className="bx bx-right-arrow-alt bx-flashing"></i>
             </td>
           </tr>
         ))}

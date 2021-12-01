@@ -9,46 +9,34 @@ const MatchDetail = (props) => {
     <Helmet title="Chi tiết trận đấu">
       <Header title="Chi tiết trận đấu" />
       <div className="component">
-        <div className="limiter">
-          <h1 className="title1">
-            {" "}
-           <span>CHI TIẾT TRẬN ĐẤU</span>
-          </h1>
-          <div className="container-table100">
-            <div className="wrap-table100">
-              <div className="table100">
-                <table>
-                  <thead>
-                    <tr className="table100-head">
-                      <th className="column1">Thứ Tự</th>
-                      <th className="column2">Trận đấu</th>
-                      <th className="column3">Thời gian</th>
-                      <th className="column4">Kết quả</th>
-                      <th className="column5">Tổng Điểm</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {card_player_data.getSortCards(10).map((item, index) => (
-                      <tr key={index}>
-                        <td className="column1">{index + 1}</td>
-                        <td className="column3">
-                          <img
-                            alt=""
-                            className="anhcauthu"
-                            src={item.img}
-                          ></img>
-                          {item.title}
-                        </td>
-                        <td className="column2">{item.club}</td>
-                        <td className="column4">{item.role}</td>
-                        <td className="column5">{item.score}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
+      <div className="table">
+          <h1 className="table__title">Chi tiết trận đấu</h1>
+          <table className="table__content">
+            <tr>
+              <th>STT</th>
+              <th>Ngày thi đấu</th>
+              <th>Giờ </th>
+              <th>Các đội thi đấu</th>
+              <th>Sân vận động</th>
+              <th>Trọng tài</th>
+            </tr>
+            {card_player_data.getSortCards(10).map((item, index) => (
+              <tr>
+                <td>{index + 1}</td>
+                <td>
+                  <div className="img">
+                    <img src={item.img} alt="not found" />
+                  </div>
+                  <p>{item.title}</p>
+                </td>
+                <td>{}</td>
+                <td>{}</td>
+                <td>{}</td>
+                <td>{}</td>
+
+              </tr>
+            ))}
+          </table>
         </div>
       </div>
     </Helmet>

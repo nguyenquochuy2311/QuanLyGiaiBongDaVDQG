@@ -1,14 +1,17 @@
-import Helmet from "../Helmet/Helmet";
-import Header from "../../containers/header/header";
+import Helmet from "../../../components/Helmet/Helmet";
+import AdminHeader from '../header/adminHeader';
+import Header from "../../../containers/header/header";
 //ip data
-import card_player_data from "../../assets/fake-data/CardPlayers";
-const RankPlayer = (props) => {
+import card_player_data from "../../../assets/fake-data/CardPlayers";
+const AdminRegulation = (props) => {
   return (
-    <Helmet title="Bảng xếp hạng cầu thủ">
-      <Header title="Bảng xếp hạng cầu thủ" />
+
+    <Helmet title="Admin quy định">
+        <AdminHeader/>
+      <Header title="Quản lý quy định" />
       <div className="component" >
         <div className="table">
-          <h1 className="table__title">Bảng Xếp Hạng Cầu Thủ</h1>
+          <h1 className="table__title">Quy định giải đấu</h1>
           <table className="table__content">
             <tr>
               <th>STT</th>
@@ -41,4 +44,4 @@ const RankPlayer = (props) => {
   );
 };
 
-export default RankPlayer;
+export default AdminRegulation;

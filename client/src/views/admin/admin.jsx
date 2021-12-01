@@ -1,10 +1,10 @@
 import { NavLink, Link } from "react-router-dom";
 import React, { Component } from "react";
 import classnames from "classnames";
-import "./nav.scss";
+import "../../containers/Navigation/nav";
 // import {logo} from"../../assets/img";
 
-export default class Nav extends Component {
+export default class AdminHeader extends Component {
   constructor(props) {
     super(props);
 
@@ -213,9 +213,6 @@ export default class Nav extends Component {
                     Đăng ký
                   </NavLink>
                 </li>
-                {/* <Link style={{display: 'none'}} to='/' className="log__out" title="Đăng xuất">
-              <i class='bx bx-log-out' ></i>
-              </Link> */}
               </ul>
             </div>
           </div>

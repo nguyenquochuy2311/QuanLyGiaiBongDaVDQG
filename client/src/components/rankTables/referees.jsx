@@ -3,8 +3,9 @@ import Helmet from "../Helmet/Helmet";
 import Header  from "../../containers/header/header";
 //ip data
 import card_referees_data from "../../assets/fake-data/CardReferees";
-import "./referees.scss";
 
+//css 
+import './referees.scss';
 const Referees = (props) => {
   return (
     <Helmet title="Trọng tài">

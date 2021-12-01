@@ -6,7 +6,7 @@ import "./cardTeam.scss";
 
 const CardTeam = (props) => {
   return (
-      <Link to={props.path} className="card" style={{ minWidth: "18rem;" }}>
+      <div className="card" style={{ minWidth: "18rem;" }}>
         <img src={props.img} className="card-img-top" alt="not found" />
         <div className="card-body">
           <img src={props.logo} alt="not-found" className="card-logo" />
@@ -18,7 +18,7 @@ const CardTeam = (props) => {
             <i className="bx bx-right-arrow-alt bx-flashing" ></i>
           </p>
         </div>
-      </Link>
+      </div>
   );
 };
 

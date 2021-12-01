@@ -1,15 +1,16 @@
 
 import Helmet from '../Helmet/Helmet';
-
+import Header from '../../containers/header/header';
 //ip data
 import card_team_data from '../../assets/fake-data/CardTeams';
-import './rankTeams.scss';
 
+import './rankTeams.scss';
 const RankTeam = (props) => {
 
     return(
 <Helmet title="Bảng xếp hạng đội bóng">
-<div className="component">
+  <Header title="Bảng xếp hạng đội bóng"/>
+<div className="component rank__team" >
 <div className="clb-chart-container">
       <table>
          <h2 className="name-bxh">V.League</h2>

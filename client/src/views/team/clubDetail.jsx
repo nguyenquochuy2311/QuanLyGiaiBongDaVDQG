@@ -1,62 +1,68 @@
-import Helmet from "../Helmet/Helmet";
+import {useParams,useHistory } from "react-router-dom";
+
+
+
+import Helmet from "../../components/Helmet/Helmet";
 import Header from "../../containers/header/header";
 //ip data
 import card_player_data from "../../assets/fake-data/CardPlayers";
-import "./ClubDetails.scss";
 
-const ClubDetail = (props) => {
-    
+////////////////////////////////
+import '../../styles/_variables.scss';
+import '../../styles/global.scss';
+
+const TeamDetail = (props) => { 
+  let {title} = useParams();
+  console.log(title);
+  let history = useHistory();
+
+  function backData (){
+    history.push('/doi-bong')
+  }
+
   return (
-    <Helmet title="Chi tiết CLB">
+    <Helmet title="Chi tiết CLB ">
       <Header title="Chi tiết câu lạc bộ " />
       <div className="component">
-        <div className="limiter">
-          <h1 className="title1">
-            {" "}
-            BẢNG XẾP HẠNG<span>VỀ CÁC CẦU THỦ TRONG MÙA GIẢI</span>
-          </h1>
-          <div className="container-table100">
-            <div className="wrap-table100">
-              <div className="table100">
-                <table>
-                  <thead>
-                    <tr className="table100-head">
-                      <th className="column1">Thứ Tự</th>
-                      <th className="column2">Cầu Thủ</th>
-                      <th className="column3">Câu Lạc Bộ</th>
-                      <th className="column4">Vị Trí</th>
-                      <th className="column4">Số Bàn Đã Ghi</th>
-                      <th className="column5">Tổng Điểm</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {card_player_data.getSortCards(10).map((item, index) => (
-                      <tr key={index}>
-                        <td className="column1">{index + 1}</td>
-                        <td className="column3">
-                          <img
-                            alt=""
-                            className="anhcauthu"
-                            src={item.img}
-                          ></img>
-                          {item.title}
-                        </td>
-                        <td className="column2">{item.club}</td>
-                        <td className="column4">{item.role}</td>
-                        <td className="column5">{item.score}</td>
-                        <td className="column5">{item.score}</td>
+      <div className="table">
+        <div className="btn__back">
+          <button onClick={backData} >
+          <i class='bx bx-arrow-back'></i>
+          <p>Trở lại</p>
+          </button>
+        </div>
+          <h1 className="table__title">Thông tin chi tiết câu lạc bộ {'title'+ title}</h1>
+          <table className="table__content">
+            <tr>
+              <th>STT</th>
+              <th>Ngày thi đấu</th>
+              <th>Giờ </th>
+              <th>Các đội thi đấu</th>
+              <th>Sân vận động</th>
+              <th>Trọng tài</th>
+            </tr>
+            {card_player_data.getAllCards().map((item, index) => (
+             
+              <tr>
+                <td>{index + 1}</td>
+                <td>
+                  <div className="img">
+                    <img src={item.img} alt="not found" />
+                  </div>
+                  <p>{item.title}</p>
+                </td>
+                <td>{}</td>
+                <td>{}</td>
+                <td>{}</td>
+                <td>{}</td>
 
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
+              </tr>
+            ))}
+          </table>
         </div>
       </div>
     </Helmet>
   );
 };
 
-export default ClubDetail;
+export default TeamDetail;

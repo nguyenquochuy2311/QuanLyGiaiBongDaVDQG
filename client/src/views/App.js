@@ -17,8 +17,17 @@ import Referees from '../components/rankTables/referees';
 import Regulation from "../views/regulation/regulation";
 import Contact from "../views/contact/contact";
 import Team from "../views/team/team";
+import TeamDetail from "../views/team/clubDetail";
+
 import Login from "../views/accounts/login";
 import Register from "../views/accounts/register";
+
+import Club from '../views/admin/club/club';
+import Match from '../views/admin/match/match';
+import AdminRegulation from '../views/admin/regulation/regulation';
+import Player from '../views/admin/player/player';
+import ResultMatch from '../views/admin/match/resultMatch';
+
 
 function App() {
   return (
@@ -30,39 +39,62 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/doi-bong">
+          <Route  exact path="/doi-bong">
             <Team />
           </Route>
-          <Route path="/quy-dinh">
+          <Route  exact path="/doi-bong/:slug">
+            <TeamDetail />
+          </Route>
+          <Route  exact path="/quy-dinh">
             <Regulation />
           </Route>
-          <Route path="/giai-dau/bxh-doi-bong">
+          <Route exact path="/giai-dau/bxh-doi-bong">
             <RankTeam />
           </Route>
-          <Route path="/giai-dau/bxh-cau-thu">
+         
+
+          <Route  exact path="/giai-dau/bxh-cau-thu">
             <RankPlayer />
           </Route>
-          <Route path="/giai-dau/cac-tran-dau">
+          <Route  exact path="/giai-dau/cac-tran-dau">
             <MatchCalendar />
           </Route>
-          <Route path="/giai-dau/chi-tiet-tran-dau">
+          <Route  exact path="/giai-dau/chi-tiet-tran-dau">
             <MatchDetails />
           </Route>
 
 
 
-          <Route path="/giai-dau/trong-tai">
+          <Route  exact path="/giai-dau/trong-tai">
             <Referees />
           </Route>
-          <Route path="/lien-he">
+          <Route  exact path="/lien-he">
             <Contact />
           </Route>
-          <Route path="/dang-nhap">
+          <Route  exact path="/dang-nhap">
             <Login/>
           </Route>
-          <Route path="/dang-ky">
+          <Route  exact path="/dang-ky">
             <Register />
           </Route>
+
+          {/* ===admin============ */}
+          <Route  exact path="/admin">
+            <Club />
+          </Route>
+          <Route  exact path="/admin/lich-dau">
+            <Match />
+          </Route>
+          <Route  exact path="/admin/ket-qua-tran-dau">
+            <ResultMatch />
+          </Route>
+          <Route  exact path="/admin/cau-thu">
+            <Player />
+          </Route>
+          <Route  exact path="/admin/quy-dinh">
+            <AdminRegulation   />
+          </Route>
+
         </Switch>
         <ScrollToTop />
         <Footer />
