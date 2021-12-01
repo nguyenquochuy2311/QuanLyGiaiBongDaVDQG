@@ -1,24 +1,20 @@
 <?php
 
-namespace {{ namespace }};
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class {{ class }} extends Model
+class BxhCt extends Model
 {
     use HasFactory;
     
-    protected $table = 'bxh_clb';
+    protected $table = 'bxh_ct';
     protected $primaryKey = 'idMG';
 
     protected $fillable =[
-        'idCLB',
-        'Thang',
-        'Hoa',
-        'Thua',
-        'Sotran',
-        'Diem',
+        'idCT',
+        'SoBanThang',
         'created_at',
         'updated_at'
     ];

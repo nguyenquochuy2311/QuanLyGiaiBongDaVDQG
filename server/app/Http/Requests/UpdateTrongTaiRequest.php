@@ -3,10 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Contracts\Validation\Validator;
 
-class StoreTrongTaiRequest extends FormRequest
+class UpdateTrongTaiRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,17 +24,20 @@ class StoreTrongTaiRequest extends FormRequest
     public function rules()
     {
         return [
-            'TenTT' => 'required|max:45',
-            'NgaySinh' => 'required|max:45',
-            'ViTri' => 'required|max:45',
-            'AnhDaiDien' => 'required|max:45',
+            'TenTT'=> 'required',
+            'NgaySinh'=> 'required',
+            'ViTri'=> 'required',
+            'AnhDaiDien'=> 'required',
+            
+            Rule::unique('trongtai', 'AnhDaiDien')->ignore($this->id)
         ];
     }
+
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
             'status' => false,
-            'message' => 'Lỗi thêm dữ liệu',
+            'message' => 'Lỗi cập nhật dữ liệu',
             'detail' => $validator->errors()
         ]));
     }
@@ -44,12 +45,11 @@ class StoreTrongTaiRequest extends FormRequest
     public function messages()
     {
         return [
-            'TenTT.required' => 'Chưa nhập tên Trọng Tài',
-            'ViTri.required' => 'Chưa nhập Vị Trí',
-            'NgaySinh.required' => 'Chưa nhập ngày sinh ',
-            'AnhDaiDien.required' => 'Chưa cập nhập ảnh đại diện',
-            // 'TenHLV.unique' => 'sđsad',
-            
+            'TenTT.required' => 'Tên Trọng tài không được bỏ trống!',
+            'NgaySinh.required' => 'Ngày sinh Trọng tài không được bỏ trống!',
+            'ViTri.required' => 'Vi Tri Trọng tài không được bỏ trống!',
+            'AnhDaiDien.required' => 'Ảnh Trọng tài không được bỏ trống!',
+
         ];
     }
 }

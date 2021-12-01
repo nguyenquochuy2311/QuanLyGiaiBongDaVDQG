@@ -5,7 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ToTrongTai;
-
+use App\Models\TrongTai;
+use \DB;
 class ToTrongTaiController extends Controller
 {
     /**
@@ -27,8 +28,8 @@ class ToTrongTaiController extends Controller
     public function create()
     {
         return response([
-            'status' => 200,
-            'message' => 'OK'
+            'status' => 201,
+            'message' => 'Thêm Tổ trọng tài thành công'
         ]);
     }
 
@@ -38,15 +39,68 @@ class ToTrongTaiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($idTTC,$idTTB1,$idTTB2)
     {
-        TrongTai::create($request->all());
-        return response([
-            'status' => 200,
-            'message' => "Thêm thành công"
-        ]);
+      
+        $Trongtaichinh = TrongTai::find($idTTC);
+        $Trongtaibien1 = TrongTai::find($idTTB1);
+        $TrongTaibien2 = TrongTai::find($idTTB2);
+        $Array = array();
+       
+        if($idTTC != $idTTB1 && $idTTC != $idTTB2 && $idTTB1 != $idTTB2){
+
+
+            $Array[0] =$Trongtaibien1->idTT;
+            $Array[1] =$TrongTaibien2->idTT;
+            
+            $totrongtai = new ToTrongTai;
+            $totrongtai->idTT = $Trongtaichinh->idTT;
+            $totrongtai->save();
+
+            $data = new ToTrongTai;
+            $data->idToTT = ToTrongTai::max('idToTT');
+
+            for($i = 0; $i < 2; $i++){
+                $totrongtaiBien = new ToTrongTai;
+                $totrongtaiBien->idToTT = $data->idToTT;
+                $totrongtaiBien->idTT = $Array[$i];
+                $totrongtaiBien->save();
+            }
+            
+            return response([
+
+                'status' => 200,
+                'message' => "Thêm thành công"
+                
+            ]);
+        
+        }else {
+            
+            if($idTTC == $idTTB1 ){
+                return response([
+                    $idTTC,
+                    $idTTB1,
+
+                    'status' => 404,
+                    'message' => "Trọng tài $Trongtaichinh->TenTT đã được thêm vô đội"
+                ]);
+            }
+            else if( $idTTC == $idTTB2){
+                return response([
+                    'status' => 404,
+                    'message' => "Trọng tài $Trongtaichinh->TenTT đã được thêm vô đội "
+                ]);
+            }
+            else if ($idTTB1 == $idTTB2){
+                return response([
+                    'status' => 404,
+                    'message' => "Trọng tài $Trongtaibien1->TenTT đã được thêm vô đội"
+                ]);
+            }
+        }
     }
 
+   
     /**
      * Display the specified resource.
      *
@@ -55,7 +109,9 @@ class ToTrongTaiController extends Controller
      */
     public function show($id)
     {
-        //
+        // $Totrongtai = ToTrongTai::where('idToTT', $id)->value('idTT');
+        $Totrongtai = DB::select('select TenTT from trongtai join totrongtai on trongtai.idTT = totrongtai.idTT where idToTT = "'.$id.'"');
+        return response(['Totrongtai'=>$Totrongtai]);
     }
 
     /**
@@ -66,7 +122,15 @@ class ToTrongTaiController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = ToTrongTai::find($id);
+        if(empty($data)){
+            return response([
+                'status' => 404,
+                'message' => 'Không tìm thấy'
+            ]);
+        }
+        
+        return response($data);
     }
 
     /**
@@ -76,9 +140,27 @@ class ToTrongTaiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $idToTT,$idTT)
     {
-        //
+        $data =  ToTrongTai::where('idToTT',$idToTT)->where('idTT',$idTT)->get();
+        // return response(count($data));
+        if(count($data) == 0){
+            return response([
+                'status' => 404,
+                'message' => 'Không tìm thấy'
+            ]);
+        }
+        else{
+            $UpdateToTrongTai = new ToTrongTai;
+            $UpdateToTrongTai = ToTrongTai::where('idToTT',$idToTT)->where('idTT',$idTT)->update(['idTT' => $request->idTT]);
+            
+            return response([
+                'status' => 200,
+                'message' => 'Cập nhật thành công',
+            ]);
+        }
+
+        
     }
 
     /**
@@ -89,6 +171,19 @@ class ToTrongTaiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = ToTrongTai::findOrFail($id);
+        if(empty($data)){
+            return response([
+                'status' => 404,
+                'message' => 'Không tìm thấy'
+            ]);
+        }
+        $data->delete(); 
+        return response([
+            'status' => 200,
+            'message' => 'Xóa thành công'
+        ]);
     }
+
+    
 }

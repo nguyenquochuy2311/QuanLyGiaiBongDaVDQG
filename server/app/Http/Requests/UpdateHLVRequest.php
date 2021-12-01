@@ -5,8 +5,9 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Validation\Rule;
 
-class StoreTrongTaiRequest extends FormRequest
+class UpdateHLVRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,17 +27,20 @@ class StoreTrongTaiRequest extends FormRequest
     public function rules()
     {
         return [
-            'TenTT' => 'required|max:45',
-            'NgaySinh' => 'required|max:45',
-            'ViTri' => 'required|max:45',
-            'AnhDaiDien' => 'required|max:45',
+            'idCLB'=> 'required',
+            'TenHLV'=> 'required',
+            'NgaySinh'=> 'required',
+            'ChucVu'=> 'required',
+            'AnhDaiDien'=>'required',
+            Rule::unique('hlv', 'AnhDaiDien')->ignore($this->id)
         ];
     }
+
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
             'status' => false,
-            'message' => 'Lỗi thêm dữ liệu',
+            'message' => 'Lỗi cập nhật dữ liệu',
             'detail' => $validator->errors()
         ]));
     }
@@ -44,12 +48,12 @@ class StoreTrongTaiRequest extends FormRequest
     public function messages()
     {
         return [
-            'TenTT.required' => 'Chưa nhập tên Trọng Tài',
-            'ViTri.required' => 'Chưa nhập Vị Trí',
-            'NgaySinh.required' => 'Chưa nhập ngày sinh ',
-            'AnhDaiDien.required' => 'Chưa cập nhập ảnh đại diện',
-            // 'TenHLV.unique' => 'sđsad',
-            
+            'idCLB.required' => 'Mã Câu lạc bộ không được bỏ trống!',
+            'TenHLV.required' => 'Tên HLV không được bỏ trống!',
+            'NgaySinh.required' => 'Ngày sinh HLV không được bỏ trống!',
+            'ChucVu.required' => 'Chức vụ HLV không được bỏ trống!',
+            'AnhDaiDien.required' => 'Ảnh HLV HLV không được bỏ trống!',
+
         ];
     }
 }

@@ -4,7 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\StoreCauThuRequest;
+use App\Http\Requests\UpdateCauThuRequest;
 use Illuminate\Support\Facades\DB;
 use App\Models\CauThu;
 
@@ -32,7 +33,10 @@ class CauThuController extends Controller
      */
     public function create()
     {
-        //
+        return response([
+            'status' => 201,
+            'message' => 'Thêm cầu thủ thành công'
+        ]);
     }
 
     /**
@@ -41,13 +45,28 @@ class CauThuController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCauThuRequest $request)
     {
-        // CauThu::create($request->all());  
-        return response([
-            'status' => 200,
-            'message' => "Thêm thành công"
-        ]);
+        $data = DB::table('cauthu')
+                ->where('idCLB',$request->idCLB)
+                ->where('SoAo',$request->SoAo)
+                ->select()
+                ->get();
+                // return response(count($data));
+        $var = count($data);
+        if($var != 0 ){
+            return response([
+                'status' => 200,
+                'message' => "Không thế thêm cầu thủ. Vì đã có cầu thủ mang áo số $request->SoAo"
+            ]);
+        }
+        else{
+            CauThu::create($request->all());  
+            return response([
+                'status' => 200,
+                'message' => "Thêm thành công"
+            ]);
+        }
     }
 
     /**
@@ -58,19 +77,19 @@ class CauThuController extends Controller
      */
     public function show($id)
     {
-        // $data = CauThu::find($id);
-        // if(empty($data)){
-        //     return response([
-        //         'status' => 404,
-        //         'message' => 'Không tìm thấy'
-        //     ]);
-        // }
+        $data = CauThu::find($id);
+        if(empty($data)){
+            return response([
+                'status' => 404,
+                'message' => 'Không tìm thấy'
+            ]);
+        }
         // $cau_thu = DB::table('cau_thus')
         //     ->join('doi_bongs', 'cau_thus.doi_bong_id', '=', 'doi_bongs.id')
         //     ->where('cau_thus.id', '=', $id)
         //     ->select('cau_thus.*', 'doi_bongs.ten_doi_bong')
-        //     ->get();
-        // return response($cau_thu);
+        //     ->get(); 
+        return response($data);
     }
 
     /**
@@ -81,7 +100,14 @@ class CauThuController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = CauThu::find($id);
+        if(empty($data)){
+            return response([
+                'status' => 404,
+                'message' => 'Không tìm thấy'
+            ]);
+        }
+        return response($data);
     }
 
     /**
@@ -93,7 +119,38 @@ class CauThuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $Cauthu = CauThu::find($id);
+        if(empty($Cauthu)){
+            return response([
+                'status' => 404,
+                'message' => 'Không tìm thấy'
+            ]);
+        }else{
+            $data = DB::table('cauthu')
+            ->where('idCLB',$request->idCLB)
+            ->where('SoAo',$request->SoAo)
+            ->whereNotIn('idCT',[$id])
+            ->select()
+            ->get();
+            // return response(count($data));
+            $var = count($data);
+            if($var > 0 ){
+                return response([
+                    'status' => 200,
+                    'message' => "Không thể cập nhập cầu thủ. Vì đã có cầu thủ mang áo số $request->SoAo"
+                ]);
+            }
+            else{
+                $Cauthu->update($request->all());
+                return response([
+                    'status' => 200,
+                    'message' => 'Cập nhật thành công',
+                    "new_data" => $Cauthu
+                ]);
+            }
+        }
+        
+       
     }
 
     /**
@@ -104,6 +161,31 @@ class CauThuController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cauthu = Clb::findOrFail($id);
+        $data = count($cauthu);
+         if($data = 0 ){
+            return response([
+                'status' => 404,
+                'message' => 'Không tìm thấy cầu thủ cần xoá'
+            ]);
+        }else{
+            $cauthu->delete();
+            return response([
+                'status' => 200,
+                'message' => 'Xóa thành công'
+            ]);
+        }
+    }
+
+    public function search($tenCT)
+    {
+        $result = CauThu::where('TenCT', 'like', '%'.$tenCT.'%')->get();
+        if(count($result)){
+            return $result;
+        }
+        return response([
+            'status' => 404,
+            'message' => 'Không tìm thấy'
+        ]);
     }
 }
