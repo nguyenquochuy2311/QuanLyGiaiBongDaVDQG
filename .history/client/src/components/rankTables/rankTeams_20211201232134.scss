@@ -1,0 +1,171 @@
+@import '../../styles/variables';
+@import '../../styles/global';
+
+.rank__team{
+
+  
+  .button {
+      display: block;
+      font-size: 16px;
+      border-radius: 3px;
+      line-height: 1.6;
+      background: #fff;
+      float: right;
+      padding: 0 21px;
+      margin-top: 20px;
+      margin-right: 20px;
+      color: #F35659;
+      background-color: #fff;
+      font-weight: bold;
+  }
+  
+  .share-icon {
+      color: #000;
+  }
+  
+  .button:hover {
+      cursor: pointer;
+      background-color: rgb(55,0,60);
+      color: #fff;
+  }
+  
+  .button:hover .share-icon {
+      color: #fff;
+  }
+  
+  .clb-chart-container {
+      text-transform: uppercase;
+      margin: 50px;
+      font-weight: bold;
+      font-size: 16px;
+      text-decoration: none;
+  }
+  
+  .name-bxh {
+    color: #17A9ED;
+    margin: 20px;
+    font-size: 1.2rem;
+  }
+  
+  table {
+      border: 1px solid #ccc;
+      border-collapse: collapse;
+      margin: 0x;
+      padding: 0;
+      width: 100%;
+      table-layout: fixed;
+      background: $white-color;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3)
+    }
+  
+  tr:nth-child(even) td {
+      background-color: rgb(255, 255, 255);
+  }
+  
+  tr:nth-child(odd) td {
+      background-color: rgb(226, 226, 226);
+  }
+  
+  td img {
+    width: 36px;
+    height: 36px;
+  }
+  
+  
+  .clb-name {
+    width: 40%;
+    text-align: left;
+    vertical-align: middle;
+     
+  }
+  .img__logo{
+     display: flex;
+      align-items: center;
+      img{
+        border-radius: 50%;
+         width: 50px;
+            height: 50px;
+            border: 1px solid green;
+            margin: 0 10px;
+            background-size: cover;
+        
+      }
+  }
+  
+  .clb-name img {
+    vertical-align: middle;
+  }
+  
+  .sum-point,
+  .stt{
+    width: 10%; 
+  }
+  
+  
+    table tr {
+      background-color: #f8f8f8;
+      border: 1px solid #ddd;
+      padding: .35em;
+    }
+    
+    table th,
+    table td {
+      padding: .625em;
+      text-align: center;
+    }
+    
+    table th {
+      font-size: .85em;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    
+    @media screen and (max-width: 600px) {
+      table {
+        border: 0;
+      }
+    
+      table caption {
+        font-size: 1.3em;
+      }
+      
+      table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+      }
+      
+      table tr {
+        border-bottom: 3px solid #ddd;
+        display: block;
+        margin-bottom: .625em;
+      }
+      
+      table td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: .8em;
+        text-align: right;
+      }
+      
+      table td::before {
+        /*
+        * aria-label has no advantage, it won't be read inside a table
+        content: attr(aria-label);
+        */
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      
+      table td:last-child {
+        border-bottom: 0;
+      }
+    }
+}
