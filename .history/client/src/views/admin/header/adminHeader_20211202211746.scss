@@ -1,0 +1,17 @@
+@import '../../../styles/variables';
+@import '../../../styles/global';
+
+.navbar__admin{
+
+    .navbar-nav{
+        max-height: ;
+    }
+    .log__out{
+        cursor: pointer;
+        color: $white-color;
+        font-size: 1.5rem;
+        &:hover{
+            color: $primary-color;
+        }
+    }
+}

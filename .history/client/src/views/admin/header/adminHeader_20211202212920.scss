@@ -1,0 +1,20 @@
+@import '../../../styles/variables';
+@import '../../../styles/global';
+
+.navbar__admin{
+
+    .col{
+        width:40px!important;
+    }
+    .navbar-nav{
+       
+    }
+    .log__out{
+        cursor: pointer;
+        color: $white-color;
+        font-size: 1.5rem;
+        &:hover{
+            color: $primary-color;
+        }
+    }
+}
