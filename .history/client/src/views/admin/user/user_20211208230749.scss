@@ -1,0 +1,19 @@
+@import "../../../styles/variables";
+@import "../../../styles/global";
+
+.admin {
+  .modal-body {
+    &-item {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      //    flex-direction: column;
+      margin: 10px;
+      text-align: left;
+      label {
+          display: inline-block;
+        margin-right: 10px;
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+@import '../../styles/variables';
+@import '../../styles/global';
+
+.admin{
+
+    .modal-body{
+         display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          &-item{
+              margin: 10px;
+              
+          }
+    }
+}
