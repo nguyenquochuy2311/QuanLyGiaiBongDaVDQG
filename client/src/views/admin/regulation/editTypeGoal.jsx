@@ -15,6 +15,10 @@ function EditBanThang() {
   const [val, setValidator] = useState([]);
   const [data, setData] = useState([]);
 
+  const [batdau, setThoiDiemBatDau] = useState([]);
+
+  const [ketthuc, setThoiDiemKetThuc] = useState([]);
+  
   const [diemA, setDiemA] = useState([]);
   const [diemB, setDiemB] = useState([]);
   const [diemC, setDiemC] = useState([]);
@@ -27,7 +31,7 @@ function EditBanThang() {
 
   let { id } = useParams();
 
-  console.log(">>>>>>>>>id" + id);
+  // console.log(">>>>>>>>>id" + id);
   useEffect(() => {
     showID();
     getA();
@@ -65,14 +69,17 @@ function EditBanThang() {
   async function editBanThang(id) {
     const formData = new FormData();
     formData.append("ThoiDiemBatDau", ThoiDiemBatDau.value);
-    formData.append("ThoiDienKetThuc", ThoiDiemKetThuc.value);
+    formData.append("ThoiDiemKetThuc", ThoiDiemKetThuc.value);
     formData.append("LoaiBT", LoaiBT.value);
     formData.append("idMG", idMG.value);
 
 
     // console.log(  diemA.ThoiDiemKetThuc + ''+ diemB.ThoiDiemBatDau);
     // let a = JSON.parse(data)
-
+console.log( '##############'+
+  diemA.ThoiDiemKetThuc + diemB.ThoiDiemBatDau +
+    diemB.ThoiDiemKetThuc + diemC.ThoiDiemBatDau
+);
     let taikhoan = JSON.parse(localStorage.getItem("taikhoan"));
     let result = await fetch(
       "http://127.0.0.1:8000/api/auth/qd-banthang/update/" + id,
@@ -143,8 +150,7 @@ function EditBanThang() {
         </div>
         <Col md={{ span: 4, offset: 4 }}>
           <Form className="form">
-
-          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>
                 <b>ID mùa giải</b>
               </Form.Label>
@@ -160,8 +166,6 @@ function EditBanThang() {
               <Form.Label className="err">--</Form.Label>
               <Form.Label className="err">{val.idMG}</Form.Label>
             </Form.Group>
-
-
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>
                 <b>Loại bàn thắng</b>
@@ -187,7 +191,7 @@ function EditBanThang() {
                 defaultValue={data.ThoiDiemBatDau}
                 type="number"
                 placeholder="Thời điểm bắt đầu"
-                // onChange={(e) => setName(e.target.value)}
+                onChange={(e) => setThoiDiemBatDau(e.target.value)}
               />
               <Form.Text className="text-muted"></Form.Text>
               <Form.Label className="err">--</Form.Label>
@@ -203,7 +207,7 @@ function EditBanThang() {
                 maxLength="20"
                 type="number"
                 placeholder="Thời điểm kết thúc"
-                // onChange={(e) => setThoiDienKetThuc(e.target.value)}
+                onChange={(e) => setThoiDiemKetThuc(e.target.value)}
               />
               <Form.Text className="text-muted">------</Form.Text>
               <Form.Label className="err">{val.ThoiDiemKetThuc}</Form.Label>
@@ -212,12 +216,11 @@ function EditBanThang() {
             > */}
             <Button
               onClick={() =>
-                
                 diemA.ThoiDiemKetThuc < diemB.ThoiDiemBatDau &&
-                diemB.ThoiDiemKetThuc < diemC.ThoiDiemBatDau &&
-                ThoiDiemBatDau.value < ThoiDiemKetThuc.value
-                  ? editBanThang(data.idQUYDINHBANTHANG)
-                  : alert("Thông tin  không hợp lệ")
+                diemB.ThoiDiemKetThuc < diemC.ThoiDiemBatDau
+                  ? // ThoiDiemBatDau.value < ThoiDiemKetThuc.value
+                    editBanThang(data.idQUYDINHBANTHANG)
+                  : alert("Thông tin không hợp lệ")
               }
               variant="outline-success"
             >

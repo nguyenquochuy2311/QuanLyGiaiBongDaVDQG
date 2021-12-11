@@ -165,7 +165,7 @@ Route::group([
         // Admin Tran Dau
 
         Route::get('trandau/edit/{idTD}', [TranDauController::class, 'edit']);
-        Route::put('trandau/update/{idTD}', [TranDauController::class, 'update']);
+        Route::post('trandau/update/{idTD}', [TranDauController::class, 'update']);
 
         // Admin Ket Qua 
         Route::post('ketqua/store', [KetQuaController::class, 'store']);

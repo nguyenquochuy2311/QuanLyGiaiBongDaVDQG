@@ -121,9 +121,9 @@ function EditClub(props) {
     history.push("/admin");
   }
 
-  function handleChange(event) {
-    console.log(`Selected file - ${event.target.files[0].name}`);
-  }
+  // function handleChange(event) {
+  //   console.log(`Selected file - ${event.target.files[0].name}`);
+  // }
 
   
   return (

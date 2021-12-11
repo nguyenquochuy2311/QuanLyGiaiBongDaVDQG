@@ -109,15 +109,15 @@ class QDBanThangController extends Controller
                 'message' => 'Không tìm thấy'
             ]);
         }
-        // if(is_numeric($request->ThoiDiemBatDau) && is_numeric($request->ThoiDiemKetThuc)){
-        //     if($request->ThoiDiemBatDau>$request->ThoiDiemKetThuc){
-        //         return response()->json([
-        //            'status' => false,
-        //            'message' => 'Lỗi cập nhật dữ liệu',
-        //            'detail'=> 'Thời điểm bắt đầu phải nhỏ hơn thời điểm kết thúc'
-        //         ]);
-        //     }
-        // }
+        if(is_numeric($request->ThoiDiemBatDau) && is_numeric($request->ThoiDiemKetThuc)){
+            if($request->ThoiDiemBatDau>$request->ThoiDiemKetThuc){
+                return response()->json([
+                   'status' => false,
+                   'message' => 'Lỗi cập nhật dữ liệu',
+                   'detail'=> 'Thời điểm bắt đầu phải nhỏ hơn thời điểm kết thúc'
+                ]);
+            }
+        }
         $quy_dinh->update($request->all());
         return response([
             'status' => 200,

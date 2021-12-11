@@ -4,7 +4,7 @@ import ReactNotification, { store } from "react-notifications-component";
 import Helmet from "../../../components/Helmet/Helmet";
 import AdminHeader from "../header/adminHeader";
 import Header from "../../../containers/header/header";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 import "./user.scss";
 //ip data
@@ -20,7 +20,7 @@ const AdminAccount = () => {
 
 
   // get id
-  // function getUser() {}
+
   // get info user theo id
   async function getInfoUser(id) {
 

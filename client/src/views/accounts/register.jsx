@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import { useHistory } from "react-router-dom";
 
 import { Link } from "react-router-dom";
 import ReactNotification, { store } from "react-notifications-component";
 import { Form, Button, Row, Col } from "react-bootstrap";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+
+
 //ip component
 import Helmet from "../../components/Helmet/Helmet";
 import "react-notifications-component/dist/theme.css";
@@ -23,6 +28,54 @@ const Register = () => {
 
   const [val, setValidator] = useState([]);
 
+
+
+
+  //  useEffect(() => {
+  //    const userAuth = firebase.auth().onAuthStateChanged(async (user) => {
+  //      if (!user) {
+  //        console.log("user", user);
+  //        //  store.addNotification({
+  //        //    title: "Đăng nhập thất bại !",
+  //        //    message: "Hãy kiểm tra lại emal đăng ký và mật khẩu của bạn !",
+  //        //    type: "danger",
+  //        //    insert: "top",
+  //        //    container: "top-right",
+  //        //    animationIn: ["animate__animated", "animate__fadeIn"],
+  //        //    animationOut: ["animate__animated", "animate__fadeOut"],
+  //        //  });
+  //        return;
+  //      }
+  //      console.log("user", user);
+
+  //      // history.replace("/admin");
+  //      // window.location.reload();
+  //      // username =  {firebase.auth().currentUser.displayName}
+  //      let email = user.email;
+  //      let password = user.uid;
+  //      const idToken = await user.getIdToken();
+  //      localStorage.setItem("taikhoan", JSON.stringify(idToken));
+  //      console.log("user", password);
+  //     //  return () => Login();
+  //    });
+
+  //   //  return () => userAuth();
+  //  }, []);
+  
+   const uiConfig = {
+     signInFlow: "popup",
+     signInOptions: [
+       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+       // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+       // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+       // firebase.auth.GithubAuthProvider.PROVIDER_ID,
+       // firebase.auth.EmailAuthProvider.PROVIDER_ID,
+     ],
+     callbacks: {
+       signInSuccess: () => false,
+     },
+  };
+  
   async function Register() {
     console.log(username, email, password);
     const item = { username, email, password };
@@ -140,8 +193,7 @@ const Register = () => {
             <input
               type="email"
               placeholder="Email"
-              onChange={(e) => 
-
+              onChange={(e) =>
                 validateEmail(e.target.value) === true ? (
                   setEmail(e.target.value)
                 ) : (
@@ -159,7 +211,7 @@ const Register = () => {
               type="password"
               placeholder="Mật khẩu (ít nhất 6 ký tự)"
               minLength="6"
-              onChange={(e) =>setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <i className="bx bx-lock-alt"></i>
           </div>
@@ -172,7 +224,6 @@ const Register = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
             <i className="bx bxs-lock"></i>
-
           </div>
           <Button
             onClick={Register}
@@ -190,17 +241,21 @@ const Register = () => {
             <Link to="/dang-nhap">Đăng nhập</Link>
           </p>
           <div className="social">
-            <div className="social-icon">
-              <img  alt='not found ' src={google} />
+            <StyledFirebaseAuth
+              uiConfig={uiConfig}
+              firebaseAuth={firebase.auth()}
+            ></StyledFirebaseAuth>
+            {/* <div className="social-icon">
+              <img alt="not found " src={google} />
             </div>
 
             <div className="social-icon">
-              <img  alt='not found ' src={facebook} />
+              <img alt="not found " src={facebook} />
             </div>
 
             <div className="social-icon">
-              <img  alt='not found ' src={twitter} />
-            </div>
+              <img alt="not found " src={twitter} />
+            </div> */}
           </div>
         </Form>
       </section>

@@ -4,7 +4,7 @@ import Helmet from "../../../components/Helmet/Helmet";
 import AdminHeader from "../header/adminHeader";
 import Header from "../../../containers/header/header";
 //ip data
-import card_player_data from "../../../assets/fake-data/CardPlayers";
+// import card_player_data from "../../../assets/fake-data/CardPlayers";
 const AdminRegulation = (props) => {
   const [rgScore, setRgScore] = useState([]);
   const [rgWin, setRgWin] = useState([]);

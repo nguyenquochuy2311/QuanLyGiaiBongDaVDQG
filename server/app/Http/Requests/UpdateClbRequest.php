@@ -32,7 +32,7 @@ class UpdateClbRequest extends FormRequest
             Rule::unique('clb', 'VietTat')->ignore($this->id),
             'SanNha' => 'required|max:45',
             'TruSo' => 'required|max:45',
-            'Logo' => 'required',
+            // 'Logo' => 'required',
             // 'image' => 'required|image|mimes:jpeg,png,jpg|max:2048'
         ];
     }

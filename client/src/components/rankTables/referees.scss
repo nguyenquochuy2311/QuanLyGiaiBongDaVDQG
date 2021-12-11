@@ -2,6 +2,27 @@
 @import "../../styles/global";
 
 .component {
+   .modal-body {
+    &-item {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      //    flex-direction: column;
+      margin: 10px;
+      text-align: left;
+      label {
+          min-width: 200px;
+          display: inline-block;
+        margin-right: 10px;
+        
+      }
+    }
+    textarea{
+      width: fit-content;
+      width: 300px ;
+    }
+  }
+
   .btn {
     margin-top: 1rem;
     display: inline-block;

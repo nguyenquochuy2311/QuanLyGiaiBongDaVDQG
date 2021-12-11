@@ -29,7 +29,7 @@ import EditClub from '../views/admin/club/editclub';
 
 import Match from '../views/admin/match/match';
 import AddMatch from '../views/admin/match/addMatch';
-// import EditMatch from '../views/admin/match/editMatch';
+import EditMatch from '../views/admin/match/editMatch';
 
 
 
@@ -123,9 +123,9 @@ function App() {
           <Route  exact path="/admin/lich-dau/add">
             <AddMatch />
           </Route>
-          {/* <Route  exact path="/admin/lich-dau/edit/:id">
+          <Route  exact path="/admin/lich-dau/edit/:id">
             <EditMatch />
-          </Route> */}
+          </Route>
 
 
           <Route  exact path="/admin/ket-qua-tran-dau">

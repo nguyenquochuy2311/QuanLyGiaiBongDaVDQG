@@ -49,11 +49,10 @@ export default function AddClub() {
     //   })
     //   .catch((err) => console.log(err));
 
-    // console.log(
-    //   "Trả về addClub>>>>>>> :" + JSON.stringify(result)
+    console.log(
+      "Trả về addClub>>>>>>> :" + JSON.stringify(result)
 
-    //   // taikhoan.access_token
-    // );
+    );
     if (result.status !== 200) {
       //Nếu có lối thì truyền vào cho setValidator
 

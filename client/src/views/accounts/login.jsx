@@ -1,7 +1,10 @@
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, Redirect } from "react-router-dom";
 import ReactNotification, { store } from "react-notifications-component";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
 //ip component
 import Helmet from "../../components/Helmet/Helmet";
@@ -10,13 +13,62 @@ import { google, facebook, twitter, Bg1 } from "../../assets/img";
 
 import "./login.scss";
 
+firebase.initializeApp({
+  apiKey: "AIzaSyDLoqcbTDMFuurtAyDgVEKZ6qwo0j0Osjk",
+  authDomain: "fir-auth-tutorial-ed11f.firebaseapp.com",
+});
 const Login = () => {
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [val, setValidator] = useState([]);
   const [error, setError] = useState("");
- 
+
+  useEffect(() => {
+    const userAuth = firebase.auth().onAuthStateChanged(async (user) => {
+      if (!user) {
+        console.log("user", user);
+        //  store.addNotification({
+        //    title: "Đăng nhập thất bại !",
+        //    message: "Hãy kiểm tra lại emal đăng ký và mật khẩu của bạn !",
+        //    type: "danger",
+        //    insert: "top",
+        //    container: "top-right",
+        //    animationIn: ["animate__animated", "animate__fadeIn"],
+        //    animationOut: ["animate__animated", "animate__fadeOut"],
+        //  });
+        return;
+      }
+      console.log("user", user);
+
+      // history.replace("/admin");
+      // window.location.reload();
+      // username =  {firebase.auth().currentUser.displayName}
+      // let email = user.email;
+      // let password = user.uid;
+      const idToken = await user.getIdToken();
+      localStorage.setItem("taikhoan", JSON.stringify(idToken));
+      // console.log("user", password);
+      // return () => Login();
+    });
+
+    return () => userAuth();
+  }, []);
+  //  state = { isSignedIn: false };
+
+  const uiConfig = {
+    signInFlow: "popup",
+    signInOptions: [
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+      // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+      // firebase.auth.GithubAuthProvider.PROVIDER_ID,
+      // firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    ],
+    callbacks: {
+      signInSuccess: () => false,
+    },
+  };
 
   async function Login() {
     let item = { email, password };
@@ -37,14 +89,14 @@ const Login = () => {
       //dùng localStrage để lưu tài khoản
       localStorage.setItem("taikhoan", JSON.stringify(result));
       //chuyển sang String
-      let taikhoan = JSON.parse(localStorage.getItem("taikhoan"));
-      console.log(">>>>>>>>>>>>>>>>>>>>" + taikhoan);
+      // let taikhoan = JSON.parse(localStorage.getItem("taikhoan"));
+      // console.log(">>>>>>>>>>>>>>>>>>>>" + taikhoan);
       //Nếu trong local có name thì
-      console.log("name>>>>>>.: ", taikhoan.email);
-      console.log("pass>>>>>: ", taikhoan.password);
-
-     
-
+      // console.log("name>>>>>>.: ", taikhoan.email);
+      // console.log("pass>>>>>: ", taikhoan.password);
+      // ktra token co trong tk hay ko
+      const token = localStorage.getItem("taikhoan");
+      console.log(token);
       // Login thanh cong
       if (result.status === "success") {
         history.replace("/admin");
@@ -97,9 +149,6 @@ const Login = () => {
   }
   console.log("error :", error);
 
-
-
-  // Logout.onClick(()=>dangxuat)
   return (
     <Helmet title="Đăng nhập">
       <ReactNotification />
@@ -153,15 +202,27 @@ const Login = () => {
           </div>
 
           <footer className="login-footer">
-            <a href="https://accounts.google.com/signin">
+            <StyledFirebaseAuth
+              uiConfig={uiConfig}
+              firebaseAuth={firebase.auth()}
+            ></StyledFirebaseAuth>
+            {/* <button
+              uiConfig={uiConfig}
+              firebaseAuth={firebase.auth()}
+              // href="https://accounts.google.com/signin"
+            >
               <img className="login-icon" src={google} alt="not found" />
-            </a>
-            <a href="https://www.facebook.com/">
+            </button>
+            <button
+              // href="https://www.facebook.com/"
+            >
               <img className="login-icon" src={facebook} alt="not found" />
-            </a>
-            <a href="https://twitter.com/i/flow/login">
+            </button>
+            <button
+              // href="https://twitter.com/i/flow/login"
+            >
               <img className="login-icon" src={twitter} alt="not found" />
-            </a>
+            </button> */}
           </footer>
         </Form>
       </div>
