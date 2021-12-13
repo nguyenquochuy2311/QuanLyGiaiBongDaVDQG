@@ -12,29 +12,6 @@ import "firebase/compat/auth";
 //   authDomain: "premium-archery-334802.firebaseapp.com",
 // });
 export default class Nav extends Component {
-  state = { isSignedIn: false };
-
-  uiConfig = {
-    signInFlow: "popup",
-    signInOptions: [
-      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-      // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-      // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-      // firebase.auth.GithubAuthProvider.PROVIDER_ID,
-      // firebase.auth.EmailAuthProvider.PROVIDER_ID,
-    ],
-    callbacks: {
-      signInSuccess: () => false,
-    },
-  };
-
-  componentDidMount = () => {
-    firebase.auth().onAuthStateChanged((user) => {
-      this.setState({ isSignedIn: !!user });
-      // console.log("user", user.multiFactor.user.accessToken);
-    });
-  };
-
   constructor(props) {
     super(props);
 
@@ -68,6 +45,28 @@ export default class Nav extends Component {
     });
   };
 
+  state = { isSignedIn: false };
+
+  uiConfig = {
+    signInFlow: "popup",
+    signInOptions: [
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+      // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+      // firebase.auth.GithubAuthProvider.PROVIDER_ID,
+      // firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    ],
+    callbacks: {
+      signInSuccess: () => false,
+    },
+  };
+
+  componentDidMount = () => {
+    firebase.auth().onAuthStateChanged((user) => {
+      this.setState({ isSignedIn: !!user });
+      // console.log("user", user.multiFactor.user.accessToken);
+    });
+  };
   render() {
     const user = JSON.parse(localStorage.getItem("taikhoan"));
     function removeUser() {
@@ -257,7 +256,7 @@ export default class Nav extends Component {
             {/* <div className="category">
             </div> */}
             <div className="account">
-              {(user !== null || this.state.isSignedIn) ? (
+              {user !== null ? (
                 <Link
                   to="/"
                   onClick={() => removeUser() && window.location.reload()}

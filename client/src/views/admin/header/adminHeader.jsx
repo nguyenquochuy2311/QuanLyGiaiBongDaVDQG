@@ -7,12 +7,11 @@ export default class Admin extends Component {
 
   render() {
     const user = JSON.parse(localStorage.getItem("taikhoan"));
-    function logout() {
-      localStorage.removeItem("taikhoan") &&  window.location.reload();
+    // function logout() {
+    // }
     if (!user || user["Role"] !== 1) {
          return (<Redirect to="/" />);
       }
-    }
     return (
       <div className="row">
         <nav className="navbar navbar-expand-lg navbar__admin">
@@ -151,7 +150,8 @@ export default class Admin extends Component {
             <div className="account">
               <Link
                 to="/"
-                onClick={() => logout()}
+                onClick={() =>      localStorage.clear() &&  window.location.reload()
+}
                 className="log__out"
                 title="Đăng xuất"
               >

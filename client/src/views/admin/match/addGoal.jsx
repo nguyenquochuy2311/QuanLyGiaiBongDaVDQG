@@ -26,7 +26,7 @@ export default function AddGoal() {
     formData.append("LoaiBT", LoaiBT);
     
 
-    console.log(idCauThu, ThoiDiem, LoaiBT);
+    // console.log(idCauThu, ThoiDiem, LoaiBT);
 
     let taikhoan = JSON.parse(localStorage.getItem("taikhoan"));
     let result = await fetch("http://127.0.0.1:8000/api/auth/ghiban/store", {
@@ -91,9 +91,9 @@ export default function AddGoal() {
   }
 
   return (
-    <Helmet title="Thêm câu lạc bộ">
+    <Helmet title="Thêm bàn thắng">
       <AdminHeader />
-      <Header title="Thêm câu lạc bộ" />
+      <Header title="Thêm bàn thắng" />
       <ReactNotification />
       <Row style={{ paddingTop: "50px", background: "#ccc" }}>
         <div className="btn__back" style={{ transform: "translateX(100px)" }}>

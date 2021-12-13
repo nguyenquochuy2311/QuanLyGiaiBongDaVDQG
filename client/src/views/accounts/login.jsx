@@ -27,21 +27,25 @@ const Login = () => {
   useEffect(() => {
     const userAuth = firebase.auth().onAuthStateChanged(async (user) => {
       if (!user) {
-        // console.log("user", user);
+        console.log("user chua login", user);
        
         return;
+      } else {
+        history.replace("/");
+        window.location.reload();
+        const idToken = await user.getIdToken();
+        localStorage.setItem("taikhoan", JSON.stringify(idToken));
+        console.log("user da login", user);
       }
-      // console.log("user", user);
 
-      history.replace("/");
-      window.location.reload();
+    
+
+
       // username =  {firebase.auth().currentUser.displayName}
       // let email = user.email;
       // let password = user.uid;
-      const idToken = await user.getIdToken();
-      localStorage.setItem("taikhoan", JSON.stringify(idToken));
-      // con  sole.log("user", password);
-      // return () => Login();
+    
+     
     });
 
     return () => userAuth();

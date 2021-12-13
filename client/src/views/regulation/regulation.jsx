@@ -42,7 +42,7 @@ const Regulation = () => {
   return (
     <Helmet title="Quy Định">
       <Header title="Quy định giải đấu" />
-      <div className="component container">
+      <div className="component container regulation">
         <section className="body-content">
 
           <h2 className="body-title ">Một số quy định về mùa giải</h2>

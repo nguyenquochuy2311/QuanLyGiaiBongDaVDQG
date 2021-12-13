@@ -244,6 +244,7 @@ const AdminAccount = () => {
                     id="UID"
                     type="text"
                     defaultValue={infoUser.UID}
+                    disabled={true}
                   />
                 </div>
                 <div className="modal-body-item">

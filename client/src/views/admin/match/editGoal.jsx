@@ -106,9 +106,9 @@ export default function EditGoal() {
   }
 
   return (
-    <Helmet title="Thêm câu lạc bộ">
+    <Helmet title="Chỉnh sửa bàn thắng">
       <AdminHeader />
-      <Header title="Thêm câu lạc bộ" />
+      <Header title="Chỉnh sửa bàn thắng" />
       <ReactNotification />
       <Row style={{ paddingTop: "50px", background: "#ccc" }}>
         <div className="btn__back" style={{ transform: "translateX(100px)" }}>

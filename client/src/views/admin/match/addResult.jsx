@@ -113,9 +113,9 @@ console.log(result);
 //     return [year, month, day].join('-');
 // }
   return (
-    <Helmet title="Thêm câu lạc bộ">
+    <Helmet title="Thêm kết quả trận đấu">
       <AdminHeader />
-      <Header title="Thêm câu lạc bộ" />
+      <Header title="Thêm kết quả trận đấu" />
       <ReactNotification />
       <Row style={{ paddingTop: "50px", background: "#ccc" }}>
         <div className="btn__back" style={{ transform: "translateX(100px)" }}>

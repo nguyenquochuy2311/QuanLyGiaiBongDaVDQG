@@ -111,9 +111,9 @@ function EditResultMatch(props) {
   }
 
   return (
-    <Helmet title="Chỉnh sửa CLB">
+    <Helmet title="Chỉnh sửa kết quả trận đấu">
       <AdminHeader />
-      <Header title="Chỉnh sửa CLB" />
+      <Header title="Chỉnh sửa kết quả trận đấu" />
       <ReactNotification />
       <Row style={{ paddingTop: "50px", background: "#ccc" }}>
         <div className="btn__back" style={{ transform: "translateX(100px)" }}>
