@@ -1,0 +1,140 @@
+@import "../../styles/variables";
+@import "../../styles/global";
+.component {
+ position: relative;
+  align-items: center;
+  justify-content: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  display: flex;
+.background{
+    width: 100vw;
+     position: fixed;
+       top: 0;
+       left: 0;
+       right: 0;
+       bottom: 0;
+
+}
+  .login-back-btn {
+    font-size: 40px;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: $white-color;
+    padding: 12px;
+    cursor: pointer;
+  }
+
+  .login-back-btn:hover {
+    cursor: pointer;
+    color: $primary-color;
+  }
+
+  .login-container {
+    background: $gray-white-color;
+    border-radius: 10px;
+    min-height: 200px;
+    position: relative;
+    padding: 0 50px;
+    max-width: 400px;
+  }
+
+  .login-header {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: $primary-color;
+    font-weight: bold;
+  }
+
+  .login-body {
+    padding: 0 16px 0 16px;
+  }
+
+  label.login-label {
+    display: block;
+    font-size: 15px;
+  }
+
+  .info-input {
+    border: 1px solid #ccc;
+    width: 100%;
+    font-size: 15px;
+    padding: 10px;
+    margin-bottom: 24px;
+    border-radius: 10px;
+  }
+
+  .login-forgot {
+    padding-bottom: 16px;
+    text-align: right;
+  }
+
+  .login-forgot a {
+    color: #2196f3;
+    text-decoration: none;
+  }
+
+  .login-forgot a:hover {
+    opacity: 0.6;
+  }
+
+  #login-submit-btn {
+    background: #6cb0c5;
+    border: none;
+    border-radius: 20px;
+    color: $white-color;
+    width: 100%;
+    text-transform: uppercase;
+    font-size: 15px;
+    padding: 18px;
+    cursor: pointer;
+  }
+
+  #login-submit-btn:hover {
+    opacity: 0.8;
+  }
+
+  .register {
+    padding: 16px;
+    text-align: center;
+  }
+
+  .register a {
+    color: #f14336;
+    text-decoration: none;
+  }
+
+  .register a:hover {
+    opacity: 0.6;
+  }
+
+  .login-footer {
+    justify-content: center;
+    margin-top: 20px;
+    display: flex;
+    padding: 0 16px 16px 16px;
+  }
+
+  .login-footer a img {
+    margin-left: 32px;
+    height: 35px;
+    width: 35px;
+  }
+
+  .login-footer a img:hover {
+    opacity: 0.6;
+  }
+  .btn{
+      background: $bg-btn;
+      color: $white-color;
+      font-size: 1.2rem;
+      &:hover{
+          background: $blue-color;
+      }
+  }
+}

@@ -1,0 +1,64 @@
+Lệnh laravel:
+
+Vừa tạo model vừa migrate qua db
+	php artisan make:model {ModelName} --migration
+
+Tạo Controller
+	php artisan make:controller {NameController hoặc API/NameController} --resource
+
+Make Validate Form
+	php artisan make:request StorePostRequest
+Cách đặt tên: {Phương thức}{Tên Model}{Request}
+/Requests
+- Chuyển authorize() => true
+- hàm failedValidation(Validator $validator) -> trỏ lỗi mặc định
+- hàm message() -> trỏ custom lỗi
+
+Migrate Rollback
+	php artisan migrate:rollback
+
+Seeder từng class
+	php artisan db:seed --class={name}Seeder
+
+
+Status code
+200 OK – Trả về thành công cho những phương thức GET, PUT, PATCH hoặc DELETE.
+201 Created – Trả về khi một Resouce vừa được tạo thành công.
+204 No Content – Trả về khi Resource xoá thành công.
+304 Not Modified – Client có thể sử dụng dữ liệu cache.
+400 Bad Request – Request không hợp lệ
+401 Unauthorized – Request cần có auth.
+403 Forbidden – bị từ chối không cho phép.
+404 Not Found – Không tìm thấy resource từ URI
+405 Method Not Allowed – Phương thức không cho phép với user hiện tại.
+410 Gone – Resource không còn tồn tại, Version cũ đã không còn hỗ trợ.
+415 Unsupported Media Type – Không hỗ trợ kiểu Resource này.
+422 Unprocessable Entity – Dữ liệu không được xác thực
+429 Too Many Requests – Request bị từ chối do bị giới hạn
+
+Refresh migrate
+	php artisan migrate:fresh
+
+
+---------------------------
+
+Chia công việc BE:
+/* Dat
+Hlv
+CauThu
+BxhClb
+BxhCt
+TrongTai
+ToTrongTai
+
+Luong
+TranDau -> edit
+GhiBan
+KetQua
+Xuphat
+
+Huy
+User
+PheDuyet
+3 QuyDinh
+*/

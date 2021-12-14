@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&family=Roboto:wght@300;400&display=swap');
+@import '../styles/global';
+@import '../styles/variables';
+// @import '../styles/responsive';
+
+
+.App {
+  position: relative;
+  text-align: center;
+  margin: auto;
+  user-select: none;
+  overflow: hidden;
+  min-height:100vh;
+  // background-image: linear-gradient(to right, #3ab5b1ec 0%rgba(61, 153, 190, 0.89)be 31%, #rgba(85, 49, 122, 0.918)100%);
+  background-image: linear-gradient(to right, #3ab5b1da 0%, #3d99bec5 31%, #55317abe 100%);
+  // background-image: linear-gradient(to top, #f43b47 0%, #453a94 100%);
+  // background-image: linear-gradient(to top, #fff1eba8 0%, #ace1f9a9 100%);
+  clear: none;
+
+}
+
+.App::-webkit-scrollbar {
+  height:8px;
+  display: none;
+}
+
+.App::-webkit-scrollbar-track:hover {
+  border-radius: 4px;
+  background: #888;
+}
+.App::-webkit-scrollbar-thumb:hover {
+  background:$primary-color;
+  border-radius: 4px;
+}
+
+.component{
+  margin-top: 100px;
+  min-height: 100vh !important;
+}
+
