@@ -22,18 +22,18 @@ composer install
 ```sh
 composer update
 ```
-- Nếu ko có .env
+- Create .env
 ```sh
 cp .env.example .env 
 ```
 
-- Lấy key để chạy:
+- Get key to run app:
 ```sh
 php artisan key:generate
 ```
 - Create database
 
-- Cấu hình .env:
+- Config .env:
 ```sh
 DB_CONNECTION=mysql          
 DB_HOST=127.0.0.1            
